@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1947802062">
+  <component name="DataSourceManagerImpl" format="xml" hash="4173669688">
     <data-source source="LOCAL" name="Django default" uuid="b77a4c47-7212-4c28-9bbb-016e93d69538">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
@@ -8,6 +8,14 @@
       <remarks>$PROJECT_DIR$/sati_django/hello_django/settings.py</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/sati_django/test.db</jdbc-url>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/xerial-sqlite-license.txt</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/sqlite-jdbc-3.8.11.2.jar</url>
+        </library>
+      </libraries>
     </data-source>
     <data-source source="LOCAL" name="Django default2" uuid="ae4dcaf8-ea49-4a88-9b9c-0fe8ac6147c7">
       <driver-ref>sqlite.xerial</driver-ref>
