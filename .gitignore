@@ -1,1 +1,9 @@
+;; Extensions to ignore
+*.pyc
+*.pyo
 
+;; Files to ignore
+settings.py
+
+;; Foldes to ignoroe
+.idea
