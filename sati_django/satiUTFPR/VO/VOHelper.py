@@ -1,5 +1,8 @@
-from enum import Enum
+
+
 
 class Acess(enum):
-    Administrator=1
-    Instr
+    Administrator = 0
+    Instructor = 1
+    Student = 2
+

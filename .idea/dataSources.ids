@@ -17,53 +17,56 @@
       <table id="9" parent="1" name="django_content_type"/>
       <table id="10" parent="1" name="django_migrations"/>
       <table id="11" parent="1" name="django_session"/>
-      <table id="12" parent="1" name="sqlite_sequence"/>
-      <table id="13" parent="1" name="sqlite_stat1"/>
-      <table id="14" parent="1" name="wut4lunch_edition"/>
-      <table id="15" parent="1" name="wut4lunch_event"/>
-      <table id="16" parent="1" name="wut4lunch_lunch"/>
-      <table id="17" parent="1" name="wut4lunch_person"/>
-      <column id="18" parent="2" name="id">
+      <table id="12" parent="1" name="satiUTFPR_edition"/>
+      <table id="13" parent="1" name="satiUTFPR_event"/>
+      <table id="14" parent="1" name="satiUTFPR_person"/>
+      <table id="15" parent="1" name="sqlite_sequence"/>
+      <table id="16" parent="1" name="sqlite_stat1"/>
+      <table id="17" parent="1" name="wut4lunch_edition"/>
+      <table id="18" parent="1" name="wut4lunch_event"/>
+      <table id="19" parent="1" name="wut4lunch_lunch"/>
+      <table id="20" parent="1" name="wut4lunch_person"/>
+      <column id="21" parent="2" name="id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="19" parent="2" name="name">
+      <column id="22" parent="2" name="name">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(80)(0,-1)|12</data-type>
       </column>
-      <index id="20" parent="2" name="sqlite_autoindex_auth_group_1">
+      <index id="23" parent="2" name="sqlite_autoindex_auth_group_1">
         <name-surrogate>1</name-surrogate>
         <columns>name</columns>
         <desc-columns></desc-columns>
         <unique>1</unique>
       </index>
-      <key id="21" parent="2">
+      <key id="24" parent="2">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="22" parent="3" name="id">
+      <column id="25" parent="3" name="id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="23" parent="3" name="group_id">
+      <column id="26" parent="3" name="group_id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="24" parent="3" name="permission_id">
+      <column id="27" parent="3" name="permission_id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <index id="25" parent="3" name="auth_group_permissions_group_id_0cd325b0_uniq">
+      <index id="28" parent="3" name="auth_group_permissions_group_id_0cd325b0_uniq">
         <columns>group_id
 permission_id</columns>
         <desc-columns></desc-columns>
         <unique>1</unique>
       </index>
-      <key id="26" parent="3">
+      <key id="29" parent="3">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="27" parent="3" name="#FAKE_auth_group_permissions_2">
+      <foreign-key id="30" parent="3" name="#FAKE_auth_group_permissions_2">
         <name-surrogate>1</name-surrogate>
         <columns>group_id</columns>
         <deferrable>1</deferrable>
@@ -72,7 +75,7 @@ permission_id</columns>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>no_action</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="28" parent="3" name="#FAKE_auth_group_permissions_1">
+      <foreign-key id="31" parent="3" name="#FAKE_auth_group_permissions_1">
         <name-surrogate>1</name-surrogate>
         <columns>permission_id</columns>
         <deferrable>1</deferrable>
@@ -81,33 +84,33 @@ permission_id</columns>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>no_action</cascade-delete-rule>
       </foreign-key>
-      <column id="29" parent="4" name="id">
+      <column id="32" parent="4" name="id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="30" parent="4" name="content_type_id">
+      <column id="33" parent="4" name="content_type_id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="31" parent="4" name="codename">
+      <column id="34" parent="4" name="codename">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(100)(0,-1)|12</data-type>
       </column>
-      <column id="32" parent="4" name="name">
+      <column id="35" parent="4" name="name">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(255)(0,-1)|12</data-type>
       </column>
-      <index id="33" parent="4" name="auth_permission_content_type_id_01ab375a_uniq">
+      <index id="36" parent="4" name="auth_permission_content_type_id_01ab375a_uniq">
         <columns>content_type_id
 codename</columns>
         <desc-columns></desc-columns>
         <unique>1</unique>
       </index>
-      <key id="34" parent="4">
+      <key id="37" parent="4">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="35" parent="4" name="#FAKE_auth_permission_1">
+      <foreign-key id="38" parent="4" name="#FAKE_auth_permission_1">
         <name-surrogate>1</name-surrogate>
         <columns>content_type_id</columns>
         <deferrable>1</deferrable>
@@ -116,82 +119,82 @@ codename</columns>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>no_action</cascade-delete-rule>
       </foreign-key>
-      <column id="36" parent="5" name="id">
+      <column id="39" parent="5" name="id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="37" parent="5" name="password">
+      <column id="40" parent="5" name="password">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(128)(0,-1)|12</data-type>
       </column>
-      <column id="38" parent="5" name="last_login">
+      <column id="41" parent="5" name="last_login">
         <data-type>DATETIME(0,-1)|12</data-type>
       </column>
-      <column id="39" parent="5" name="is_superuser">
+      <column id="42" parent="5" name="is_superuser">
         <mandatory>1</mandatory>
         <data-type>BOOL(0,-1)|4</data-type>
       </column>
-      <column id="40" parent="5" name="first_name">
+      <column id="43" parent="5" name="first_name">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(30)(0,-1)|12</data-type>
       </column>
-      <column id="41" parent="5" name="last_name">
+      <column id="44" parent="5" name="last_name">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(30)(0,-1)|12</data-type>
       </column>
-      <column id="42" parent="5" name="email">
+      <column id="45" parent="5" name="email">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(254)(0,-1)|12</data-type>
       </column>
-      <column id="43" parent="5" name="is_staff">
+      <column id="46" parent="5" name="is_staff">
         <mandatory>1</mandatory>
         <data-type>BOOL(0,-1)|4</data-type>
       </column>
-      <column id="44" parent="5" name="is_active">
+      <column id="47" parent="5" name="is_active">
         <mandatory>1</mandatory>
         <data-type>BOOL(0,-1)|4</data-type>
       </column>
-      <column id="45" parent="5" name="date_joined">
+      <column id="48" parent="5" name="date_joined">
         <mandatory>1</mandatory>
         <data-type>DATETIME(0,-1)|12</data-type>
       </column>
-      <column id="46" parent="5" name="username">
+      <column id="49" parent="5" name="username">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(30)(0,-1)|12</data-type>
       </column>
-      <index id="47" parent="5" name="sqlite_autoindex_auth_user_1">
+      <index id="50" parent="5" name="sqlite_autoindex_auth_user_1">
         <name-surrogate>1</name-surrogate>
         <columns>username</columns>
         <desc-columns></desc-columns>
         <unique>1</unique>
       </index>
-      <key id="48" parent="5">
+      <key id="51" parent="5">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="49" parent="6" name="id">
+      <column id="52" parent="6" name="id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="50" parent="6" name="user_id">
+      <column id="53" parent="6" name="user_id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="51" parent="6" name="group_id">
+      <column id="54" parent="6" name="group_id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <index id="52" parent="6" name="auth_user_groups_user_id_94350c0c_uniq">
+      <index id="55" parent="6" name="auth_user_groups_user_id_94350c0c_uniq">
         <columns>user_id
 group_id</columns>
         <desc-columns></desc-columns>
         <unique>1</unique>
       </index>
-      <key id="53" parent="6">
+      <key id="56" parent="6">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="54" parent="6" name="#FAKE_auth_user_groups_2">
+      <foreign-key id="57" parent="6" name="#FAKE_auth_user_groups_2">
         <name-surrogate>1</name-surrogate>
         <columns>user_id</columns>
         <deferrable>1</deferrable>
@@ -200,7 +203,7 @@ group_id</columns>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>no_action</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="55" parent="6" name="#FAKE_auth_user_groups_1">
+      <foreign-key id="58" parent="6" name="#FAKE_auth_user_groups_1">
         <name-surrogate>1</name-surrogate>
         <columns>group_id</columns>
         <deferrable>1</deferrable>
@@ -209,29 +212,29 @@ group_id</columns>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>no_action</cascade-delete-rule>
       </foreign-key>
-      <column id="56" parent="7" name="id">
+      <column id="59" parent="7" name="id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="57" parent="7" name="user_id">
+      <column id="60" parent="7" name="user_id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="58" parent="7" name="permission_id">
+      <column id="61" parent="7" name="permission_id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <index id="59" parent="7" name="auth_user_user_permissions_user_id_14a6b632_uniq">
+      <index id="62" parent="7" name="auth_user_user_permissions_user_id_14a6b632_uniq">
         <columns>user_id
 permission_id</columns>
         <desc-columns></desc-columns>
         <unique>1</unique>
       </index>
-      <key id="60" parent="7">
+      <key id="63" parent="7">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="61" parent="7" name="#FAKE_auth_user_user_permissions_2">
+      <foreign-key id="64" parent="7" name="#FAKE_auth_user_user_permissions_2">
         <name-surrogate>1</name-surrogate>
         <columns>user_id</columns>
         <deferrable>1</deferrable>
@@ -240,7 +243,7 @@ permission_id</columns>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>no_action</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="62" parent="7" name="#FAKE_auth_user_user_permissions_1">
+      <foreign-key id="65" parent="7" name="#FAKE_auth_user_user_permissions_1">
         <name-surrogate>1</name-surrogate>
         <columns>permission_id</columns>
         <deferrable>1</deferrable>
@@ -249,41 +252,41 @@ permission_id</columns>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>no_action</cascade-delete-rule>
       </foreign-key>
-      <column id="63" parent="8" name="id">
+      <column id="66" parent="8" name="id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="64" parent="8" name="object_id">
+      <column id="67" parent="8" name="object_id">
         <data-type>TEXT(0,-1)|12</data-type>
       </column>
-      <column id="65" parent="8" name="object_repr">
+      <column id="68" parent="8" name="object_repr">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(200)(0,-1)|12</data-type>
       </column>
-      <column id="66" parent="8" name="action_flag">
+      <column id="69" parent="8" name="action_flag">
         <mandatory>1</mandatory>
         <data-type>SMALLINT UNSIGNED(0,-1)|4</data-type>
       </column>
-      <column id="67" parent="8" name="change_message">
+      <column id="70" parent="8" name="change_message">
         <mandatory>1</mandatory>
         <data-type>TEXT(0,-1)|12</data-type>
       </column>
-      <column id="68" parent="8" name="content_type_id">
+      <column id="71" parent="8" name="content_type_id">
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="69" parent="8" name="user_id">
+      <column id="72" parent="8" name="user_id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="70" parent="8" name="action_time">
+      <column id="73" parent="8" name="action_time">
         <mandatory>1</mandatory>
         <data-type>DATETIME(0,-1)|12</data-type>
       </column>
-      <key id="71" parent="8">
+      <key id="74" parent="8">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="72" parent="8" name="#FAKE_django_admin_log_2">
+      <foreign-key id="75" parent="8" name="#FAKE_django_admin_log_2">
         <name-surrogate>1</name-surrogate>
         <columns>content_type_id</columns>
         <deferrable>1</deferrable>
@@ -292,7 +295,7 @@ permission_id</columns>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>no_action</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="73" parent="8" name="#FAKE_django_admin_log_1">
+      <foreign-key id="76" parent="8" name="#FAKE_django_admin_log_1">
         <name-surrogate>1</name-surrogate>
         <columns>user_id</columns>
         <deferrable>1</deferrable>
@@ -301,133 +304,234 @@ permission_id</columns>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>no_action</cascade-delete-rule>
       </foreign-key>
-      <column id="74" parent="9" name="id">
+      <column id="77" parent="9" name="id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="75" parent="9" name="app_label">
+      <column id="78" parent="9" name="app_label">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(100)(0,-1)|12</data-type>
       </column>
-      <column id="76" parent="9" name="model">
+      <column id="79" parent="9" name="model">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(100)(0,-1)|12</data-type>
       </column>
-      <index id="77" parent="9" name="django_content_type_app_label_76bd3d3b_uniq">
+      <index id="80" parent="9" name="django_content_type_app_label_76bd3d3b_uniq">
         <columns>app_label
 model</columns>
         <desc-columns></desc-columns>
         <unique>1</unique>
       </index>
-      <key id="78" parent="9">
+      <key id="81" parent="9">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="79" parent="10" name="id">
+      <column id="82" parent="10" name="id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="80" parent="10" name="app">
+      <column id="83" parent="10" name="app">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(255)(0,-1)|12</data-type>
       </column>
-      <column id="81" parent="10" name="name">
+      <column id="84" parent="10" name="name">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(255)(0,-1)|12</data-type>
       </column>
-      <column id="82" parent="10" name="applied">
+      <column id="85" parent="10" name="applied">
         <mandatory>1</mandatory>
         <data-type>DATETIME(0,-1)|12</data-type>
       </column>
-      <key id="83" parent="10">
+      <key id="86" parent="10">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="84" parent="11" name="session_key">
+      <column id="87" parent="11" name="session_key">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(40)(0,-1)|12</data-type>
       </column>
-      <column id="85" parent="11" name="session_data">
+      <column id="88" parent="11" name="session_data">
         <mandatory>1</mandatory>
         <data-type>TEXT(0,-1)|12</data-type>
       </column>
-      <column id="86" parent="11" name="expire_date">
+      <column id="89" parent="11" name="expire_date">
         <mandatory>1</mandatory>
         <data-type>DATETIME(0,-1)|12</data-type>
       </column>
-      <index id="87" parent="11" name="django_session_de54fa62">
+      <index id="90" parent="11" name="django_session_de54fa62">
         <columns>expire_date</columns>
         <desc-columns></desc-columns>
         <unique>1</unique>
       </index>
-      <key id="88" parent="11">
+      <key id="91" parent="11">
         <columns>session_key</columns>
         <primary>1</primary>
       </key>
-      <column id="89" parent="12" name="name">
-        <data-type>(0,-1)|12</data-type>
-      </column>
-      <column id="90" parent="12" name="seq">
-        <data-type>(0,-1)|12</data-type>
-      </column>
-      <column id="91" parent="13" name="tbl">
-        <data-type>(0,-1)|12</data-type>
-      </column>
-      <column id="92" parent="13" name="idx">
-        <data-type>(0,-1)|12</data-type>
-      </column>
-      <column id="93" parent="13" name="stat">
-        <data-type>(0,-1)|12</data-type>
-      </column>
-      <column id="94" parent="14" name="id">
+      <column id="92" parent="12" name="id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="95" parent="14" name="name">
+      <column id="93" parent="12" name="name">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(150)(0,-1)|12</data-type>
       </column>
-      <column id="96" parent="14" name="beginDate">
+      <column id="94" parent="12" name="beginDate">
         <mandatory>1</mandatory>
         <data-type>DATE(0,-1)|12</data-type>
       </column>
-      <column id="97" parent="14" name="endDate">
+      <column id="95" parent="12" name="endDate">
         <mandatory>1</mandatory>
         <data-type>DATE(0,-1)|12</data-type>
       </column>
-      <column id="98" parent="14" name="status">
+      <column id="96" parent="12" name="status">
         <mandatory>1</mandatory>
         <data-type>BOOL(0,-1)|4</data-type>
       </column>
-      <column id="99" parent="14" name="theme">
+      <column id="97" parent="12" name="theme">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(150)(0,-1)|12</data-type>
       </column>
-      <key id="100" parent="14">
+      <key id="98" parent="12">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="101" parent="15" name="id">
+      <column id="99" parent="13" name="id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="102" parent="15" name="status">
+      <column id="100" parent="13" name="status">
         <mandatory>1</mandatory>
         <data-type>BOOL(0,-1)|4</data-type>
       </column>
-      <column id="103" parent="15" name="type">
+      <column id="101" parent="13" name="type">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(200)(0,-1)|12</data-type>
       </column>
-      <column id="104" parent="15" name="idEdicao_id">
+      <column id="102" parent="13" name="idEdicao_id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <key id="105" parent="15">
+      <key id="103" parent="13">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="106" parent="15" name="#FAKE_wut4lunch_event_1">
+      <foreign-key id="104" parent="13" name="#FAKE_satiUTFPR_event_1">
+        <name-surrogate>1</name-surrogate>
+        <columns>idEdicao_id</columns>
+        <deferrable>1</deferrable>
+        <initially-deferred>1</initially-deferred>
+        <ref-key>~.satiUTFPR_edition.#1</ref-key>
+        <cascade-update-rule>no_action</cascade-update-rule>
+        <cascade-delete-rule>no_action</cascade-delete-rule>
+      </foreign-key>
+      <column id="105" parent="14" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="106" parent="14" name="password">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(63)(0,-1)|12</data-type>
+      </column>
+      <column id="107" parent="14" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="108" parent="14" name="email">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="109" parent="14" name="institution">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+      </column>
+      <column id="110" parent="14" name="dateBirth">
+        <mandatory>1</mandatory>
+        <data-type>DATE(0,-1)|12</data-type>
+      </column>
+      <column id="111" parent="14" name="cpf">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(15)(0,-1)|12</data-type>
+      </column>
+      <column id="112" parent="14" name="academicRegistry">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(15)(0,-1)|12</data-type>
+      </column>
+      <column id="113" parent="14" name="role">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(1)(0,-1)|12</data-type>
+      </column>
+      <column id="114" parent="14" name="status">
+        <mandatory>1</mandatory>
+        <data-type>BOOL(0,-1)|4</data-type>
+      </column>
+      <key id="115" parent="14">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="116" parent="15" name="name">
+        <data-type>(0,-1)|12</data-type>
+      </column>
+      <column id="117" parent="15" name="seq">
+        <data-type>(0,-1)|12</data-type>
+      </column>
+      <column id="118" parent="16" name="tbl">
+        <data-type>(0,-1)|12</data-type>
+      </column>
+      <column id="119" parent="16" name="idx">
+        <data-type>(0,-1)|12</data-type>
+      </column>
+      <column id="120" parent="16" name="stat">
+        <data-type>(0,-1)|12</data-type>
+      </column>
+      <column id="121" parent="17" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="122" parent="17" name="name">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(150)(0,-1)|12</data-type>
+      </column>
+      <column id="123" parent="17" name="beginDate">
+        <mandatory>1</mandatory>
+        <data-type>DATE(0,-1)|12</data-type>
+      </column>
+      <column id="124" parent="17" name="endDate">
+        <mandatory>1</mandatory>
+        <data-type>DATE(0,-1)|12</data-type>
+      </column>
+      <column id="125" parent="17" name="status">
+        <mandatory>1</mandatory>
+        <data-type>BOOL(0,-1)|4</data-type>
+      </column>
+      <column id="126" parent="17" name="theme">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(150)(0,-1)|12</data-type>
+      </column>
+      <key id="127" parent="17">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="128" parent="18" name="id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <column id="129" parent="18" name="status">
+        <mandatory>1</mandatory>
+        <data-type>BOOL(0,-1)|4</data-type>
+      </column>
+      <column id="130" parent="18" name="type">
+        <mandatory>1</mandatory>
+        <data-type>VARCHAR(200)(0,-1)|12</data-type>
+      </column>
+      <column id="131" parent="18" name="idEdicao_id">
+        <mandatory>1</mandatory>
+        <data-type>INTEGER(0,-1)|4</data-type>
+      </column>
+      <key id="132" parent="18">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="133" parent="18" name="#FAKE_wut4lunch_event_1">
         <name-surrogate>1</name-surrogate>
         <columns>idEdicao_id</columns>
         <deferrable>1</deferrable>
@@ -436,63 +540,63 @@ model</columns>
         <cascade-update-rule>no_action</cascade-update-rule>
         <cascade-delete-rule>no_action</cascade-delete-rule>
       </foreign-key>
-      <column id="107" parent="16" name="id">
+      <column id="134" parent="19" name="id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="108" parent="16" name="submitter">
+      <column id="135" parent="19" name="submitter">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(63)(0,-1)|12</data-type>
       </column>
-      <column id="109" parent="16" name="food">
+      <column id="136" parent="19" name="food">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(255)(0,-1)|12</data-type>
       </column>
-      <key id="110" parent="16">
+      <key id="137" parent="19">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <column id="111" parent="17" name="id">
+      <column id="138" parent="20" name="id">
         <mandatory>1</mandatory>
         <data-type>INTEGER(0,-1)|4</data-type>
       </column>
-      <column id="112" parent="17" name="password">
+      <column id="139" parent="20" name="password">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(63)(0,-1)|12</data-type>
       </column>
-      <column id="113" parent="17" name="name">
+      <column id="140" parent="20" name="name">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(255)(0,-1)|12</data-type>
       </column>
-      <column id="114" parent="17" name="email">
+      <column id="141" parent="20" name="email">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(255)(0,-1)|12</data-type>
       </column>
-      <column id="115" parent="17" name="institution">
+      <column id="142" parent="20" name="institution">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(255)(0,-1)|12</data-type>
       </column>
-      <column id="116" parent="17" name="dateBirth">
+      <column id="143" parent="20" name="dateBirth">
         <mandatory>1</mandatory>
         <data-type>DATE(0,-1)|12</data-type>
       </column>
-      <column id="117" parent="17" name="cpf">
+      <column id="144" parent="20" name="cpf">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(15)(0,-1)|12</data-type>
       </column>
-      <column id="118" parent="17" name="academicRegistry">
+      <column id="145" parent="20" name="academicRegistry">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(15)(0,-1)|12</data-type>
       </column>
-      <column id="119" parent="17" name="role">
+      <column id="146" parent="20" name="role">
         <mandatory>1</mandatory>
         <data-type>VARCHAR(1)(0,-1)|12</data-type>
       </column>
-      <column id="120" parent="17" name="status">
+      <column id="147" parent="20" name="status">
         <mandatory>1</mandatory>
         <data-type>BOOL(0,-1)|4</data-type>
       </column>
-      <key id="121" parent="17">
+      <key id="148" parent="20">
         <columns>id</columns>
         <primary>1</primary>
       </key>
@@ -523,7 +627,7 @@ model</columns>
       </column>
       <column id="15" parent="2" name="name">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(80)(0,-1)|12</data-type>
+        <data-type>VARCHAR(80) (0,-1)|12</data-type>
       </column>
       <index id="16" parent="2" name="sqlite_autoindex_auth_group_1">
         <name-surrogate>1</name-surrogate>
@@ -585,11 +689,11 @@ permission_id</columns>
       </column>
       <column id="27" parent="4" name="codename">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+        <data-type>VARCHAR(100) (0,-1)|12</data-type>
       </column>
       <column id="28" parent="4" name="name">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+        <data-type>VARCHAR(255) (0,-1)|12</data-type>
       </column>
       <index id="29" parent="4" name="auth_permission_content_type_id_01ab375a_uniq">
         <columns>content_type_id
@@ -616,7 +720,7 @@ codename</columns>
       </column>
       <column id="33" parent="5" name="password">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(128)(0,-1)|12</data-type>
+        <data-type>VARCHAR(128) (0,-1)|12</data-type>
       </column>
       <column id="34" parent="5" name="last_login">
         <data-type>DATETIME(0,-1)|12</data-type>
@@ -627,15 +731,15 @@ codename</columns>
       </column>
       <column id="36" parent="5" name="first_name">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(30)(0,-1)|12</data-type>
+        <data-type>VARCHAR(30) (0,-1)|12</data-type>
       </column>
       <column id="37" parent="5" name="last_name">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(30)(0,-1)|12</data-type>
+        <data-type>VARCHAR(30) (0,-1)|12</data-type>
       </column>
       <column id="38" parent="5" name="email">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(254)(0,-1)|12</data-type>
+        <data-type>VARCHAR(254) (0,-1)|12</data-type>
       </column>
       <column id="39" parent="5" name="is_staff">
         <mandatory>1</mandatory>
@@ -651,7 +755,7 @@ codename</columns>
       </column>
       <column id="42" parent="5" name="username">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(30)(0,-1)|12</data-type>
+        <data-type>VARCHAR(30) (0,-1)|12</data-type>
       </column>
       <index id="43" parent="5" name="sqlite_autoindex_auth_user_1">
         <name-surrogate>1</name-surrogate>
@@ -752,7 +856,7 @@ permission_id</columns>
       </column>
       <column id="61" parent="8" name="object_repr">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(200)(0,-1)|12</data-type>
+        <data-type>VARCHAR(200) (0,-1)|12</data-type>
       </column>
       <column id="62" parent="8" name="action_flag">
         <mandatory>1</mandatory>
@@ -801,11 +905,11 @@ permission_id</columns>
       </column>
       <column id="71" parent="9" name="app_label">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+        <data-type>VARCHAR(100) (0,-1)|12</data-type>
       </column>
       <column id="72" parent="9" name="model">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(100)(0,-1)|12</data-type>
+        <data-type>VARCHAR(100) (0,-1)|12</data-type>
       </column>
       <index id="73" parent="9" name="django_content_type_app_label_76bd3d3b_uniq">
         <columns>app_label
@@ -823,11 +927,11 @@ model</columns>
       </column>
       <column id="76" parent="10" name="app">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+        <data-type>VARCHAR(255) (0,-1)|12</data-type>
       </column>
       <column id="77" parent="10" name="name">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(255)(0,-1)|12</data-type>
+        <data-type>VARCHAR(255) (0,-1)|12</data-type>
       </column>
       <column id="78" parent="10" name="applied">
         <mandatory>1</mandatory>
@@ -839,7 +943,7 @@ model</columns>
       </key>
       <column id="80" parent="11" name="session_key">
         <mandatory>1</mandatory>
-        <data-type>VARCHAR(40)(0,-1)|12</data-type>
+        <data-type>VARCHAR(40) (0,-1)|12</data-type>
       </column>
       <column id="81" parent="11" name="session_data">
         <mandatory>1</mandatory>
