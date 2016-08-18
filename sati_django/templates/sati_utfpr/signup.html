@@ -8,12 +8,12 @@
         <div class="mdl-grid">
             <div class="mdl-layout-spacer "></div>
             <form action="{% url 'registry_person' %}" method="POST">
-                { % csrf_token %}
+                {% csrf_token %}
                 <div class="mdl-grid">
                     <div class="mdl-layout-spacer "></div>
                     <div class="mdl-cell mdl-cell--5-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="nome_completo"
+                            <input class="mdl-textfield__input" type="text" id="nome_completo" name="nome_completo"
                                    value="{{ nome_completo }}">
                             <label class="mdl-textfield__label" for="nome_completo">Nome Completo</label>
                         </div>
@@ -21,7 +21,7 @@
 
                     <div class="mdl-cell mdl-cell--3-col ">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="date" id="date_birth"
+                            <input class="mdl-textfield__input" type="date" id="data_nascimento" name="data_nascimento"
                                    value="{{ data_nascimento }}">
                             <label class="mdl-textfield__label" for="date_birth">Data Nascimento</label>
                         </div>
@@ -33,7 +33,7 @@
                     <div class="mdl-layout-spacer"></div>
                     <div class="mdl-cell mdl-cell--8-col ">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
-                            <input class="mdl-textfield__input" type="email" id="email" value="{{ Email }}">
+                            <input class="mdl-textfield__input" type="email" id="email" name="email" value="{{ Email }}">
                             <label class="mdl-textfield__label" for="email">Email</label>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                     <div class="mdl-layout-spacer"></div>
                     <div class="mdl-cell mdl-cell--8-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
-                            <input class="mdl-textfield__input" type="text" id="instituicao" value="{{ instituicao }}">
+                            <input class="mdl-textfield__input" type="text" id="instituicao" name="instituicao" value="{{ instituicao }}">
                             <label class="mdl-textfield__label" for="instituicao">Instituição</label>
                         </div>
                     </div>
@@ -55,14 +55,14 @@
                     <div class="mdl-layout-spacer "></div>
                     <div class="mdl-cell mdl-cell--4-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="password" id="senha" value="{{ senha }}">
+                            <input class="mdl-textfield__input" type="password" id="senha" name="senha" value="{{ senha }}">
                             <label class="mdl-textfield__label" for="senha">Senha</label>
                         </div>
                     </div>
 
                     <div class="mdl-cell mdl-cell--4-col ">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="password" id="confirmar_senha"
+                            <input class="mdl-textfield__input" type="password" id="confirmar_senha" name="confirmar_senha"
                                    value="{{ confirmar_senha }}">
                             <label class="mdl-textfield__label" for="confirmar_senha">Confirmar Senha</label>
                         </div>
@@ -74,14 +74,14 @@
                     <div class="mdl-layout-spacer "></div>
                     <div class="mdl-cell mdl-cell--5-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="number" id="cpf" value="{{ cpf }}">
+                            <input class="mdl-textfield__input" type="number" id="cpf" name="cpf" value="{{ cpf }}">
                             <label class="mdl-textfield__label" for="cpf">CPF</label>
                         </div>
                     </div>
 
                     <div class="mdl-cell mdl-cell--3-col ">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="registro_academico"
+                            <input class="mdl-textfield__input" type="text" id="registro_academico" name="registro_academico"
                                    value="{{ registro_academico }}">
                             <label class="mdl-textfield__label" for="registro_academico">Registro Acadêmico</label>
                         </div>
@@ -90,10 +90,10 @@
                 </div>
                 <div class="mdl-grid">
                     <div class="mdl-layout-spacer"></div>
-{#                    <div class="mdl-cell mdl-cell--8-col mdl-cell--middle">#}
-                        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Cadastrar
-                        </button>
-{#                    </div>#}
+                    {#                    <div class="mdl-cell mdl-cell--8-col mdl-cell--middle">#}
+                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Cadastrar
+                    </button>
+                    {#                    </div>#}
                     <div class="mdl-layout-spacer"></div>
                 </div>
 

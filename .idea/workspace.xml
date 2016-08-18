@@ -22,15 +22,14 @@
       <change type="NEW" beforePath="" afterPath="$USER_HOME$/PycharmProjects/sati_django/templates/sati_utfpr/index_2.html" />
       <change type="NEW" beforePath="" afterPath="$USER_HOME$/PycharmProjects/sati_django/wut4lunch/static/styles.css" />
       <change type="NEW" beforePath="" afterPath="$USER_HOME$/README.md" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sati_django/satiUTFPR/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sati_django/satiUTFPR/migrations/0002_delete_lunch.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sati_django/test.db" afterPath="$PROJECT_DIR$/sati_django/test.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sati_django/README.md" afterPath="$PROJECT_DIR$/sati_django/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sati_django/hello_django/urls.py" afterPath="$PROJECT_DIR$/sati_django/hello_django/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sati_django/satiUTFPR/VO/VOHelper.py" afterPath="$PROJECT_DIR$/sati_django/satiUTFPR/VO/VOHelper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sati_django/satiUTFPR/models.py" afterPath="$PROJECT_DIR$/sati_django/satiUTFPR/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sati_django/satiUTFPR/views.py" afterPath="$PROJECT_DIR$/sati_django/satiUTFPR/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sati_django/templates/sati_utfpr/base.html" afterPath="$PROJECT_DIR$/sati_django/templates/sati_utfpr/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sati_django/templates/sati_utfpr/signup.html" afterPath="$PROJECT_DIR$/sati_django/templates/sati_utfpr/signup.html" />
     </list>
     <ignored path="sati_django.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,10 +74,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="0001_initial.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="0001_initial.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sati_django/satiUTFPR/migrations/0001_initial.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
+            <state relative-caret-position="725">
               <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
               <folding />
             </state>
@@ -88,8 +87,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sati_django/satiUTFPR/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-784">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="210">
+              <caret line="14" column="45" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -98,8 +97,8 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sati_django/templates/sati_utfpr/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="103" column="19" selection-start-line="103" selection-start-column="19" selection-end-line="103" selection-end-column="19" />
+            <state relative-caret-position="180">
+              <caret line="52" column="100" selection-start-line="52" selection-start-column="100" selection-end-line="52" selection-end-column="100" />
               <folding />
             </state>
           </provider>
@@ -108,18 +107,30 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sati_django/templates/sati_utfpr/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="120" selection-start-line="16" selection-start-column="120" selection-end-line="16" selection-end-column="120" />
+            <state relative-caret-position="210">
+              <caret line="14" column="44" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sati_django/satiUTFPR/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-67">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="2" selection-end-line="12" selection-end-column="39" />
+            <state relative-caret-position="323">
+              <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
+              <folding>
+                <element signature="e#17#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="signup.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sati_django/templates/sati_utfpr/signup.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="23" column="95" selection-start-line="23" selection-start-column="95" selection-end-line="23" selection-end-column="95" />
               <folding />
             </state>
           </provider>
@@ -128,8 +139,8 @@
       <file leaf-file-name="VOHelper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sati_django/satiUTFPR/VO/VOHelper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="120">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -138,8 +149,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sati_django/hello_django/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="195">
+              <caret line="14" column="104" selection-start-line="14" selection-start-column="104" selection-end-line="14" selection-end-column="104" />
               <folding />
             </state>
           </provider>
@@ -179,12 +190,10 @@
         <option value="$PROJECT_DIR$/sati_django/templates/sati_utfpr/index_2.html" />
         <option value="$PROJECT_DIR$/sati_django/templates/sati_utfpr/test.html" />
         <option value="$PROJECT_DIR$/sati_django/wut4lunch/static/material.css" />
-        <option value="$PROJECT_DIR$/sati_django/templates/sati_utfpr/base.html" />
         <option value="$PROJECT_DIR$/sati_django/templates/sati_utfpr/index.html" />
         <option value="$PROJECT_DIR$/sati_django/wut4lunch/static/styles.css" />
         <option value="$PROJECT_DIR$/sati_django/templates/sati_utfpr/login.html" />
         <option value="$PROJECT_DIR$/sati_django/wut4lunch/Controller/LoginController" />
-        <option value="$PROJECT_DIR$/sati_django/hello_django/urls.py" />
         <option value="$PROJECT_DIR$/sati_django/wut4lunch/controller/LoginController" />
         <option value="$PROJECT_DIR$/sati_django/wut4lunch/views.py" />
         <option value="$PROJECT_DIR$/sati_django/wut4lunch/controller/__init__.py" />
@@ -196,11 +205,14 @@
         <option value="$PROJECT_DIR$/sati_django/wut4lunch/VO/Utils.py" />
         <option value="$PROJECT_DIR$/sati_django/wut4lunch/VO/VOHelper.py" />
         <option value="$PROJECT_DIR$/sati_django/satiUTFPR/admin.py" />
-        <option value="$PROJECT_DIR$/sati_django/satiUTFPR/views.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/sati_django/satiUTFPR/VO/VOHelper.py" />
         <option value="$PROJECT_DIR$/sati_django/satiUTFPR/models.py" />
         <option value="$PROJECT_DIR$/sati_django/README.md" />
+        <option value="$PROJECT_DIR$/sati_django/templates/sati_utfpr/base.html" />
+        <option value="$PROJECT_DIR$/sati_django/hello_django/urls.py" />
+        <option value="$PROJECT_DIR$/sati_django/satiUTFPR/VO/VOHelper.py" />
+        <option value="$PROJECT_DIR$/sati_django/templates/sati_utfpr/signup.html" />
+        <option value="$PROJECT_DIR$/sati_django/satiUTFPR/views.py" />
       </list>
     </option>
   </component>
@@ -211,7 +223,6 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="70" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="873" />
@@ -730,7 +741,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="70" y="23" width="1440" height="873" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="873" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -739,7 +750,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3393086" sideWeight="0.48569384" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2932761" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29756796" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Reviews" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28683835" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -768,12 +779,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wut4lunch/tests.py" />
     <entry file="file://$PROJECT_DIR$/wut4lunch/models.py" />
     <entry file="file://$PROJECT_DIR$/wut4lunch/admin.py" />
     <entry file="file://$PROJECT_DIR$/README.md" />
@@ -939,7 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -947,9 +956,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -961,63 +967,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sati_django/satiUTFPR/VO/VOHelper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sati_django/satiUTFPR/migrations/0002_delete_lunch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sati_django/hello_django/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sati_django/satiUTFPR/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-67">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="2" selection-end-line="12" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sati_django/templates/sati_utfpr/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="120" selection-start-line="16" selection-start-column="120" selection-end-line="16" selection-end-column="120" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sati_django/templates/sati_utfpr/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="103" column="19" selection-start-line="103" selection-start-column="19" selection-end-line="103" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sati_django/satiUTFPR/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-784">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/sati_django/satiUTFPR/migrations/0002_delete_lunch.py" />
     <entry file="file://$PROJECT_DIR$/sati_django/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="105">
@@ -1027,17 +983,70 @@
           <second_editor />
         </state>
       </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sati_django/hello_django/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="14" column="104" selection-start-line="14" selection-start-column="104" selection-end-line="14" selection-end-column="104" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sati_django/satiUTFPR/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
+        <state relative-caret-position="725">
           <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sati_django/satiUTFPR/VO/VOHelper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sati_django/satiUTFPR/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="45" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sati_django/templates/sati_utfpr/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="52" column="100" selection-start-line="52" selection-start-column="100" selection-end-line="52" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sati_django/templates/sati_utfpr/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="44" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sati_django/templates/sati_utfpr/signup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="23" column="95" selection-start-line="23" selection-start-column="95" selection-end-line="23" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sati_django/satiUTFPR/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
+          <folding>
+            <element signature="e#17#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

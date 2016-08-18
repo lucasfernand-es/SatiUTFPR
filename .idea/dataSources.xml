@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2332779340">
+  <component name="DataSourceManagerImpl" format="xml" hash="2742600296">
     <data-source source="LOCAL" name="Django default" uuid="b77a4c47-7212-4c28-9bbb-016e93d69538">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
