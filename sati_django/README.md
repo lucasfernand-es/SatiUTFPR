@@ -12,4 +12,5 @@ python manage.py migrate
 python manage.py runserver
 
 # go to http://localhost:8000/
+
 ```
