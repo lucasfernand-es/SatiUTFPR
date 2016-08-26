@@ -6,4 +6,4 @@
 settings.py
 
 ;; Foldes to ignoroe
-.idea
+.idea/
