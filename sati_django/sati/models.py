@@ -19,7 +19,7 @@ class Edition(models.Model):
     name = models.CharField(max_length=150)
     beginDate = models.DateField()
     endDate = models.DateField()
-    status = models.BooleanField()
+    status = models.BooleanField(default=True)
     theme = models.CharField(max_length=150)
 
 
@@ -29,7 +29,7 @@ class Report(models.Model):
 
 class Event(models.Model):
     idEdicao = models.ForeignKey('Edition', on_delete=models.CASCADE)
-    status = models.BooleanField()
+    status = models.BooleanField(default=True)
     type = models.CharField(max_length=200)
     charge = models.FloatField()
     workload = models.IntegerField()
@@ -38,7 +38,7 @@ class Event(models.Model):
 class Session(models.Model):
     instructor = models.ForeignKey('Person', on_delete=models.CASCADE)
     idEvent = models.ForeignKey('Event', on_delete=models.CASCADE)
-    status = models.BooleanField()
+    status = models.BooleanField(default=True)
 
 
 class Room(models.Model):
@@ -47,7 +47,7 @@ class Room(models.Model):
     build = models.CharField(max_length=2)
     space = models.IntegerField()
     type = models.CharField(max_length=30)
-    status = models.BooleanField()
+    status = models.BooleanField(default=True)
 
 
 class Participant(models.Model):
@@ -59,7 +59,7 @@ class Participant(models.Model):
 class Ocurrence(models.Model):
     beginTime = models.TimeField()
     endTime = models.TimeField()
-    status = models.BooleanField()
+    status = models.BooleanField(default=True)
     idSession = models.ForeignKey('Session', on_delete=models.CASCADE)
     idRoom = models.ForeignKey('Room', on_delete=models.CASCADE)
 
