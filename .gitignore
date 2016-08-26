@@ -6,4 +6,5 @@
 settings.py
 
 ;; Foldes to ignoroe
-.idea
+.idea/workspace.xml
+.idea/tasks.xml
