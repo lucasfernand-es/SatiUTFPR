@@ -9,10 +9,10 @@ urlpatterns = [
 
                        url(r'^admin/', include(admin.site.urls)),
 
-                       # New apps
+                       # Dashboard
                        url(r'^dashboard/', include('dashboard.urls')),
 
-                       url(r'^$', views.index , name='home'),
+                       url(r'^$', views.index, name='home'),
                        # url(r'^login', 'sati.views.login', name='login'),
                        # url(r'test', 'sati.views.test', name='test'),
                        # url(r'^newLogin', 'sati.views.newLogin', name='newLogin'),
