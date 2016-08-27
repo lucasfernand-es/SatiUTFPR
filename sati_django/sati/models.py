@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 class Person(models.Model):
     password = models.CharField(max_length=63)

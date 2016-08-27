@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'satiUTFPR',
+    'sati',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,7 +61,7 @@ WSGI_APPLICATION = 'hello_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': os.path.join(BASE_DIR, 'test.db'),
+        # 'NAME': os.path.join(BASE_DIR, 'sati_dev.db'),
         'NAME': 'satiutfpr',
         'USER': 'postgres',
         'PASSWORD': '123456',

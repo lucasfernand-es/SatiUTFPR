@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('type', models.CharField(max_length=200)),
                 ('charge', models.FloatField()),
                 ('workload', models.IntegerField()),
-                ('idEdicao', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='satiUTFPR.Edition')),
+                ('idEdicao', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sati.Edition')),
             ],
         ),
         migrations.CreateModel(
@@ -80,8 +80,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('entryTime', models.DateTimeField()),
                 ('exitTime', models.DateTimeField()),
-                ('idOcurrence', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='satiUTFPR.Ocurrence')),
-                ('idParticipant', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='satiUTFPR.Participant')),
+                ('idOcurrence', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='sati.Ocurrence')),
+                ('idParticipant', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='sati.Participant')),
             ],
         ),
         migrations.CreateModel(
@@ -90,15 +90,15 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('prize', models.CharField(max_length=255)),
                 ('raffleDate', models.DateField()),
-                ('idOcurrence', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='satiUTFPR.Ocurrence')),
-                ('idParticipant', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='satiUTFPR.Participant')),
+                ('idOcurrence', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sati.Ocurrence')),
+                ('idParticipant', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sati.Participant')),
             ],
         ),
         migrations.CreateModel(
             name='Report',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='satiUTFPR.Edition')),
+                ('name', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sati.Edition')),
             ],
         ),
         migrations.CreateModel(
@@ -118,33 +118,33 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('status', models.BooleanField()),
-                ('idEvent', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='satiUTFPR.Event')),
-                ('instructor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='satiUTFPR.Person')),
+                ('idEvent', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sati.Event')),
+                ('instructor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sati.Person')),
             ],
         ),
         migrations.AddField(
             model_name='participant',
             name='payment',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='satiUTFPR.Payment'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sati.Payment'),
         ),
         migrations.AddField(
             model_name='participant',
             name='person',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='satiUTFPR.Person'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sati.Person'),
         ),
         migrations.AddField(
             model_name='participant',
             name='session',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='satiUTFPR.Session'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sati.Session'),
         ),
         migrations.AddField(
             model_name='ocurrence',
             name='idRoom',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='satiUTFPR.Room'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sati.Room'),
         ),
         migrations.AddField(
             model_name='ocurrence',
             name='idSession',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='satiUTFPR.Session'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sati.Session'),
         ),
     ]

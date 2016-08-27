@@ -7,10 +7,14 @@ urlpatterns = patterns('',
                        # url(r'^blog/', include('blog.urls')),
 
                        url(r'^admin/', include(admin.site.urls)),
-                       url(r'^$', 'satiUTFPR.views.index', name='home'),
-                       url(r'^login', 'satiUTFPR.views.login', name='login'),
-                       url(r'test', 'satiUTFPR.views.test', name='test'),
-                       url(r'^newLogin', 'satiUTFPR.views.newLogin', name='newLogin'),
-                       url(r'^signup', 'satiUTFPR.views.signup', name='signup'),
-                       url(r'^registry_person', 'satiUTFPR.views.registry_person', name='registry_person')
+
+                       # New apps
+                       url(r'^control_panel/', include('control_panel.urls')),
+
+                       url(r'^$', 'sati.views.index', name='home'),
+                       url(r'^login', 'sati.views.login', name='login'),
+                       url(r'test', 'sati.views.test', name='test'),
+                       url(r'^newLogin', 'sati.views.newLogin', name='newLogin'),
+                       url(r'^signup', 'sati.views.signup', name='signup'),
+                       url(r'^registry_person', 'sati.views.registry_person', name='registry_person')
                        )
