@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class AdminInterfaceConfig(AppConfig):
-    name = 'control_panel'
+    name = 'dashboard'

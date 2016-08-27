@@ -1,7 +1,14 @@
 
 <!-- Angular -->
 
-<script type="text/javascript" src="{{ STATIC_URL }}/node_modules/angular/angular.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}/node_modules/angular-aria/angular-aria.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}/node_modules/angular-animate/angular-animate.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}/node_modules/angular-material/angular-material.js"></script>
+{% load static %}
+
+<script type="text/javascript" src="{% static "node_modules/angular/angular.js" %}"></script>
+<script type="text/javascript" src="{% static "node_modules/angular-aria/angular-aria.js" %}"></script>
+<script type="text/javascript" src="{% static "node_modules/angular-animate/angular-animate.js" %}"></script>
+<script type="text/javascript" src="{% static "node_modules/angular-material/angular-material.js" %}"></script>
+
+
+<!-- MDL -->
+
+<script src="{% static "/node_modules/mdl/material.min.js" %}"></script>

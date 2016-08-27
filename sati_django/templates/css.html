@@ -1,4 +1,11 @@
 
 <!-- Angular -->
 
-<link rel="stylesheet" href="{{ STATIC_URL }}/node_modules/angular-material/angular-material.css">
+{% load static %}
+
+<link rel="stylesheet" href="{% static "node_modules/angular-material/angular-material.css" %}" />
+
+<!-- MDL -->
+
+<link rel="stylesheet" href="{% static "/node_modules/mdl/material.min.css" %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">

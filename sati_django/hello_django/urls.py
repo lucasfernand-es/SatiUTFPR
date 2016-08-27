@@ -10,7 +10,7 @@ urlpatterns = [
                        url(r'^admin/', include(admin.site.urls)),
 
                        # New apps
-                       url(r'^control_panel/', include('control_panel.urls')),
+                       url(r'^dashboard/', include('dashboard.urls')),
 
                        url(r'^$', views.index , name='home'),
                        # url(r'^login', 'sati.views.login', name='login'),
