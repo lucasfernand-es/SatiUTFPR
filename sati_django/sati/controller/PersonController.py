@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from models import Person
+from sati_django.sati.models import Person
+import os, sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def registry_person(request):
