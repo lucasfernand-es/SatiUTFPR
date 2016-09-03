@@ -1,0 +1,33 @@
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.f-left {
+    float: left;
+}
+
+.m-l-30 {
+    margin-left: 30px;
+}
+
+.m-l-10 {
+    margin-right: 10px;
+}
+
+.f-12 {
+    font-size: 12px;
+}
+
+.no-m-b {
+    margin-bottom: 0px;
+}
+
+.m-t-10 {
+    margin-top: 10px;
+}
+
+.material-icons {
+    font-size: 12px;
+}

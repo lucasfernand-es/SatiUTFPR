@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'sati',
     'dashboard',
+    'public',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +56,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
-                 os.path.join(BASE_DIR, 'dashboard', 'templates')],
+                 os.path.join(BASE_DIR, 'dashboard', 'templates'),
+                 os.path.join(BASE_DIR, 'public', 'templates')],
         'APP_DIRS': True,
         # 'DEBUG': True,
         'OPTIONS': {
@@ -107,7 +109,8 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'dashboard', 'templates')
+    os.path.join(BASE_DIR, 'dashboard', 'templates'),
+    os.path.join(BASE_DIR, 'public', 'templates')
 ]
 
 STATICFILES_FINDERS = (

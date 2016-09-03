@@ -12,7 +12,11 @@ urlpatterns = [
                        # Dashboard
                        url(r'^dashboard/', include('dashboard.urls')),
 
-                       url(r'^$', views.index, name='home'),
+                       # public
+                       url(r'^$', include('public.urls')),
+
+
+                       #url(r'^$', views.index, name='home'),
                        # url(r'^login', 'sati.views.login', name='login'),
                        # url(r'test', 'sati.views.test', name='test'),
                        # url(r'^newLogin', 'sati.views.newLogin', name='newLogin'),

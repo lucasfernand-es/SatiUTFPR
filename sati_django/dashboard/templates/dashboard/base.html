@@ -31,6 +31,8 @@
 
         {% load static %}
 
+        <!-- Dashboard files -->
+
         <link rel="stylesheet" href="{% static "/css/style.css" %}" />
 
     </head>
@@ -80,12 +82,20 @@
 
                 <header class="dashboard-drawer-header">
 
-                    <div class="dashboard-drawer__user-info">
-                        <div class="dashboard-drawer__user-info-greet">
-                             <span class="mdl-layout-title">Welcome</span>
+                    <div class="dashboard-drawer__top">
+
+                        <div class="dashboard-drawer__top-greet">
+                            <img src="{% static "images/sati/logo.png" %}" class="dashboard-logo-top">
                         </div>
 
-                        <img src="{% static "images/user.jpg" %}" class="dashboard-avatar">
+                        <div class="dashboard-drawer__top-avatar img-responsive">
+                            <img src="{% static "images/dash/user.jpg" %}" class="dashboard-avatar">
+                        </div>
+
+                        <div class="dashboard-drawer__top-info">
+                            <h4 class="mdl-color-text--white dashboard-drawer__info-h4 no-m-b "> Nome</h4>
+                            <div class="mdl-color-text--blue-grey-400 f12 no-m-t"><i class="material-icons f12">place</i> Ponta Grossa, PR</div>
+                        </div>
                     </div>
 
 
@@ -105,25 +115,29 @@
                     </div>
 
                 </header>
-            <nav class="dashboard-navigation mdl-navigation mdl-color--blue-grey-800">
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
-            <div class="mdl-layout-spacer"></div>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
-            </nav>
+
+                <nav class="dashboard-navigation mdl-navigation mdl-color--blue-grey-800">
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">dashboard</i>Home</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
+                    <div class="mdl-layout-spacer"></div>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+                </nav>
             </div>
 
-          <main class="mdl-layout__content">
-            <div class="page-content">
-                {% block content %}{% endblock %}
-            </div>
+          <main class="mdl-layout__content mdl-color--grey-100">
+
+              <div class="mdl-grid dashboard-content">
+                  {% block content %}{% endblock %}
+              </div>
+
+
           </main>
 
         </div>
