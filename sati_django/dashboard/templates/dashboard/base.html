@@ -28,10 +28,11 @@
 
         {% include 'css.html' %}
         {% include 'javascript.html' %}
-
         {% load static %}
 
         <!-- Dashboard files -->
+
+        <script type="text/javascript" src="{% static "/js/crud/crud_app.js" %}"></script>
 
         <link rel="stylesheet" href="{% static "/css/style.css" %}" />
 
@@ -47,7 +48,7 @@
 
                 <div class="mdl-layout__header-row">
 
-                    <span class="mdl-layout-title">Dashboard</span>
+                    <span class="mdl-layout-title">{% block title %}{% endblock %}</span>
                     <div class="mdl-layout-spacer"></div>
 
                     <!-- Search Menu
@@ -88,6 +89,8 @@
                             <img src="{% static "images/sati/logo.png" %}" class="dashboard-logo-top">
                         </div>
 
+                        <div class="mdl-layout-spacer"></div>
+
                         <div class="dashboard-drawer__top-avatar img-responsive">
                             <img src="{% static "images/dash/user.jpg" %}" class="dashboard-avatar">
                         </div>
@@ -117,9 +120,9 @@
                 </header>
 
                 <nav class="dashboard-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">dashboard</i>Home</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash</a>
+                    <a class="mdl-navigation__link" href="/dashboard/"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">dashboard</i>Home</a>
+                    <a class="mdl-navigation__link" href="/dashboard/edition"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">bookmark</i>Edição</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">event</i>Evento</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Spam</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
@@ -133,10 +136,8 @@
 
           <main class="mdl-layout__content mdl-color--grey-100">
 
-              <div class="mdl-grid dashboard-content">
-                  {% block content %}{% endblock %}
-              </div>
-
+                  {% block body_content %}{% endblock %}
+              </section>
 
           </main>
 

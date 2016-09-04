@@ -1,0 +1,34 @@
+{% extends 'dashboard/base_crud.html' %}
+
+
+
+{% block title %} Dashboard / Edição {% endblock %}
+
+{% block description %}
+
+    <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">bookmark</i> Edição
+
+{% endblock %}
+
+{% block search_filter %}
+<div>
+            <h1 ng-bind="'Binding ' + message"> </h1>
+            <!-- <h1> Binding </h1> -->
+            <input type="text" ng-model="message"/>
+            <!-- ng-model binds a variable from an input field to a scope variable. -->
+            <!--
+            Shows the bracket when it loads
+            <p> {$ message $} </p>
+            <p> {$ message + message$} </p>
+            <p> {$ message === 'hello'$} </p>
+            <p> {$ 1 + 6 $} </p>
+            -->
+
+            <p ng-bind="message"></p>
+            <p ng-bind="message + message"></p>
+            <!-- :: binds only one time-->
+            <p ng-bind="message === 3"></p>
+            <p ng-bind="1 + 6 "></p>
+
+</div>
+{% endblock %}

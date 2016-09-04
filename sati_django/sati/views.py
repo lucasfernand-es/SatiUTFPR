@@ -15,13 +15,6 @@ def index(request):
     )
 
 
-def login(request):
-    return render(
-        request,
-        'sati_utfpr/login.html'
-    )
-
-
 def test(request):
     return render(
         request,

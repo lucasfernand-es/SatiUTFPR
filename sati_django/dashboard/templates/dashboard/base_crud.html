@@ -1,0 +1,67 @@
+{% extends 'dashboard/base.html' %}
+
+{% load static %}
+
+
+{% block body_content %}
+
+
+    <section ng-app="crud-app">
+
+
+        <div class="mdl-color--blue-grey ml-header relative clear">
+            <div class="p-20">
+                <h3 class="mdl-color-text--white m-t-20 m-b-5 page-subtitle">Data tables</h3>
+                <h4 class="mdl-color-text--blue-grey-100 m-b-20 no-m-t w100 page-description">Work with large data sets in tables with NG-Table</h4>
+            </div>
+        </div>
+
+        <!-- -->
+
+        <div class="mdl-grid mdl-grid--no-spacing ">
+
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-grid">
+                <div class="mdl-color-text--blue-grey-400 content-description mdl-cell mdl-cell--12-col">
+                    {% block description %} {% endblock %}
+                </div>
+            </div>
+
+
+            <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-grid">
+
+
+
+                <!-- Filter form -->
+                <div class="mdl-color--white mdl-shadow--3dp mdl-cell mdl-cell--12-col mdl-grid ">
+
+                    <header class="mdl-cell--12-col mdl-grid mdl-layout__header mdl-color--blue-200 mdl-color-text--grey-600 search-filter-header">
+                        <h4 class="display-3 search-filter-title">Filtro de Pesquisa</h4>
+                    </header>
+
+
+                    <div class="mdl-cell--12-col mdl-grid">
+
+                        {% block search_filter %} {% endblock %}
+
+                    </div>
+
+                </div>
+
+
+                <div class="m mdl-cell--12-col mdl-grid  ">
+
+
+
+
+
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-grid ">
+                <p>Dados</p>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}
