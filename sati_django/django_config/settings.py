@@ -70,9 +70,9 @@ TEMPLATES = [
         },
     },
 ]
-ROOT_URLCONF = 'hello_django.urls'
+ROOT_URLCONF = 'django_config.urls'
 
-WSGI_APPLICATION = 'hello_django.wsgi.application'
+WSGI_APPLICATION = 'django_config.wsgi.application'
 
 
 # Database

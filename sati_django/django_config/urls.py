@@ -13,7 +13,7 @@ urlpatterns = [
                        url(r'^dashboard/', include('dashboard.urls')),
 
                        # public
-                       url(r'^$', include('public.urls')),
+                       url(r'^', include('public.urls')),
 
 
                        #url(r'^$', views.index, name='home'),
