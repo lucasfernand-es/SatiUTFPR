@@ -1,4 +1,4 @@
-{% extends 'sati_utfpr/base.html' %}
+{% extends 'public/base.html' %}
 
 {% block content %}
 
@@ -7,7 +7,7 @@
 
         <div class="mdl-grid">
             <div class="mdl-layout-spacer "></div>
-            <form action="{% url 'registry_person' %}" method="POST">
+            <form action="" method="POST">
                 {% csrf_token %}
                 <div class="mdl-grid">
                     <div class="mdl-layout-spacer "></div>
