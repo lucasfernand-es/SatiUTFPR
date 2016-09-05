@@ -15,12 +15,6 @@ urlpatterns = [
                        # public
                        url(r'^', include('public.urls')),
 
-                        # public
-                        url(r'^$', include('public.urls')),
-                        url(r'^login', include('public.urls')),
-
-
-
                        # url(r'^$', views.index, name='home'),
                        # url(r'^login', views.login, name='login'),
                        # url(r'test', 'sati.views.test', name='test'),
