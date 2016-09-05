@@ -2,7 +2,7 @@
 from django import forms
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from controller import LoginController
+from ViewController import LoginController
 from VO.VOHelper import Acess
 from VO.VOHelper import Status
 
@@ -22,10 +22,10 @@ def test(request):
     )
 
 
-def signup(request):
+def login(request):
     return render(
         request,
-        'sati_utfpr/signup.html'
+        'public/login.html'
     )
 
 
