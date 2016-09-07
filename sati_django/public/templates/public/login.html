@@ -11,14 +11,14 @@
                         <h2 class="mdl-card__title-text">SATI</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        <form action="" method="POST">
+                        <form action="{% url 'user_login' %}" method="POST">
                             {% csrf_token %}
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" id="username" name="username" value="{{ username }}"/>
                                 <label class="mdl-textfield__label" for="username">Username</label>
                             </div>
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="password" id="userpass" value="{{ password }}"/>
+                                <input class="mdl-textfield__input" type="text" id="userpass" name="userpass" value="{{ userpass }}"/>
                                 <label class="mdl-textfield__label" for="userpass">Password</label>
                             </div>
                             <div class="mdl-card__actions mdl-card--border">

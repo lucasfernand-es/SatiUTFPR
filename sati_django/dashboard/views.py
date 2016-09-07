@@ -19,6 +19,7 @@ def edition(request):
     return render(request, 'dashboard/edition.html', context=context_dict)
 
 
+
 # def index(request):
 #    return HttpResponse("Hello, world. You're at the control panel index.")
 

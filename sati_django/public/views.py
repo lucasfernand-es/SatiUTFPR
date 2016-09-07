@@ -1,4 +1,5 @@
 from django.shortcuts import render, render_to_response
+from sati_django.sati_system import session
 # from django.http import HttpResponse
 
 
@@ -10,8 +11,15 @@ def index(request):
 
 
 def login(request):
-    return render(request, 'public/login.html')
+    if request.session.get('has_logged') == True:
+        return render(request, 'dashboard/index.html')
+    else:
+        return render(request, 'public/login.html')
 
 
 def signup(request):
     return render(request, 'public/signup.html')
+
+
+def new_login(request):
+    return render(request, 'public/login.html')

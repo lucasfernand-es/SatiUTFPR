@@ -1,6 +1,5 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from sati_django.sati import views
 
 urlpatterns = [
                        # Examples:
