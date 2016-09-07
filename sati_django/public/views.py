@@ -11,7 +11,7 @@ def index(request):
 
 
 def login(request):
-    if request.session.get('has_logged') == True:
+    if request.session.get('has_logged'):
         return render(request, 'dashboard/index.html')
     else:
         return render(request, 'public/login.html')

@@ -9,7 +9,10 @@ def index(request):
     context_dict = {
         'title': "Dashboard"
     }
-    return render(request, 'dashboard/index.html', context=context_dict)
+    if request.session.get('has_logged'):
+        return render(request, 'dashboard/index.html', context=context_dict)
+    else:
+        NotImplementedError
 
 
 def edition(request):
