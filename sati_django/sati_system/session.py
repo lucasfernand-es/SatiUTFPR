@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from sati_django.models import Person
+from django.contrib.auth.models import User
+from django.shortcuts import render
+
+from sati_system.models import Person
 
 
 def user_authenticate(request):
