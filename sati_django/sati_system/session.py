@@ -49,7 +49,7 @@ def user_signup(request):
         person.name = request.POST["nome_completo"]
 
     person.institution = request.POST["instituicao"]
-    if request.POST["senha"] == request.POST["confimar_senha"] and request.POST["senha"]:
+    if request.POST["senha"] == request.POST.get('confirmar_senha', '') and request.POST["senha"]:
         person.password = request.POST["senha"]
     else:
         NotImplementedError
@@ -74,8 +74,8 @@ def user_signup(request):
     person.status = 1
 
     # usuario para autenticacao e login
-    verify_person_cpf = Person.objects.get(cpf=person.cpf)
-    verify_person_email = Person.objects.get(email=person.email)
+    verify_person_cpf = False #Person.objects.get(cpf=person.cpf)
+    verify_person_email = False #Person.objects.get(email=person.email)
 
     if not verify_person_cpf and not verify_person_email:
         user = User()

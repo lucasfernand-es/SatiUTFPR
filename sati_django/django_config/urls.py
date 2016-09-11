@@ -9,10 +9,10 @@ urlpatterns = [
                        url(r'^admin/', include(admin.site.urls)),
 
                        # Dashboard
-                       url(r'^dashboard/', include('dashboard.urls')),
+                       url(r'^dashboard/', include('apps.dashboard.urls')),
 
                        # public
-                       url(r'^', include('public.urls')),
+                       url(r'^', include('apps.public.urls')),
 
                        # url(r'^$', views.index, name='home'),
                        # url(r'^login', views.login, name='login'),

@@ -12,8 +12,6 @@ class Person(models.Model):
     academicRegistry = models.CharField(max_length=15)
     role = models.IntegerField()
     status = models.BooleanField(default=True)
-    status2 = models.BooleanField(default=True)
-    status3 = models.BooleanField(default=True)
 
     class Meta:
         app_label = 'sati'
