@@ -59,3 +59,20 @@ class PersonDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [
         permissions.AllowAny
     ]
+
+class SessionList(generics.ListCreateAPIView):
+    model = Session
+    queryset = Session.objects.all()
+    serializer_class = SessionSerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
+
+class SessionDetail(generics.RetrieveUpdateDestroyAPIView):
+    model = Session
+    queryset = Session.objects.all()
+    serializer_class = SessionSerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]

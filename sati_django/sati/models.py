@@ -58,9 +58,13 @@ class Person(models.Model):
 
 
 class Session(models.Model):
-    instructor = models.ForeignKey(Person, on_delete=models.DO_NOTHING)
-    idEvent = models.ForeignKey(Event, on_delete=models.DO_NOTHING)
-    status = models.BooleanField(default=True)
+    instructor = models.ForeignKey(Person, on_delete=models.DO_NOTHING, related_name='sessions', default=None)
+    event = models.ForeignKey(Event, on_delete=models.DO_NOTHING, related_name='sessions', default=None)
+    is_active = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return "Session: Instructor {0} - Event {1}".format(self.instructor.name, self.event.name)
+
     class Meta:
         app_label = 'sati'
 
