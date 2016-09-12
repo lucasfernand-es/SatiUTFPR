@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response
-from sati_system import session
+from sati import session
 # from django.http import HttpResponse
 
 

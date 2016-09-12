@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.shortcuts import render
 
-from sati_system.models import Person
+from sati.models import Person
 
 
 def user_authenticate(request):

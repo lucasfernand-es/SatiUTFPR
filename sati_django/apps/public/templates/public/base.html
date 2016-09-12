@@ -28,13 +28,9 @@
 
         {% load static %}
 
-        {% include 'css.html' %}
         {% include 'javascript.html' %}
 
-        <!-- Public files -->
-
-        <link rel="stylesheet" href="{% static "/css/public/style.css" %}" />
-        {% include 'public_style.html' %}
+        {% include  'public/css/css.html' %}
 
     </head>
 
@@ -116,7 +112,7 @@
         </nav>
       </div>
 
-      <div class="android-content mdl-layout__content">
+      <div class="android-content mdl-layout__content mdl-grid--no-spacing">
           {% block content %}{% endblock %}
 
         <footer class="android-footer mdl-mega-footer">
