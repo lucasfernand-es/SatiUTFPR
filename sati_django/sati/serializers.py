@@ -1,7 +1,9 @@
+from aenum import unique
 from sati.models import *
 from django.contrib.auth.models import User
 from rest_framework import serializers
-
+from rest_framework.validators import UniqueValidator
+import re
 
 class EditionSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only=True)
@@ -19,6 +21,13 @@ class EditionSerializer(serializers.HyperlinkedModelSerializer):
         model = Edition
         ordering = ['begin_date']
         fields = ('id', 'name', 'begin_date', 'end_date', 'is_active', 'theme', 'description', 'events')
+
+    def validate(self, data):
+        """
+        Check if end date is after begin date
+        """
+        if data['begin_date'] > data['end_date']:
+            raise serializers.ValidationError('Data final precisa ser depois da inicial.')
 
     def create(self, validated_data):
         return Edition.objects.create(**validated_data)
@@ -53,6 +62,7 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
         ordering = ['name']
         fields = ('id', 'edition', 'name', 'type', 'fee', 'workload', 'description', 'is_active', 'sessions')
 
+
     def create(self, validated_data):
         return Event.objects.create(**validated_data)
 
@@ -74,10 +84,10 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only=True)
     # user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     name = serializers.CharField()
-    email = serializers.CharField()
+    email = serializers.CharField(validators=[UniqueValidator(queryset=Person.objects.all(), message='Email duplicado')])
     # password = serializers.CharField(style={'input_type': 'password'})
     institution = serializers.CharField()
-    cpf = serializers.CharField()
+    cpf = serializers.CharField(validators=[UniqueValidator(queryset=Person.objects.all(), message='CPF duplicado')])
     academic_registry = serializers.CharField()
     role = serializers.CharField()
     is_active = serializers.BooleanField()
@@ -91,8 +101,35 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'name', 'email', 'institution',
                   'cpf', 'academic_registry', 'role', 'is_active', 'sessions')  # 'password',
 
+
+    def validate_cpf(self, value):
+        cpf_value = ''.join(re.findall('\d', str(value)))
+
+        if (not cpf_value) or (len(cpf_value) < 11):
+            raise serializers.ValidationError('CPF Invalido.')
+
+        inteiros = map(int, cpf_value)
+        novo = inteiros[:9]
+
+        while len(novo) < 11:
+            r = sum([(len(novo) + 1 - i) * v for i, v in enumerate(novo)]) % 11
+
+            if r > 1:
+                f = 11 - r
+            else:
+                f = 0
+            novo.append(f)
+
+        if novo == inteiros:
+            return cpf_value
+        else:
+            raise serializers.ValidationError('CPF Invalido.')
+
     def create(self, validated_data):
         return Person.objects.create(**validated_data)
+
+    def validate_name(self, value):
+        return value
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
