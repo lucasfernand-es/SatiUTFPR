@@ -63,7 +63,7 @@ class Session(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return "Session: Instructor {0} - Event {1}".format(self.instructor.name, self.event.name)
+        return "{0}".format(self.id)
 
     class Meta:
         app_label = 'sati'
