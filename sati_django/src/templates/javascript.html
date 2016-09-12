@@ -3,6 +3,7 @@
 
 {% load static %}
 
+
 <script type="text/javascript" src="{% static "node_modules/angular/angular.js" %}"></script>
 <script type="text/javascript" src="{% static "node_modules/angular-aria/angular-aria.js" %}"></script>
 <script type="text/javascript" src="{% static "node_modules/angular-animate/angular-animate.js" %}"></script>
@@ -11,6 +12,13 @@
 <script type="text/javascript" src="{% static "node_modules/angular-route/angular-route.js" %}"></script>
 <script src="http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js"></script>
 
+<script src="{% static "/js/sati_app.js" %}"></script>
+<script src="{% static "/js/sati_factory.js" %}"></script>
+
+<!-- Public -->
+<script src="{% static "/js/public/event/event_controller.js" %}"></script>
+
 <!-- MDL -->
 
 <script src="{% static "/node_modules/mdl/material.min.js" %}"></script>
+

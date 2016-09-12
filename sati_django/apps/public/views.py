@@ -23,3 +23,9 @@ def signup(request):
 
 def new_login(request):
     return render(request, 'public/login.html')
+
+# Events
+
+
+def event(request):
+    return render(request, 'event/event.html')

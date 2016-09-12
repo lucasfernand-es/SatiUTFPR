@@ -28,13 +28,13 @@
 
         {% load static %}
 
-        {% include 'javascript.html' %}
+        {% include 'public/js.html' %}
 
-        {% include  'public/css/css.html' %}
+        {% include  'public/css.html' %}
 
     </head>
 
-    <body>
+    <body ng-app="sati">
 
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
@@ -57,9 +57,9 @@
           <!-- Navigation -->
           <div class="android-navigation-container">
             <nav class="android-navigation mdl-navigation">
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/events/">Eventos</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/login/">Entrar</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/signup/">Cadastre-se</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Wear</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">TV</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Auto</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">One</a>
@@ -81,7 +81,7 @@
         </div>
       </div>
 
-      <div class="android-drawer mdl-layout__drawer">
+      <!-- div class="android-drawer mdl-layout__drawer">
         <span class="mdl-layout-title">
           <img class="android-logo-image" src="{% static "images/android/android-logo-white.png" %}">
         </span>
@@ -110,7 +110,7 @@
           <a class="mdl-navigation__link" href="">Android Open Source Project</a>
           <a class="mdl-navigation__link" href="">Android SDK</a>
         </nav>
-      </div>
+      </div -->
 
       <div class="android-content mdl-layout__content mdl-grid--no-spacing">
           {% block content %}{% endblock %}
