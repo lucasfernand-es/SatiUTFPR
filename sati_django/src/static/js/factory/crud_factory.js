@@ -1,9 +1,8 @@
 (function () {
     'use strict';
 
-    var app = angular.module('crud-factory', [
+    var app = angular.module('crud-factory', [ 'crud-urls-factory'
                                         ]);
-
 
     app.factory('ModelUtils', function($http, $log) {
 
@@ -26,9 +25,24 @@
             }
         };
 
+
         var ModelUtils = {
             get: function(url, id) {
-                $http.get(url + id + '/').then(function(response){response.data});
+                return $http.get(url + id + '/').then(function(response){
+                        //$log.log('get');
+                        //$log.log(response.data);
+                        return response.data;
+                    }
+                );
+            },
+
+            get_all: function(url) {
+                return $http.get(url).then(function(response){
+                        //$log.log('get');
+                        //$log.log(response.data);
+                        return response.data;
+                    }
+                );
             },
 
             create: function(url, obj, errors) {
@@ -68,5 +82,40 @@
         return ModelUtils;
 
     });
+
+
+    app.factory('ModelFactory', function ($log, ModelUtils, Urls) {
+
+        var ModelFactory = {
+            get: function(id) {
+                return ModelUtils.get(Urls.session(), id);
+            },
+            get_all: function() {
+                return ModelUtils.get_all(Urls.session());
+            }
+        };
+
+        return ModelFactory;
+    });
+
+    /*
+    app.factory('EventFactory', function ($log, ModelUtils, Urls, EditionFactory) {
+
+        var get_edition = function (id) {
+            return EditionFactory.get(id);
+        };
+
+        var EventFactory = {
+            get: function(id) {
+                return ModelUtils.get(Urls.event(), id);
+            },
+            get_all: function() {
+                return ModelUtils.get_all(Urls.event());
+            }
+        };
+
+        return EventFactory;
+    });
+    */
 
 })(window.angular);
