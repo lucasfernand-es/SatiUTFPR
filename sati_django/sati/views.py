@@ -60,6 +60,7 @@ class PersonDetail(generics.RetrieveUpdateDestroyAPIView):
         permissions.AllowAny
     ]
 
+
 class SessionList(generics.ListCreateAPIView):
     model = Session
     queryset = Session.objects.all()
@@ -73,6 +74,42 @@ class SessionDetail(generics.RetrieveUpdateDestroyAPIView):
     model = Session
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
+
+class RoomList(generics.ListCreateAPIView):
+    model = Room
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
+
+class RoomDetail(generics.RetrieveUpdateDestroyAPIView):
+    model = Room
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
+
+class OccurrenceList(generics.ListCreateAPIView):
+    model = Occurrence
+    queryset = Occurrence.objects.all()
+    serializer_class = OccurrenceSerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
+
+class OccurrenceDetail(generics.RetrieveUpdateDestroyAPIView):
+    model = Occurrence
+    queryset = Occurrence.objects.all()
+    serializer_class = OccurrenceSerializer
     permission_classes = [
         permissions.AllowAny
     ]

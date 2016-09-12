@@ -78,7 +78,7 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
     # password = serializers.CharField(style={'input_type': 'password'})
     institution = serializers.CharField()
     cpf = serializers.CharField()
-    academicRegistry = serializers.CharField()
+    academic_registry = serializers.CharField()
     role = serializers.CharField()
     is_active = serializers.BooleanField()
 
@@ -89,7 +89,7 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
         model = Person
         ordering = ['name']
         fields = ('id', 'name', 'email', 'institution',
-                  'cpf', 'academicRegistry', 'role', 'is_active', 'sessions')  # 'password',
+                  'cpf', 'academic_registry', 'role', 'is_active', 'sessions')  # 'password',
 
     def create(self, validated_data):
         return Person.objects.create(**validated_data)
@@ -100,7 +100,7 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
         instance.password = validated_data.get('password', instance.password)
         instance.institution = validated_data.get('institution', instance.institution)
         instance.cpf = validated_data.get('cpf', instance.cpf)
-        instance.academicRegistry = validated_data.get('academicRegistryacademicRegistry', instance.cpf)
+        instance.academic_registry = validated_data.get('academic_registry', instance.cpf)
         instance.role = validated_data.get('role', instance.role)
         instance.is_active = validated_data.get('is_active', instance.is_active)
         instance.save()
@@ -114,9 +114,12 @@ class SessionSerializer(serializers.HyperlinkedModelSerializer):
     instructor = serializers.PrimaryKeyRelatedField(queryset=Person.objects.all())
     is_active = serializers.BooleanField()
 
+    # Foreign
+    occurrences = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='occurrence-detail')
+
     class Meta:
         model = Session
-        fields = ('id', 'event', 'instructor', 'is_active')
+        fields = ('id', 'event', 'instructor', 'is_active', 'occurrences')
 
     def create(self, validated_data):
         return Session.objects.create(**validated_data)
@@ -124,6 +127,61 @@ class SessionSerializer(serializers.HyperlinkedModelSerializer):
     def update(self, instance, validated_data):
         instance.event = validated_data.get('event', instance.event)
         instance.instructor = validated_data.get('instructor', instance.instructor)
+        instance.is_active = validated_data.get('is_active', instance.is_active)
+        instance.save()
+
+        return instance
+
+
+class RoomSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    name = serializers.CharField()
+    occupancy = serializers.IntegerField()
+    number = serializers.IntegerField()
+    type = serializers.CharField()
+    is_active = serializers.BooleanField()
+
+    # Foreign
+    occurrences = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='occurrence-detail')
+
+    class Meta:
+        model = Room
+        fields = ('id', 'name', 'occupancy', 'number', 'type', 'is_active', 'occurrences')
+
+    def create(self, validated_data):
+        return Room.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.occupancy = validated_data.get('occupancy', instance.occupancy)
+        instance.number = validated_data.get('number', instance.number)
+        instance.type = validated_data.get('type', instance.type)
+        instance.is_active = validated_data.get('is_active', instance.is_active)
+        instance.save()
+
+        return instance
+
+
+class OccurrenceSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    begin_date_time = serializers.DateTimeField()
+    end_date_time = serializers.DateTimeField()
+    session = serializers.PrimaryKeyRelatedField(queryset=Session.objects.all())
+    room = serializers.PrimaryKeyRelatedField(queryset=Room.objects.all())
+    is_active = serializers.BooleanField()
+
+    class Meta:
+        model = Occurrence
+        fields = ('id', 'begin_date_time', 'end_date_time', 'session', 'room', 'is_active')
+
+    def create(self, validated_data):
+        return Occurrence.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.begin_date_time = validated_data.get('begin_date_time', instance.begin_date_time)
+        instance.end_date_time = validated_data.get('end_date_time', instance.end_date_time)
+        instance.session = validated_data.get('session', instance.session)
+        instance.room = validated_data.get('session', instance.room)
         instance.is_active = validated_data.get('is_active', instance.is_active)
         instance.save()
 

@@ -45,7 +45,7 @@ class Person(models.Model):
     password = models.CharField(max_length=32)
     institution = models.CharField(max_length=255)
     cpf = models.CharField(max_length=15, unique=True)
-    academicRegistry = models.CharField(max_length=15)
+    academic_registry = models.CharField(max_length=15)
     role = models.IntegerField(choices=ROLES, default=3)
     is_active = models.BooleanField(default=True)
 
@@ -69,20 +69,44 @@ class Session(models.Model):
         app_label = 'sati'
 
 
+class Room(models.Model):
+    name = models.CharField(max_length=standard_name_size)
+    occupancy = models.IntegerField()
+    number = models.IntegerField()
+    type = models.CharField(max_length=30)
+    is_active = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+        app_label = 'sati'
+
+
+class Occurrence(models.Model):
+    begin_date_time = models.DateTimeField()
+    end_date_time = models.DateTimeField()
+    session = models.ForeignKey(Session, on_delete=models.DO_NOTHING, related_name='occurrences', default=None)
+    room = models.ForeignKey(Room, on_delete=models.DO_NOTHING,  related_name='occurrences', default=None)
+    is_active = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return"Occurrence - Session {0} - Room {1}: {2} to {3}"\
+            .format(self.session, self.room, self.begin_date_time.date(), self.end_date_time.date())
+
+    class Meta:
+        ordering = ['begin_date_time']
+        app_label = 'sati'
+
+
 class Report(models.Model):
     name = models.ForeignKey('Edition', on_delete=models.DO_NOTHING)
     class Meta:
         app_label = 'sati'
 
 
-class Room(models.Model):
-    name = models.CharField(max_length=100)
-    number = models.IntegerField()
-    space = models.IntegerField()
-    type = models.CharField(max_length=30)
-    status = models.BooleanField(default=True)
-    class Meta:
-        app_label = 'sati'
+
 
 
 class Participant(models.Model):
@@ -93,21 +117,12 @@ class Participant(models.Model):
         app_label = 'sati'
 
 
-class Ocurrence(models.Model):
-    beginTime = models.TimeField()
-    endTime = models.TimeField()
-    status = models.BooleanField(default=True)
-    idSession = models.ForeignKey('Session', on_delete=models.DO_NOTHING)
-    idRoom = models.ForeignKey('Room', on_delete=models.DO_NOTHING)
-    class Meta:
-        app_label = 'sati'
-
 
 class Raffle(models.Model):
     prize = models.CharField(max_length=255)
     raffleDate = models.DateTimeField()
-    idOcurrence = models.ForeignKey('Ocurrence', on_delete=models.DO_NOTHING)
-    idParticipant = models.ForeignKey('Participant', on_delete=models.DO_NOTHING)
+    occurrence = models.ForeignKey(Occurrence, on_delete=models.DO_NOTHING, default=None)
+    idParticipant = models.ForeignKey('Participant', on_delete=models.DO_NOTHING, default=None)
     class Meta:
         app_label = 'sati'
 
@@ -115,8 +130,8 @@ class Raffle(models.Model):
 class Presence(models.Model):
     entryTime = models.DateTimeField()
     exitTime = models.DateTimeField()
-    idParticipant = models.ForeignKey('Participant', on_delete=models.DO_NOTHING)
-    idOcurrence = models.ForeignKey('Ocurrence', on_delete=models.DO_NOTHING)
+    idParticipant = models.ForeignKey('Participant', on_delete=models.DO_NOTHING, default=None)
+    occurrence = models.ForeignKey(Occurrence, on_delete=models.DO_NOTHING, default=None)
     class Meta:
         app_label = 'sati'
 

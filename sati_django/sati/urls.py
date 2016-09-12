@@ -26,4 +26,13 @@ urlpatterns = [
     # Session
     url(r'^api/session/$', SessionList.as_view(), name='session-list'),
     url(r'^api/session/(?P<pk>\d+)/$', SessionDetail.as_view(), name='session-detail'),
+
+    # Room
+    url(r'^api/room/$', RoomList.as_view(), name='room-list'),
+    url(r'^api/room/(?P<pk>\d+)/$', RoomDetail.as_view(), name='room-detail'),
+
+    # Session
+    url(r'^api/occurrence/$', OccurrenceList.as_view(), name='occurrence-list'),
+    url(r'^api/occurrence/(?P<pk>\d+)/$', OccurrenceDetail.as_view(), name='occurrence-detail'),
+
 ]
