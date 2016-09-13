@@ -17,6 +17,13 @@ class OccurrenceSerializer(serializers.HyperlinkedModelSerializer):
         model = Occurrence
         fields = ('id', 'begin_date_time', 'end_date_time', 'session', 'room', 'is_active')
 
+    def validate(self, data):
+        """
+        Check if end date is after begin date
+        """
+        if data['begin_date_time'] > data['end_date_time']:
+            raise serializers.ValidationError('Data final precisa ser depois da inicial.')
+
     def create(self, validated_data):
         return Occurrence.objects.create(**validated_data)
 
@@ -46,13 +53,6 @@ class SessionSerializer(serializers.HyperlinkedModelSerializer):
         model = Session
         fields = ('id', 'event', 'instructor', 'is_active', 'occurrences')
 
-    def validate(self, data):
-        """
-        Check if end date is after begin date
-        """
-        if data['begin_date'] > data['end_date']:
-            raise serializers.ValidationError('Data final precisa ser depois da inicial.')
-
     def create(self, validated_data):
         return Session.objects.create(**validated_data)
 
@@ -68,7 +68,7 @@ class SessionSerializer(serializers.HyperlinkedModelSerializer):
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only=True)
     edition = serializers.PrimaryKeyRelatedField(queryset=Edition.objects.all())
-    name = serializers.CharField()
+    name = serializers.CharField(validators=[UniqueValidator(queryset=Event.objects.all(), message='Nome ja existente')])
     type = serializers.CharField()
     fee = serializers.FloatField()
     workload = serializers.IntegerField()
@@ -105,7 +105,7 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
 
 class EditionSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField()
+    name = serializers.CharField(validators=[UniqueValidator(queryset=Edition.objects.all(), message='Nome ja existente')])
     begin_date = serializers.DateField()
     end_date = serializers.DateField()
     is_active = serializers.BooleanField()
@@ -140,10 +140,10 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only=True)
     # user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     name = serializers.CharField()
-    email = serializers.CharField(validators=[UniqueValidator(queryset=Person.objects.all(), message='Email duplicado')])
+    email = serializers.CharField(validators=[UniqueValidator(queryset=Person.objects.all(), message='Email ja cadastrado')])
     # password = serializers.CharField(style={'input_type': 'password'})
     institution = serializers.CharField()
-    cpf = serializers.CharField(validators=[UniqueValidator(queryset=Person.objects.all(), message='CPF duplicado')])
+    cpf = serializers.CharField(validators=[UniqueValidator(queryset=Person.objects.all(), message='CPF ja cadastrado')])
     academic_registry = serializers.CharField()
     role = serializers.CharField()
     is_active = serializers.BooleanField()
