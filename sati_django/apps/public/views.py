@@ -1,6 +1,7 @@
 from django.shortcuts import render, render_to_response
 from sati import session
 # from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 # def index(request):
@@ -13,7 +14,9 @@ def index(request):
 
 def login(request):
     print "login"
-    if request.session.get('has_logged'):
+    print request.user.is_authenticated
+    print request.user.username
+    if request.user.is_authenticated():
         return render(request, 'dashboard/index.html')
     else:
         return render(request, 'public/login.html')

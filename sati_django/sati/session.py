@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import render
 
@@ -21,14 +21,12 @@ def user_session(request):
 def user_login(request):
     user = user_authenticate(request.POST.get('username'), request.POST.get('userpass'))
     if user is not None:
-        request.session['has_logged'] = True
-        request.session['username'] = user.username
+        login(request, user)
         return render(
             request,
             'dashboard/index.html',
         )
     else:
-        request.session['has_logged'] = False
         return render(
             request,
             'public/login.html'

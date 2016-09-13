@@ -61,6 +61,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     # 'django.middleware.locale.LocaleMiddleware',
 )
 
@@ -131,5 +132,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',)
 
 STATIC_URL = '/static/'
+LOGIN_URL = '/login/'
 
 STATIC_ROOT = ''
