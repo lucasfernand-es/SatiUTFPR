@@ -4,11 +4,11 @@
 
 {% block content %}
 
-    <div class="headline headline-image headline-image-event mdl-typography--text-center">
+    <div class="mdl-grid mdl-grid--no-spacing headline headline-image headline-image-event mdl-typography--text-center">
 
         <div class="mdl-cell--12-col headline-overflow">
         <div class="logo-font headline-text">
-            <h1 class="mdl-typography--display-4 mdl-color-text--white headline-title ">eventos</h1>
+            <h1 class="mdl-typography--display-4 mdl-color-text--white headline-title ">programação</h1>
         </div>
         </div>
     </div>
@@ -19,26 +19,14 @@
 
         <event-detail
                 ng-repeat="event in eventCtrl.events"
-                class="mdl-card mdl-cell mdl-cell--4-col mdl-shadow--3dp">
+                class="mdl-card mdl-card--event-detail
 
+                mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone
+                mdl-shadow--3dp">
         </event-detail>
 
-
-
-
-
     </div>
 
-
-    <div  class="mdl-grid--no-spacing">
-
-<div ng-repeat="event in events">
-            {[{ event.name }]}
-    [{ eventCtrl.events | json }]}
-        </div>
-
-
-    </div>
 {% endblock %}
 
 

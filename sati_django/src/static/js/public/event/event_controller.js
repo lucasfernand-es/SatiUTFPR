@@ -8,8 +8,10 @@
 
         var eventCtrl = this;
         eventCtrl.events = [];
+        var promise;
 
-        this.loadEvents = function () {
+
+        eventCtrl.loadEvents = function () {
             var promise = ModelUtils.get_all(Urls.event());
 
             promise.then(function (response) { // Success
@@ -21,35 +23,46 @@
 
             }, function (result) { // Fail
                 $log.log('error');
-                $log.log(value.status + ' ' + value.statusText);
+                $log.log(result.status + ' ' + result.statusText);
             });
         };
 
-        this.loadEvents();
+        eventCtrl.loadEvents();
 
+        eventCtrl.getPromise = function (promise) {
 
-        /*
-        $scope.loadEvents = function () {
-            $http.get('/api/event/').then(function (response) {
-                $log.log(response.data.results);
+            var result;
 
-                $scope.events = [];
-                angular.forEach(response.data.results, function (event) {
+            promise.then(function (response) { // Success
 
-                    $log.log(event);
-                    $scope.events.push(event);
-                });
+                $log.log(response);
+                result = response;
+                eventCtrl.tempPromise = response;
 
-                // return response.data.results;
+                /**
+                    $scope.tempPromise = [];
+                    angular.forEach(response.results, function (item) {
+                        items.push(item);
+                        console.log(JSON.stringify([item]));
+                    });
+
+                    $log.log(eventCtrl.tempPromise);
+                 */
+
+            }, function (result) { // Fail
+                $log.log('error');
+                $log.log(result.status + ' ' + result.statusText);
+                result = result.status + ' ' + result.statusText;
             });
+
+            return result;
         };
-        */
+
+        eventCtrl.getEventRelation = function (event) {
 
 
-        //$scope.loadEvents();
 
-        //$log.log("eventCtrl");
-        //$log.log(eventCtrl.events);
+        };
     });
 
 })(window.angular);

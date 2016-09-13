@@ -8,39 +8,53 @@
         <h4>{[{ event.name }]}</h4>
     </div>
 
-    <div class="mdl-card__supporting-text mdl-grid">
+    <div class="mdl-card__supporting-text mdl-grid mdl-card--border">
 
-        <span class="mdl-cell mdl-cell--6-col vert-align">
+        <span class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone
+                    vert-align">
             <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">date_range</i>
-            Date
+            {[{ current_event_session_ocurrence.begin_date_time | date: 'EEE, d MMM yy' }]}
         </span>
 
-        <span class="mdl-cell mdl-cell--6-col vert-align t-right-align">
+        <span class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone
+                    vert-align">
             <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">alarm</i>
-            Time
+            {[{ current_event_session_ocurrence.begin_date_time | date: 'h:mm a'}]}
         </span>
 
-        <span class="mdl-cell mdl-cell--12-col  vert-align">
+        <span class="mdl-cell mdl-cell--12-col
+                    vert-align">
                 <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">place</i>
-                Place
+                {[{ current_event_session_ocurrence_room.name }]}
         </span>
 
-        <span class="mdl-cell mdl-cell--12-col  vert-align">
+        <span class="mdl-cell mdl-cell--12-col
+                    vert-align">
                 <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">assignment_ind</i>
-                Instructor
+                {[{ current_event_session_instructor.name }]}
         </span>
 
     </div>
     <div class="mdl-card__supporting-text mdl-card__supporting-text__description">
         <p>
-            Bacon ipsum dolor amet sirloin cupim tail fatback tongue swine
-            bresaola prosciutto pork cow sausage. Cow landjaeger tri-tip meatball pork chop,
-            sirloin kielbasa. Andouille kevin beef ribs chicken chuck. Salami biltong hamburger,
-            landjaeger cow frankfurter short loin porchetta.
+            {[{ event.description }]}
         </p>
     </div>
+    <div class="mdl-card__supporting-text mdl-card__supporting-text-tag  mdl-grid">
+
+
+
+    </div>
     <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Ver mais</a>
+        <span class="
+                    vert-align
+                    mdl-color-text--black mdl-typography--caption">
+                <i class="material-icons vert-align" role="presentation">label</i>
+                {[{ event.type }]}
+        </span>
+
         <div class="mdl-layout-spacer"></div>
+
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Ver mais</a>
         <!-- button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">favorite</i></button -->
     </div>

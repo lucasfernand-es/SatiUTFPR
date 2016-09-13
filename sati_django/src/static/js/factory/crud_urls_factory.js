@@ -14,6 +14,12 @@
             edition: function () {
                 return '/api/edition/';
             },
+            room: function () {
+                return '/api/room/';
+            },
+            person: function () {
+                return '/api/person/';
+            },
         };
 
         return Urls;
