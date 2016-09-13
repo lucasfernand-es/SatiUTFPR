@@ -12,4 +12,6 @@ urlpatterns = [
 
     # Events
     url(r'^events', views.event, name='event-list'),
+    # url(r'^events/card_detail', views.event_card_detail, name='event-card-detail'),
+
 ]

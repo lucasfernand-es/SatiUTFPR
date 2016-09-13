@@ -31,3 +31,19 @@
 .material-icons {
     font-size: 12px;
 }
+
+.vert-align {
+    vertical-align: middle;
+}
+
+.t-right-align {
+    text-align: right;
+}
+
+.mdl-grid--limited-1024 {
+    max-width: 1080px;
+}
+
+.mdl-grid--limited-1280 {
+    max-width: 1280px;
+}

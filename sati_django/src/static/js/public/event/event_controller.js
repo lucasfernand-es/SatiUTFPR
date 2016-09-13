@@ -1,39 +1,31 @@
 (function () {
     'use strict';
 
-    var app = angular.module('event-controller', []);
+    var app = angular.module('event-controller', ['event-directive']);
 
     app.controller('EventCtrl', function EventCtrl($scope, $log, $http, ModelUtils,
                                                    Urls) {
 
         var eventCtrl = this;
-        $scope.events = [];
-        $scope.events = ModelUtils.get_all(Urls.event());
-        $scope.sessions = ModelUtils.get_all(Urls.session());
+        eventCtrl.events = [];
 
-        $log.log('$scope');
-        $log.log($scope.events);
+        this.loadEvents = function () {
+            var promise = ModelUtils.get_all(Urls.event());
 
-
-        $scope.events.then(function (value) {
-            $log.log('event');
-            angular.forEach(value.results, function (event) {
-                    $log.log(event);
+            promise.then(function (response) { // Success
+                //$log.log('event');
+                angular.forEach(response.results, function (event) {
+                    //$log.log(event);
+                    eventCtrl.events.push(event);
                 });
-        }, function(value) {
-            $log.log('error');
-            $log.log(value.status + ' ' + value.statusText);
-        });
 
-        $scope.sessions.then(function (value) {
-            $log.log('session');
-            angular.forEach(value.results, function (item) {
-                    $log.log(item);
-                });
-        }, function(value) {
-            $log.log('error');
-            $log.log(value.status + ' ' + value.statusText);
-        });
+            }, function (result) { // Fail
+                $log.log('error');
+                $log.log(value.status + ' ' + value.statusText);
+            });
+        };
+
+        this.loadEvents();
 
 
         /*

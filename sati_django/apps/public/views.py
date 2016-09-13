@@ -28,4 +28,5 @@ def new_login(request):
 
 
 def event(request):
-    return render(request, 'event/event.html')
+    return render(request, 'event/index.html')
+

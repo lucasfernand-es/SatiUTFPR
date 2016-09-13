@@ -1,3 +1,77 @@
+/* cards */
+
+.mdl-card__media {
+    margin: 0;
+}
+
+.mdl-card__media > img {
+  max-width: 100%;
+}
+
+.mdl-card__actions {
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
+}
+
+.mdl-card__actions > .mdl-button--icon {
+  margin-right: 3px;
+  margin-left: 3px;
+}
+
+.mdl-card__event-fee {
+    padding: 3px 7px;
+    background: rgba(255, 255, 255, .8);
+    position: absolute;
+    float: right;
+    right: 0;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 5%;
+
+}
+
+.mdl-card__title__event {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.mdl-card__supporting-text__description {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   line-height: 16px;     /* fallback */
+   max-height: 32px;      /* fallback */
+   -webkit-line-clamp: 2; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+
+/* - Headline - */
+
+.headline {
+    height: 250px;
+}
+
+.headline-text {
+    text-transform: uppercase;
+  }
+
+.headline-overflow {
+    background: rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    height: 100%;
+    z-index: 2;
+}
+
+.headline-title {
+    vertical-align: middle;
+    padding-top: 0px;
+    line-height: 250px;
+}
+
+
+/*  --- */
+
 .index-headline {
   text-align: center;
 }

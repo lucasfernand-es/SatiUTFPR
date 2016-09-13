@@ -3,7 +3,9 @@
 
     var app = angular.module('sati', [ 'crud-factory',
                                         // public
-                                        'event-controller'
+                                        'event-controller',
+                                        // essencials
+                                        'ngSanitize'
                                         ]);
 
     app.config(function($interpolateProvider) {
