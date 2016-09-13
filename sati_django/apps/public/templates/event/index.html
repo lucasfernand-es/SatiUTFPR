@@ -16,7 +16,6 @@
     <div class="content-grid mdl-grid mdl-grid--limited-1280" ng-controller="EventCtrl as eventCtrl">
 
         <div class="mdl-layout-spacer"></div>
-
         <event-detail
                 ng-repeat="event in eventCtrl.events"
                 class="mdl-card mdl-card--event-detail
@@ -24,6 +23,7 @@
                 mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone
                 mdl-shadow--3dp">
         </event-detail>
+        <div class="mdl-layout-spacer"></div>
 
     </div>
 

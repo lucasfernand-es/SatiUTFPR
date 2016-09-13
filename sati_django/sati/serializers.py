@@ -24,6 +24,7 @@ class OccurrenceSerializer(serializers.HyperlinkedModelSerializer):
         """
         if data['begin_date_time'] > data['end_date_time']:
             raise serializers.ValidationError('Data final precisa ser depois da inicial.')
+        return data
 
     def create(self, validated_data):
         return Occurrence.objects.create(**validated_data)
@@ -142,7 +143,7 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
     # user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     name = serializers.CharField()
     email = serializers.CharField(validators=[UniqueValidator(queryset=Person.objects.all(), message='Email ja cadastrado')])
-    # password = serializers.CharField(style={'input_type': 'password'})
+    password = serializers.CharField(style={'input_type': 'password'})
     institution = serializers.CharField()
     cpf = serializers.CharField(validators=[UniqueValidator(queryset=Person.objects.all(), message='CPF ja cadastrado')])
     academic_registry = serializers.CharField()
@@ -155,7 +156,7 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Person
         ordering = ['name']
-        fields = ('id', 'name', 'email', 'institution',
+        fields = ('id', 'name', 'email', 'password', 'institution',
                   'cpf', 'academic_registry', 'role', 'is_active', 'sessions')  # 'password',
 
 
@@ -183,6 +184,10 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
             raise serializers.ValidationError('CPF Invalido.')
 
     def create(self, validated_data):
+        # print validated_data.get('password')
+        password = validated_data.get('password')
+        username = validated_data.get('email')
+        User.objects.create_user(username=username, email=username, password=password)
         return Person.objects.create(**validated_data)
 
     def validate_name(self, value):

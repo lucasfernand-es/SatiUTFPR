@@ -5,12 +5,9 @@ from django.shortcuts import render
 from sati.models import Person
 
 
-def user_authenticate(request):
-    print request.POST
-    try:
-        user = authenticate(username=request.POST.get('username'), password=request.POST.get('userpass'))
-    except User.DoesNotExist:
-        user = None
+def user_authenticate(username, password):
+    print password, username
+    user = authenticate(username=username, password=password)
     return user;
 
 
@@ -22,10 +19,10 @@ def user_session(request):
 
 
 def user_login(request):
-    user = Person.objects.get(email=request.POST.get('username'))
-    if user.password == request.POST.get('userpass'):
+    user = user_authenticate(request.POST.get('username'), request.POST.get('userpass'))
+    if user is not None:
         request.session['has_logged'] = True
-        request.session['username'] = user.user.username
+        request.session['username'] = user.username
         return render(
             request,
             'dashboard/index.html',
