@@ -3,6 +3,10 @@ from django.contrib.auth.decorators import login_required
 # from django.template import RequestContext
 # from django.http import HttpResponse
 from django.http import HttpResponseForbidden
+from sati.models import Event, Edition
+from django.template import loader
+
+import json
 
 @login_required
 def index(request):
@@ -17,7 +21,8 @@ def index(request):
 def edition(request):
     if request.user.is_staff:
         context_dict = {
-            'title': "Dashboard / Edicao"
+            'title': "Dashboard / Edicao",
+            'type': "Cadastro Edicao"
         }
         return render(request, 'dashboard/edition.html', context=context_dict)
     else:
@@ -26,8 +31,13 @@ def edition(request):
 @login_required()
 def event(request):
     if request.user.is_staff:
+        editions = Edition.objects.all()
+        first_edition = editions[0].name
         context_dict = {
-            'title': "Dashboard / Edicao"
+            'title': "Dashboard / Edicao",
+            'type': "Cadastro Evento",
+            'editions': editions,
+            'first_edition': first_edition
         }
         return render(request, 'dashboard/event.html', context=context_dict)
     else:
