@@ -4,13 +4,17 @@
     var app = angular.module('event-controller',
         ['event-directive', 'event-factory']);
 
+    var hasEvents = false;
+
     app.controller('EventCtrl', function EventCtrl($scope, $log, $http,
                                                    ModelUtils, Urls,
                                                    Label,
                                                    Toast) {
 
+
         var eventCtrl = this;
 
+        eventCtrl.hasEvents = hasEvents;
         // Factories
         eventCtrl.Label = Label;
 
@@ -25,6 +29,8 @@
                 angular.forEach(response.results, function (event) {
                     //$log.log(event);
                     eventCtrl.events.push(event);
+
+
                 });
 
             }, function (result) { // Fail
@@ -60,22 +66,17 @@
                                 //console.log(occurrence);
                                 //console.log(occurrence.begin_date_time);
 
-                                var date1 = new Date(occurrence.begin_date_time);
-                                console.log(date1);
-
                                 if(keep_checking)
                                 {
-                                    if(occurrence.begin_date_time < searchCriteria)
+                                    if(new Date(occurrence.begin_date_time) <= searchCriteria)
                                     {
-                                        console.log('event');
-                                        console.log(event);
+                                        filteredArray.push(event);
+                                        keep_checking = false;
                                     }
                                     //console.log('searchCriteria');
                                     //console.log(searchCriteria);
                                 }
                             });
-
-
                         };
                     });
                 }
