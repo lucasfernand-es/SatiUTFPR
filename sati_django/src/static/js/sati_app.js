@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('sati', [ 'crud-factory', 'sati-factory',
+    var app = angular.module('sati', [ 'crud-factory', 'sati-factory', 'sati-directive',
                                         // public
                                         'event-controller',
                                         // essencials
