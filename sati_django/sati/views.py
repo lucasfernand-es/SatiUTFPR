@@ -48,7 +48,7 @@ class PersonList(generics.ListCreateAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAdminUser
     ]
 
 
@@ -57,7 +57,7 @@ class PersonDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAdminUser
     ]
 
 

@@ -187,7 +187,8 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
         # print validated_data.get('password')
         password = validated_data.get('password')
         username = validated_data.get('email')
-        User.objects.create_user(username=username, email=username, password=password)
+        firstname = validated_data.get('name')
+        User.objects.create_user(username=username, first_name=firstname, email=username, password=password)
         return Person.objects.create(**validated_data)
 
     def validate_name(self, value):
