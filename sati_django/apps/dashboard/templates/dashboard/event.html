@@ -1,0 +1,123 @@
+{% extends 'dashboard/base_crud.html' %}
+
+
+
+{% block title %} Dashboard / Evento {% endblock %}
+
+{% block description %}
+
+    <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">event</i> Evento
+
+{% endblock %}
+
+{% block search_filter %}
+
+    <div ng-controller="EditionCtrl as edition" layout="column" ng-cloak>
+        {% if not erros %}
+            <label>{{ cadastro_realizado }}</label>
+        {% else %}
+            {% for key, value in erros.items %}
+                <labe>{{ value }}</labe>
+            {% endfor %}
+        {% endif %}
+        <md-content layout-padding>
+
+            <form action={% url 'create_event' %} name="create-event" method="POST">
+
+                <div layout="row layout-fill">
+                    <md-input-container flex="55">
+                        <div class="getmdl-select">
+                            {% csrf_token %}
+                            <input class="mdl-textfield__input" value="{{ first_edition }}" type="text" name="event_edition" id="event_edition"
+                                   readonly
+                                   tabIndex="-1"/>
+
+                            <label>Edição</label>
+                            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="edition">
+                                {% for edition in editions %}
+
+                                    <li class="mdl-menu__item">{{ edition.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </md-input-container>
+                    <md-input-container flex="55">
+                        <label>Nome </label>
+                        <input name="event_name" value="{{ event_name }}" required >
+                        <div ng-messages="projectForm.description.$error">
+                            <div ng-message="required">Campo Obrigatório</div>
+                            <div ng-message="md-maxlength">The description must be less than 200 characters long.</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container flex="55">
+                        <label>Tipo </label>
+                        <input name="event_type" value="{{ event_type }}">
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-xs="row layout-fill">
+
+                    <md-input-container flex="45">
+                        <label>Valor</label>
+                        <input name="event_fee" value="{{ event_fee }}">
+                    </md-input-container>
+
+                    <md-input-container flex="45">
+                        <label>Carga horaria</label>
+                        <input name="event_workload" value="{{ event_workload }}">
+                    </md-input-container>
+
+
+                </div>
+
+                <div layout="row layout-fill">
+
+                    <md-input-container class="md-block" flex="100">
+                        <label>Descrição</label>
+                        <input md-maxlength="200" value="{{ event_description }}" required name="description"
+                               ng-model="event.description">
+                        <div ng-messages="projectForm.description.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="md-maxlength">The description must be less than 200 characters long.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div>
+                    <md-button type="submit">Submit</md-button>
+                </div>
+
+{#                <p style="font-size:.8em; width: 100%; text-align: center;">#}
+{#                    Make sure to include <a href="https://docs.angularjs.org/api/ngMessages"#}
+{#                                            target="_blank">ngMessages</a> module when using ng-message markup.#}
+{#                </p>#}
+            </form>
+        </md-content>
+
+    </div>
+
+
+
+    {#    <div>#}
+    {#        <h1 ng-bind="'Binding ' + message"></h1>#}
+    {#        <!-- <h1> Binding </h1> -->#}
+    {#        <input type="text" ng-model="message"/>#}
+    {#        <!-- ng-model binds a variable from an input field to a scope variable. -->#}
+    {#        <!--#}
+    {#        Shows the bracket when it loads#}
+    {#        <p> {$ message $} </p>#}
+    {#        <p> {$ message + message$} </p>#}
+    {#        <p> {$ message === 'hello'$} </p>#}
+    {#        <p> {$ 1 + 6 $} </p>#}
+    {#        -->#}
+    {##}
+    {#        <p ng-bind="message"></p>#}
+    {#        <p ng-bind="message + message"></p>#}
+    {#        <!-- :: binds only one time-->#}
+    {#        <p ng-bind="message === 3"></p>#}
+    {#        <p ng-bind="1 + 6 "></p>#}
+    {##}
+    {#    </div>#}
+
+{% endblock %}

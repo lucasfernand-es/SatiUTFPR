@@ -32,7 +32,7 @@
                 <div ng-controller="AppCtrl" layout="column" ng-cloak>
                     <md-toolbar class="search-filter-header">
                         <div class="md-toolbar-tools">
-                            <h2 class="display-3 search-filter-title md-flex">Filtro de Pesquisa</h2>
+                            <h2 class="display-3 search-filter-title md-flex">{{ type }}</h2>
                         </div>
                     </md-toolbar>
 
@@ -40,8 +40,8 @@
 
                         {% block search_filter %} {% endblock %}
 
-                        <p>Lorem ipsum dolor sit amet, ne quod novum mei. Sea omnium invenire mediocrem at,
-                            in lobortis conclusionemque nam. Ne deleniti appetere reprimique pro, inani labitur disputationi te sed. At vix sale omnesque, id pro labitur reformidans accommodare, cum labores honestatis eu. Nec quem lucilius in, eam praesent reformidans no. Sed laudem aliquam ne.</p>
+{#                        <p>Lorem ipsum dolor sit amet, ne quod novum mei. Sea omnium invenire mediocrem at,#}
+{#                            in lobortis conclusionemque nam. Ne deleniti appetere reprimique pro, inani labitur disputationi te sed. At vix sale omnesque, id pro labitur reformidans accommodare, cum labores honestatis eu. Nec quem lucilius in, eam praesent reformidans no. Sed laudem aliquam ne.</p>#}
                     </md-content>
                 </div>
 
@@ -52,9 +52,9 @@
                 </div>
             </div>
 
-            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-grid ">
-                <p>Dados</p>
-            </div>
+{#            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-grid ">#}
+{#                <p>Dados</p>#}
+{#            </div>#}
         </div>
 
     </section>
