@@ -37,10 +37,14 @@
 }
 
 
-.mdl-grid--limited-1024 {
+.max-w-1024 {
     max-width: 1080px;
 }
 
-.mdl-grid--limited-1280 {
+.max-w-1280 {
     max-width: 1280px;
+}
+
+.max-w-720 {
+    max-width: 720px;
 }

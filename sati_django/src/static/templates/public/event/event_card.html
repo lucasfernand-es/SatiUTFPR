@@ -13,25 +13,41 @@
         <span class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone
                     vert-align">
             <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">date_range</i>
-            {[{ current_event_session_ocurrence.begin_date_time | date: 'EEE, d MMM yy' }]}
+            {[{
+                event.current_event_session_ocurrence?
+                (event.current_event_session_ocurrence.begin_date_time | date: 'EEE, d MMM yy') :
+                eventCtrl.Label.tbd()
+            }]}
         </span>
 
         <span class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone
                     vert-align">
             <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">alarm</i>
-            {[{ current_event_session_ocurrence.begin_date_time | date: 'h:mm a'}]}
+            {[{
+                event.current_event_session_ocurrence?
+                (event.current_event_session_ocurrence.begin_date_time | date: 'h:mm a') :
+                eventCtrl.Label.tbd()
+            }]}
         </span>
 
         <span class="mdl-cell mdl-cell--12-col
                     vert-align">
                 <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">place</i>
-                {[{ current_event_session_ocurrence_room.name }]}
+                {[{
+                    event.current_event_session_ocurrence?
+                    event.current_event_session_ocurrence_room.name :
+                    eventCtrl.Label.tbd()
+                }]}
         </span>
 
         <span class="mdl-cell mdl-cell--12-col
                     vert-align">
                 <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">assignment_ind</i>
-                {[{ current_event_session_instructor.name }]}
+                {[{
+                    event.current_event_session?
+                    ( event.current_event_session_instructor.name) :
+                    eventCtrl.Label.tbd()
+                }]}
         </span>
 
     </div>
