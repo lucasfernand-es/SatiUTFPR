@@ -27,16 +27,13 @@
         <title> SATI 2016 </title>
 
         {% load static %}
-
-        {% include 'public/js.html' %}
-
         {% include  'public/css.html' %}
-
+        {% include 'public/js.html' %}
     </head>
 
     <body ng-app="sati">
 
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
         <div class="android-header mdl-layout__header mdl-layout__header--waterfall mdl-color--grey-300">
             <div class="mdl-layout__header-row">
@@ -113,9 +110,11 @@
         </nav>
       </div>
 
-      <div class="android-content mdl-layout__content mdl-grid--no-spacing">
+      <div class="android-content mdl-grid--no-spacing">
 
           {% block content %}{% endblock %}
+
+
 
 
         <footer class="android-footer mdl-mega-footer">
@@ -169,8 +168,6 @@
       </div>
     </div>
     <!-- a href="https://github.com/google/material-design-lite/blob/mdl-1.x/templates/android-dot-com/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a -->
-
-
 
     </body>
 </html>

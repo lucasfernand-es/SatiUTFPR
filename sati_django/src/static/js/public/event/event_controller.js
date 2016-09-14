@@ -1,14 +1,20 @@
 (function () {
     'use strict';
 
-    var app = angular.module('event-controller', ['event-directive']);
+    var app = angular.module('event-controller',
+        ['event-directive', 'event-factory']);
 
-    app.controller('EventCtrl', function EventCtrl($scope, $log, $http, ModelUtils,
-                                                   Urls) {
+    app.controller('EventCtrl', function EventCtrl($scope, $log, $http,
+                                                   ModelUtils, Urls,
+                                                   Label,
+                                                   Toast) {
 
         var eventCtrl = this;
+
+        // Factories
+        eventCtrl.Label = Label;
+
         eventCtrl.events = [];
-        var promise;
 
 
         eventCtrl.loadEvents = function () {
@@ -22,47 +28,62 @@
                 });
 
             }, function (result) { // Fail
-                $log.log('error');
-                $log.log(result.status + ' ' + result.statusText);
+                Toast.showToast(result.status + ' ' + result.statusText);
             });
         };
 
         eventCtrl.loadEvents();
 
-        eventCtrl.getPromise = function (promise) {
-
-            var result;
-
-            promise.then(function (response) { // Success
-
-                $log.log(response);
-                result = response;
-                eventCtrl.tempPromise = response;
-
-                /**
-                    $scope.tempPromise = [];
-                    angular.forEach(response.results, function (item) {
-                        items.push(item);
-                        console.log(JSON.stringify([item]));
-                    });
-
-                    $log.log(eventCtrl.tempPromise);
-                 */
-
-            }, function (result) { // Fail
-                $log.log('error');
-                $log.log(result.status + ' ' + result.statusText);
-                result = result.status + ' ' + result.statusText;
-            });
-
-            return result;
-        };
-
-        eventCtrl.getEventRelation = function (event) {
-
-
-
-        };
     });
 
+    app.filter('event_begindate_filter', ['$log', function ($filter) {
+        return function (originalArray, searchCriteria) {
+
+            if(!angular.isDefined(searchCriteria) || searchCriteria == '' || searchCriteria == null)
+                return originalArray;
+
+            var filteredArray = [];
+
+            angular.forEach(originalArray, function (event) {
+
+                var sessions = event.sessions;
+                var keep_checking = true;
+                if(sessions.length > 0 && keep_checking)
+                {
+                    angular.forEach(sessions, function (session) {
+
+                        var occurrences = session.occurrences;
+
+                        if(occurrences.length > 0 && keep_checking)
+                        {
+                            angular.forEach(occurrences, function (occurrence) {
+                                //console.log(occurrence);
+                                //console.log(occurrence.begin_date_time);
+
+                                var date1 = new Date(occurrence.begin_date_time);
+                                console.log(date1);
+
+                                if(keep_checking)
+                                {
+                                    if(occurrence.begin_date_time < searchCriteria)
+                                    {
+                                        console.log('event');
+                                        console.log(event);
+                                    }
+                                    //console.log('searchCriteria');
+                                    //console.log(searchCriteria);
+                                }
+                            });
+
+
+                        };
+                    });
+                }
+
+
+            });
+
+            return filteredArray;
+        };
+    }]);
 })(window.angular);

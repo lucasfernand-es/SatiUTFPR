@@ -13,18 +13,47 @@
         </div>
     </div>
 
-    <div class="content-grid mdl-grid mdl-grid--limited-1280" ng-controller="EventCtrl as eventCtrl">
 
+<<<<<<< HEAD
+
+
+    <div class="content-grid mdl-grid max-w-1280" ng-controller="EventCtrl as eventCtrl">
+
+        <md-toolbar class="md-primary mdl-cell mdl-cell--12-col  mdl-grid m-w-720" >
+            <div class="md-toolbar-tools">
+                <h2 class="md-flex">{[{ eventCtrl.Label.filter_label_filter_event() }]}</h2>
+            </div>
+        </md-toolbar>
+
+        <div class=" mdl-cell mdl-cell--12-col mdl-color--gray-500 mdl-shadow--4dp
+                            mdl-grid
+                            filter-content">
+            <md-input-container class="mdl-cell mdl-cell--6col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                <label>{[{ eventCtrl.Label.filter_label_event_name() }]}</label>
+                <input ng-model="search.name">
+            </md-input-container>
+
+            <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                <label>{[{ eventCtrl.Label.filter_label_event_begin_date() }]}</label>
+                <md-datepicker ng-model="filter.begin_date" md-open-on-focus></md-datepicker>
+            </md-input-container>
+        </div>
+
+=======
         <div class="mdl-layout-spacer"></div>
+>>>>>>> dev
         <event-detail
-                ng-repeat="event in eventCtrl.events"
+                ng-repeat="event in eventCtrl.events | filter: search | event_begindate_filter: filter.begin_date "
                 class="mdl-card mdl-card--event-detail
 
                 mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone
                 mdl-shadow--3dp">
         </event-detail>
+<<<<<<< HEAD
+=======
         <div class="mdl-layout-spacer"></div>
 
+>>>>>>> dev
     </div>
 
 {% endblock %}
