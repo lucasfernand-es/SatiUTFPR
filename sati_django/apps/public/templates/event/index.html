@@ -14,6 +14,7 @@
     </div>
 
 
+<<<<<<< HEAD
 
 
     <div class="content-grid mdl-grid max-w-1280" ng-controller="EventCtrl as eventCtrl">
@@ -38,6 +39,9 @@
             </md-input-container>
         </div>
 
+=======
+        <div class="mdl-layout-spacer"></div>
+>>>>>>> dev
         <event-detail
                 ng-repeat="event in eventCtrl.events | filter: search | event_begindate_filter: filter.begin_date "
                 class="mdl-card mdl-card--event-detail
@@ -45,6 +49,11 @@
                 mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone
                 mdl-shadow--3dp">
         </event-detail>
+<<<<<<< HEAD
+=======
+        <div class="mdl-layout-spacer"></div>
+
+>>>>>>> dev
     </div>
 
 {% endblock %}
