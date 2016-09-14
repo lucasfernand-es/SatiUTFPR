@@ -3,11 +3,8 @@
 
     var app = angular.module('event-factory', []);
 
-    app.factory('Label', function () {
+    app.factory('EventLabel', function () {
         var Label = {
-            tbd: function () {
-                return 'A definir';
-            },
             filter_label_event_name : function () {
                 return 'Nome do Evento';
             },

@@ -9,16 +9,18 @@
     app.controller('EventCtrl', function EventCtrl($scope, $log, $http,
                                                    ModelUtils, Urls,
                                                    Label,
+                                                   EventLabel,
                                                    Toast) {
-
-
         var eventCtrl = this;
 
         eventCtrl.hasEvents = hasEvents;
         // Factories
+        eventCtrl.EventLabel = EventLabel;
         eventCtrl.Label = Label;
 
         eventCtrl.events = [];
+
+        $scope.warnMessage = Label.no_results();
 
 
         eventCtrl.loadEvents = function () {

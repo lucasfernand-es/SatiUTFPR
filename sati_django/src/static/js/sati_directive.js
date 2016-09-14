@@ -8,6 +8,7 @@
             templateUrl: '/static/templates/sati/warn-message.html',
             controller: function ($scope, $log) {
             },
+            controllerAs: 'warnMessageCtrl',
         };
     });
 

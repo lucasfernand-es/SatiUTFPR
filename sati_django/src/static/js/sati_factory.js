@@ -39,5 +39,18 @@
 
     });
 
+    app.factory('Label', function () {
+        var Label = {
+            tbd: function () {
+                return 'A definir';
+            },
+            no_results: function () {
+                return 'Nenhum resultado encontrado.';
+            }
+        };
+
+        return Label;
+    });
+
 
 })(window.angular);
