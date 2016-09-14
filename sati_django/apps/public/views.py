@@ -1,7 +1,12 @@
 from django.shortcuts import render, render_to_response
-# from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
-
+from sati.models import Event
+from sati.serializers import *
+from rest_framework import serializers
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # def index(request):
 #    return HttpResponse("Hello, world. You're at the polls index.")
@@ -31,6 +36,18 @@ def new_login(request):
 # Events
 
 
-def event(request):
+def events_list(request):
     return render(request, 'event/index.html')
+
+
+def event_detail(request, event_id):
+    event = Event.objects.get(pk=event_id)
+    serializer = EventSerializer(event, many=False)
+    data = serializer.data
+    print data
+    request.event = data
+    request.event_id = event_id
+
+    return render(request, 'event/event_detail.html')
+#   return HttpResponse("You're looking at question %s." % event_id)
 

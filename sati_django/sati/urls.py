@@ -22,6 +22,7 @@ urlpatterns = [
     # Person
     url(r'^api/person/$', PersonList.as_view(), name='person-list'),
     url(r'^api/person/(?P<pk>\d+)/$', PersonDetail.as_view(), name='person-detail'),
+    url(r'^api/public_person/(?P<pk>\d+)/$', PersonDetailPublic.as_view(), name='person-detail-public'),
 
     # Session
     url(r'^api/session/$', SessionList.as_view(), name='session-list'),

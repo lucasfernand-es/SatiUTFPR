@@ -2,9 +2,10 @@
     'use strict';
 
     var app = angular.module('event-controller',
-        ['event-directive', 'event-factory']);
+        ['event-directive', 'event-factory', 'ngMaterial']);
 
     var hasEvents = false;
+
 
     app.controller('EventCtrl', function EventCtrl($scope, $log, $http,
                                                    ModelUtils, Urls,
@@ -41,6 +42,78 @@
         };
 
         eventCtrl.loadEvents();
+
+    });
+
+    app.controller('EventDetailCtrl', function EventDetailCtrl($scope, $log, $http,
+                                                               ModelUtils, Urls, Toast) {
+
+        var eventDetail = this;
+        eventDetail.current_event_id = $scope.current_event_id;
+        //$log.log($scope.current_event_id);
+
+        eventDetail.loadEvent = function () {
+
+            var promiseEvent = ModelUtils.get(Urls.event(), eventDetail.current_event_id);
+
+            promiseEvent.then(function (response) { // Success
+                //$log.log(response);
+                eventDetail.current_event = response;
+
+                var promiseEdition  = ModelUtils.get(Urls.edition(), eventDetail.current_event.edition);
+
+                promiseEdition.then(function (response) {
+                        //$log.log(response);
+                        eventDetail.current_event.edition = response;
+                    }, function (result) {
+                        Toast.showToast(result.status + ' ' + result.statusText);
+                    });
+
+                angular.forEach(eventDetail.current_event.sessions, function (session) {
+
+                    //$log.log(session);
+
+                    var promiseInstructor = ModelUtils.get(Urls.person(), session.instructor);
+                    // get instructor
+                    promiseInstructor.then(function (response) {
+                        //$log.log(response);
+                        session.instructor = response;
+                    }, function (result) {
+                        Toast.showToast(result.status + ' ' + result.statusText);
+                    });
+
+                    angular.forEach(session.occurrences, function (occurrence) {
+
+                        var promiseRoom = ModelUtils.get(Urls.room(), occurrence.room);
+
+                        promiseRoom.then(function (response) {
+                            //$log.log(response);
+                            occurrence.room = response;
+
+                        }, function (result) {
+                            Toast.showToast(result.status + ' ' + result.statusText);
+                        });
+
+                    });
+
+
+                });
+
+
+            }, function (result) { // Fail
+                Toast.showToast(result.status + ' ' + result.statusText);
+            });
+
+        };
+
+        eventDetail.loadEvent();
+
+
+
+
+        eventDetail.showSome = function (algo) {
+          $log.log(algo);
+        };
 
     });
 

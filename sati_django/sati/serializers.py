@@ -87,7 +87,6 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
         ordering = ['name']
         fields = ('id', 'edition', 'name', 'type', 'fee', 'workload', 'description', 'is_active', 'sessions')
 
-
     def create(self, validated_data):
         return Event.objects.create(**validated_data)
 

@@ -18,7 +18,7 @@
                 return '/api/room/';
             },
             person: function () {
-                return '/api/person/';
+                return '/api/public_person/';
             },
         };
 
@@ -26,3 +26,4 @@
     });
 
 })(window.angular);
+

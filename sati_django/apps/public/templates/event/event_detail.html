@@ -1,0 +1,63 @@
+{% extends 'public/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div ng-init="current_event_id = {{ request.event_id }} "></div>
+
+    <div ng-controller="EventDetailCtrl as eventDetail">
+
+        <div    class="mdl-grid mdl-grid--no-spacing headline-event-detail headline-image mdl-typography--text-center"
+                ng-style="{
+                background: 'url(' + 'https://images.unsplash.com/46/3YNGIU4yRTO4DDifrEfA__MG_2885.jpg?crop=entropy&fit=crop&fm=jpg&h=1000&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1925' + ') center',}">
+            <div class="mdl-cell--12-col headline-overflow">
+                <h1 class="mdl-typography--display-4 mdl-color-text--white headline-title" ng-bind="eventDetail.current_event.name"></h1>
+                <h1 class="mdl-typography--display-1 mdl-color-text--white headline-subtitle"  ng-bind="eventDetail.current_event.edition.name"></h1>
+            </div>
+        </div>
+
+        <div class="mdl-grid mdl-grid max-w-1280 event-detail__description ">
+            <md-toolbar class="md-theme-light  vert-align mdl-grid mdl-grid">
+                <div class="md-display-1 mdl-cell--4-col">
+                    <span><i class="material-icons vert-align" role="presentation">label</i><label class="vert-align" ng-bind="' ' + eventDetail.current_event.type"></label></span>
+                </div>
+                <div class="mdl-layout-spacer"></div>
+                <div class="md-display-1 mdl-typography--text-right mdl-cell--4-col">
+                   <span class="vert-align" ng-bind="eventDetail.current_event.fee == 0 ? 'Grátis' : (eventDetail.current_event.fee | currency) "></span>
+                </div>
+            </md-toolbar>
+
+            <hr/>
+
+            <md-content class="mdl-shadow--3dp mdl-grid" flex layout-padding>
+
+                <div class="mdl-cell--12-col mdl-grid mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+
+                    <div class="mdl-cell--10-col mdl-grid mdl-grid">
+
+                        <p ng-bind="eventDetail.current_event.description">
+
+                        </p>
+
+                    </div>
+
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+
+                <div class="divider mdl-cell--12-col mdl-color-text--grey-800"><span></span><span>Turmas Abertas</span><span></span></div>
+
+                <div class="mdl-cell--12-col mdl-color-text--grey-800"> <hr /></div>
+                <p>Lorem ipsum dolor sit amet, ne quod novum mei. Sea omnium invenire mediocrem at, in lobortis conclusionemque nam. Ne deleniti appetere reprimique pro, inani labitur disputationi te sed. At vix sale omnesque, id pro labitur reformidans accommodare, cum labores honestatis eu. Nec quem lucilius in, eam praesent reformidans no. Sed laudem aliquam ne.</p>
+            </md-content>
+        </div>
+
+
+    </div>
+
+
+
+{% endblock %}
+
+
+

@@ -45,7 +45,7 @@
                 <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">assignment_ind</i>
                 {[{
                     event.current_event_session?
-                    ( event.current_event_session_instructor.name) :
+                    ( event.current_event_session_instructor.name ) :
                     eventCtrl.Label.tbd()
                 }]}
         </span>
@@ -71,6 +71,5 @@
 
         <div class="mdl-layout-spacer"></div>
 
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Ver mais</a>
-        <!-- button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">favorite</i></button -->
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-href="/event/{[{ event.id }]}">Ver mais</a>
     </div>

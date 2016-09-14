@@ -84,20 +84,6 @@
     });
 
 
-    app.factory('ModelFactory', function ($log, ModelUtils, Urls) {
-
-        var ModelFactory = {
-            get: function(id) {
-                return ModelUtils.get(Urls.session(), id);
-            },
-            get_all: function() {
-                return ModelUtils.get_all(Urls.session());
-            }
-        };
-
-        return ModelFactory;
-    });
-
     /*
     app.factory('EventFactory', function ($log, ModelUtils, Urls, EditionFactory) {
 

@@ -43,6 +43,15 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     ]
 
 
+class PersonDetailPublic(generics.RetrieveAPIView):
+    model = Person
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
+
 class PersonList(generics.ListCreateAPIView):
     model = Person
     queryset = Person.objects.all()
