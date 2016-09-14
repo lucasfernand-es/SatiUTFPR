@@ -1,5 +1,4 @@
 from django.shortcuts import render, render_to_response
-from sati import session
 # from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 

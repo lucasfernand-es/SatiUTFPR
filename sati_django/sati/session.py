@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render
 
@@ -34,8 +34,9 @@ def user_login(request):
 
 
 def user_logout(request):
-    request.session['has_logged'] = False
-    request.session['username'] = ""
+    logout(request)
+    return render(request,
+                  'public/index.html')
 
 
 def user_signup(request):

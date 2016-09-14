@@ -1,27 +1,37 @@
 from django.shortcuts import render, render_to_response
+from django.contrib.auth.decorators import login_required
 # from django.template import RequestContext
 # from django.http import HttpResponse
+from django.http import HttpResponseForbidden
 
-
+@login_required
 def index(request):
     # Construct a dictionary to pass to the template engine as its context.
     # Note the key title is the same as {{ title }} in the template!
     context_dict = {
         'title': "Dashboard"
     }
-    if request.session.get('has_logged'):
-        return render(request, 'dashboard/index.html', context=context_dict)
-    else:
-        NotImplementedError
+    return render(request, 'dashboard/index.html', context=context_dict)
 
-
+@login_required()
 def edition(request):
-    context_dict = {
-        'title': "Dashboard / Edicao"
-    }
-    return render(request, 'dashboard/edition.html', context=context_dict)
+    if request.user.is_staff:
+        context_dict = {
+            'title': "Dashboard / Edicao"
+        }
+        return render(request, 'dashboard/edition.html', context=context_dict)
+    else:
+        return HttpResponseForbidden()
 
-
+@login_required()
+def event(request):
+    if request.user.is_staff:
+        context_dict = {
+            'title': "Dashboard / Edicao"
+        }
+        return render(request, 'dashboard/event.html', context=context_dict)
+    else:
+        return HttpResponseForbidden()
 
 # def index(request):
 #    return HttpResponse("Hello, world. You're at the control panel index.")
