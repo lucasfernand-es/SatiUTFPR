@@ -126,6 +126,7 @@ class Participant(models.Model):
     person = models.ForeignKey('Person', on_delete=models.DO_NOTHING)
     session = models.ForeignKey('Session', on_delete=models.DO_NOTHING)
     status = models.BooleanField(default=True)
+    is_confirmed = models.BooleanField(default=False)
     class Meta:
         app_label = 'sati'
 
