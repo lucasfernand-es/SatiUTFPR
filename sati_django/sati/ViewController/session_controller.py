@@ -9,6 +9,7 @@ def get_session_spots(request):
     }
     return context
 
+
 def get_session_available_spots(request):
     participants = Participant.objects.filter(is_confirmed=True, event_id=request.POST.get('session_id'))
     session = Session.objects.filter(id=request.POST.get('event_id'))
@@ -24,7 +25,7 @@ def get_session_available_spots(request):
         context['session_available_spots'] = session_available_spots
         context['error'] = False
     else:
-        context['error_msg'] = 'not_spots_available'
+        context['error_msg'] = 'no_spots_available'
         context['error']= True
 
     return context
