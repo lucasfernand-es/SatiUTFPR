@@ -24,15 +24,21 @@
         <div class="mdl-cell mdl-cell--12-col mdl-color--gray-500 mdl-shadow--4dp
                             mdl-grid
                             filter-content">
-            <md-input-container class="mdl-cell mdl-cell--6col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+            <md-input-container class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
                 <label ng-bind="eventCtrl.EventLabel.filter_label_event_name()"></label>
                 <input ng-model="search.name">
             </md-input-container>
 
-            <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+            <md-input-container class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
                 <label ng-bind="eventCtrl.EventLabel.filter_label_event_begin_date()"></label>
                 <md-datepicker ng-model="filter.begin_date" md-open-on-focus></md-datepicker>
             </md-input-container>
+
+            <div class="mdl-layout-spacer"></div>
+
+            <div class="mdl-cell mdl-cell--2-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                <md-button class="md-raised md-primary mdl-cell--12-col" aria-label="eventCtrl.Label.clear_filter()" ng-bind="eventCtrl.Label.clear_filter()"></md-button>
+            </div>
         </div>
 
         <event-detail
@@ -43,11 +49,11 @@
                 mdl-shadow--3dp">
         </event-detail>
 
-        <warn-message
+        <noresult-message
                 class="mdl-grid mdl-cell mdl-cell--12-col"
                 ng-hide="eventCtrl.filteredEvents.length">
 
-        </warn-message>
+        </noresult-message>
 
     </div>
 

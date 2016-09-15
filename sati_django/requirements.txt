@@ -3,3 +3,4 @@ aenum
 psycopg2
 djangorestframework
 django-url-filter
+Pillow

@@ -21,7 +21,7 @@
 
         eventCtrl.events = [];
 
-        $scope.warnMessage = Label.no_results();
+        $scope.message = Label.no_results();
 
 
         eventCtrl.loadEvents = function () {
@@ -107,13 +107,6 @@
         };
 
         eventDetail.loadEvent();
-
-
-
-
-        eventDetail.showSome = function (algo) {
-          $log.log(algo);
-        };
 
     });
 

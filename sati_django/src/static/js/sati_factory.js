@@ -46,6 +46,9 @@
             },
             no_results: function () {
                 return 'Nenhum resultado encontrado.';
+            },
+            clear_filter: function () {
+                return 'Limpar Filtro';
             }
         };
 
