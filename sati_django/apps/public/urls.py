@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from sati import session
+from sati.ViewController import user_session_controller as session, session_controller
 
 from . import views
 
