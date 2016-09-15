@@ -3,16 +3,16 @@
 {% load static %}
 
 {% block content %}
-    <div ng-init="current_event_id = {{ request.event_id }} "></div>
+    <div ng-init="event_id = {{ request.event_id }} "></div>
 
     <div ng-controller="EventDetailCtrl as eventDetail">
 
         <div    class="mdl-grid mdl-grid--no-spacing headline-event-detail headline-image mdl-typography--text-center"
                 ng-style="{
-                background: 'url(' + eventDetail.current_event.category.image + ') center',}">
+                background: 'url(' + eventDetail.event.category.image + ') center',}">
             <div class="mdl-cell--12-col headline-overflow">
-                <h1 class="mdl-typography--display-4 mdl-color-text--white headline-title" ng-bind="eventDetail.current_event.name"></h1>
-                <h1 class="mdl-typography--display-1 mdl-color-text--white headline-subtitle"  ng-bind="eventDetail.current_event.edition.name"></h1>
+                <h1 class="mdl-typography--display-4 mdl-color-text--white headline-title" ng-bind="eventDetail.event.name"></h1>
+                <h1 class="mdl-typography--display-1 mdl-color-text--white headline-subtitle"  ng-bind="eventDetail.event.edition.name"></h1>
             </div>
         </div>
 
@@ -20,11 +20,11 @@
         <div class="mdl-grid mdl-grid max-w-1280 event-detail__description ">
             <md-toolbar class="md-theme-light  vert-align mdl-grid mdl-grid">
                 <div class="md-display-1 mdl-cell--4-col">
-                    <span><i class="material-icons vert-align" role="presentation">label</i><label class="vert-align" ng-bind="' ' + eventDetail.current_event.category.name"></label></span>
+                    <span><i class="material-icons vert-align" role="presentation">label</i><label class="vert-align" ng-bind="' ' + eventDetail.event.category.name"></label></span>
                 </div>
                 <div class="mdl-layout-spacer"></div>
                 <div class="md-display-1 mdl-typography--text-right mdl-cell--4-col">
-                   <span class="vert-align" ng-bind="eventDetail.current_event.fee == 0 ? 'Grátis' : (eventDetail.current_event.fee | currency) "></span>
+                   <span class="vert-align" ng-bind="eventDetail.event.fee == 0 ? 'Grátis' : (eventDetail.event.fee | currency) "></span>
                 </div>
             </md-toolbar>
 
@@ -37,17 +37,22 @@
 
                     <div class="mdl-cell--10-col mdl-grid mdl-grid">
 
-                        <p ng-bind="eventDetail.current_event.description">
+                        <p ng-bind="eventDetail.event.description">
 
                         </p>
-                        <p>Lorem ipsum dolor sit amet, ne quod novum mei. Sea omnium invenire mediocrem at, in lobortis conclusionemque nam. Ne deleniti appetere reprimique pro, inani labitur disputationi te sed. At vix sale omnesque, id pro labitur reformidans accommodare, cum labores honestatis eu. Nec quem lucilius in, eam praesent reformidans no. Sed laudem aliquam ne.</p>
-
                     </div>
 
                     <div class="mdl-layout-spacer"></div>
                 </div>
 
                 <div class="divider mdl-cell--12-col mdl-color-text--grey-800"><span></span><span>Turmas Abertas</span><span></span></div>
+
+                <div class="mdl-grid mdl-cell--12-col session-detail">
+                    <session-detail
+                            class="mdl-grid mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp"
+                            ng-repeat="session in eventDetail.event.sessions">
+                    </session-detail>
+                </div>
 
                 </md-content>
         </div>

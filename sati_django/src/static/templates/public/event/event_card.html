@@ -1,6 +1,14 @@
+    <span class="ribbon top-left ribbon-danger" ng-show="false">
+        <small>Doação</small>
+    </span>
+
+    <span class="ribbon top-left ribbon-warn" ng-show="false">
+        <small>Doação</small>
+    </span>
 
     <figure class="mdl-card__media">
         <img src="{[{ event.category.image }]}" alt="" />
+
     </figure>
     <span class="mdl-card__event-fee" ng-bind="event.fee == 0 ? 'Grátis' : (event.fee | currency) "></span>
 
@@ -52,9 +60,9 @@
 
     </div>
     <div class="mdl-card__supporting-text mdl-card__supporting-text__description">
-        <p>
-            {[{ event.description }]}
-        </p>
+
+        <p ng-bind="event.description"></p>
+
     </div>
     <div class="mdl-card__supporting-text mdl-card__supporting-text-tag  mdl-grid">
 
@@ -66,7 +74,7 @@
                     vert-align
                     mdl-color-text--black mdl-typography--caption">
                 <i class="material-icons vert-align" role="presentation">label</i>
-                {[{ event.type }]}
+                {[{ event.category.name }]}
         </span>
 
         <div class="mdl-layout-spacer"></div>

@@ -32,6 +32,12 @@
     background-image: linear-gradient(90deg, #7c7c7c, transparent);
 }
 
+/*-- session-detail --*/
+
+.session-detail {
+    margin-top: -20px;
+}
+
 .headline-event-detail {
   height: 450px;
 }
