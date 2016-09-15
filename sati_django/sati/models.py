@@ -21,12 +21,24 @@ class Edition(models.Model):
         app_label = 'sati'
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=standard_name_size, unique=True)
+    image = models.ImageField(default=None)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+        app_label = 'sati'
+
+
 class Event(models.Model):
     edition = models.ForeignKey(Edition, on_delete=models.DO_NOTHING, related_name='events', default=None)
+    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, related_name='events', default=None)
     name = models.CharField(max_length=standard_name_size, unique=True)
-    type = models.CharField(max_length=200)
-    fee = models.FloatField()
-    workload = models.IntegerField()
+    fee = models.FloatField(default=0.0)
+    workload = models.IntegerField(default=0.0)
     description = models.CharField(max_length=standard_text_field_size)
     is_active = models.BooleanField(default=True)
 
@@ -60,10 +72,11 @@ class Person(models.Model):
 class Session(models.Model):
     instructor = models.ForeignKey(Person, on_delete=models.DO_NOTHING, related_name='sessions', default=None)
     event = models.ForeignKey(Event, on_delete=models.DO_NOTHING, related_name='sessions', default=None)
+    spots = models.PositiveIntegerField()
     is_active = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return "{0}".format(self.id)
+        return "{0} com {1} - {2} vagas".format(self.instructor.name, self.event.name, self.spots)
 
     class Meta:
         app_label = 'sati'

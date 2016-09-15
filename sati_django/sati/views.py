@@ -25,6 +25,24 @@ class EditionDetail(generics.RetrieveUpdateDestroyAPIView):
     ]
 
 
+class CategoryList(generics.ListCreateAPIView):
+    model = Category
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
+
+class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    model = Category
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
+
 class EventList(generics.ListCreateAPIView):
     model = Event
     queryset = Event.objects.all()
@@ -57,7 +75,7 @@ class PersonList(generics.ListCreateAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
     permission_classes = [
-        permissions.IsAdminUser
+        permissions.AllowAny
     ]
 
 
@@ -66,7 +84,7 @@ class PersonDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
     permission_classes = [
-        permissions.IsAdminUser
+        permissions.AllowAny
     ]
 
 

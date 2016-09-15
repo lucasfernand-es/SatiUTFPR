@@ -135,3 +135,5 @@ STATIC_URL = '/static/'
 LOGIN_URL = '/login/'
 
 STATIC_ROOT = ''
+
+MEDIA_URL='/media/'

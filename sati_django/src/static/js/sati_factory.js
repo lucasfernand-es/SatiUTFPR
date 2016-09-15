@@ -49,6 +49,9 @@
             },
             clear_filter: function () {
                 return 'Limpar Filtro';
+            },
+            none: function () {
+                return 'Nenhum';
             }
         };
 

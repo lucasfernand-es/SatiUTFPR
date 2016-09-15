@@ -15,6 +15,10 @@ urlpatterns = [
     url(r'^api/edition/$', EditionList.as_view(), name='edition-list'),
     url(r'^api/edition/(?P<pk>\d+)/$', EditionDetail.as_view(), name='edition-detail'),
 
+    # Category
+    url(r'^api/category/$', CategoryList.as_view(), name='category-list'),
+    url(r'^api/category/(?P<pk>\d+)/$', CategoryDetail.as_view(), name='category-detail'),
+
     # Event
     url(r'^api/event/$', EventList.as_view(), name='event-list'),
     url(r'^api/event/(?P<pk>\d+)/$', EventDetail.as_view(), name='event-detail'),

@@ -2,7 +2,7 @@
     'use strict';
 
     var app = angular.module('event-controller',
-        ['event-directive', 'event-factory', 'ngMaterial']);
+        ['event-directive', 'event-factory', 'event-filter','ngMaterial']);
 
     var hasEvents = false;
 
@@ -20,6 +20,7 @@
         eventCtrl.Label = Label;
 
         eventCtrl.events = [];
+        eventCtrl.categories = [];
 
         $scope.message = Label.no_results();
 
@@ -30,6 +31,16 @@
             promise.then(function (response) { // Success
                 //$log.log('event');
                 angular.forEach(response.results, function (event) {
+
+                    var promiseCategory = ModelUtils.get(Urls.category(), event.category);
+
+                    promiseCategory.then(function (response) { // Success
+                        event.category = response;
+                    }, function (result) { // Fail
+                        $log.log('error');
+                        Toast.showToast(result.status + ' ' + result.statusText);
+                    });
+
                     //$log.log(event);
                     eventCtrl.events.push(event);
 
@@ -41,7 +52,30 @@
             });
         };
 
+        eventCtrl.loadCategories = function () {
+            var promise = ModelUtils.get_all(Urls.category());
+
+            promise.then(function (response) { // Success
+                //$log.log('event');
+                angular.forEach(response.results, function (item) {
+
+                    eventCtrl.categories.push(item);
+
+                });
+
+            }, function (result) { // Fail
+                Toast.showToast(result.status + ' ' + result.statusText);
+            });
+
+        };
+
         eventCtrl.loadEvents();
+        eventCtrl.loadCategories();
+
+        eventCtrl.clearFilter = function () {
+            $scope.search = '';
+            $scope.filter.begin_date = null;
+        };
 
     });
 
@@ -69,14 +103,20 @@
                         Toast.showToast(result.status + ' ' + result.statusText);
                     });
 
-                angular.forEach(eventDetail.current_event.sessions, function (session) {
+                var promiseCategory = ModelUtils.get(Urls.category(), eventDetail.current_event.category);
 
-                    //$log.log(session);
+                    promiseCategory.then(function (response) { // Success
+                        eventDetail.current_event.category = response;
+                    }, function (result) { // Fail
+                        $log.log('error');
+                        Toast.showToast(result.status + ' ' + result.statusText);
+                    });
+
+                angular.forEach(eventDetail.current_event.sessions, function (session) {
 
                     var promiseInstructor = ModelUtils.get(Urls.person(), session.instructor);
                     // get instructor
                     promiseInstructor.then(function (response) {
-                        //$log.log(response);
                         session.instructor = response;
                     }, function (result) {
                         Toast.showToast(result.status + ' ' + result.statusText);
@@ -87,7 +127,6 @@
                         var promiseRoom = ModelUtils.get(Urls.room(), occurrence.room);
 
                         promiseRoom.then(function (response) {
-                            //$log.log(response);
                             occurrence.room = response;
 
                         }, function (result) {
@@ -110,49 +149,4 @@
 
     });
 
-    app.filter('event_begindate_filter', ['$log', function ($filter) {
-        return function (originalArray, searchCriteria) {
-
-            if(!angular.isDefined(searchCriteria) || searchCriteria == '' || searchCriteria == null)
-                return originalArray;
-
-            var filteredArray = [];
-
-            angular.forEach(originalArray, function (event) {
-
-                var sessions = event.sessions;
-                var keep_checking = true;
-                if(sessions.length > 0 && keep_checking)
-                {
-                    angular.forEach(sessions, function (session) {
-
-                        var occurrences = session.occurrences;
-
-                        if(occurrences.length > 0 && keep_checking)
-                        {
-                            angular.forEach(occurrences, function (occurrence) {
-                                //console.log(occurrence);
-                                //console.log(occurrence.begin_date_time);
-
-                                if(keep_checking)
-                                {
-                                    if(new Date(occurrence.begin_date_time) <= searchCriteria)
-                                    {
-                                        filteredArray.push(event);
-                                        keep_checking = false;
-                                    }
-                                    //console.log('searchCriteria');
-                                    //console.log(searchCriteria);
-                                }
-                            });
-                        };
-                    });
-                }
-
-
-            });
-
-            return filteredArray;
-        };
-    }]);
 })(window.angular);

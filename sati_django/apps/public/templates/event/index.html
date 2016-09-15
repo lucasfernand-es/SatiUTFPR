@@ -24,6 +24,7 @@
         <div class="mdl-cell mdl-cell--12-col mdl-color--gray-500 mdl-shadow--4dp
                             mdl-grid
                             filter-content">
+
             <md-input-container class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
                 <label ng-bind="eventCtrl.EventLabel.filter_label_event_name()"></label>
                 <input ng-model="search.name">
@@ -34,17 +35,32 @@
                 <md-datepicker ng-model="filter.begin_date" md-open-on-focus></md-datepicker>
             </md-input-container>
 
+            <md-input-container class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                <label ng-bind="eventCtrl.EventLabel.filter_label_event_category()"></label>
+                <md-select ng-model="search.category.id">
+                    <md-option><em ng-bind="eventCtrl.Label.none()"></em></md-option>
+                    <md-option ng-repeat="category in eventCtrl.categories"
+                               ng-value="category.id"
+                               ng-bind="category.name">
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
             <div class="mdl-layout-spacer"></div>
 
-            <div class="mdl-cell mdl-cell--2-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-                <md-button class="md-raised md-primary mdl-cell--12-col" aria-label="eventCtrl.Label.clear_filter()" ng-bind="eventCtrl.Label.clear_filter()"></md-button>
+            <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                <md-button
+                        ng-click="eventCtrl.clearFilter()"
+                        class="md-raised md-primary mdl-cell--12-col"
+                        aria-label="eventCtrl.Label.clear_filter()"
+                        ng-bind="eventCtrl.Label.clear_filter()">
+                </md-button>
             </div>
         </div>
 
         <event-detail
                 ng-repeat="event in eventCtrl.filteredEvents = (eventCtrl.events | filter: search | event_begindate_filter: filter.begin_date) "
                 class="mdl-card mdl-card--event-detail
-
                 mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone
                 mdl-shadow--3dp">
         </event-detail>

@@ -8,6 +8,9 @@
             event: function () {
                 return '/api/event/';
             },
+            category: function () {
+                return '/api/category/';
+            },
             session: function () {
                 return '/api/session/';
             },
@@ -27,3 +30,9 @@
 
 })(window.angular);
 
+/*
+
+<img src="{[{ event.category.image }]}" alt="" />
+
+
+    */

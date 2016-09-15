@@ -13,6 +13,9 @@
             },
             filter_label_event_begin_date : function () {
                 return 'Eventos até';
+            },
+            filter_label_event_category: function () {
+                return 'Categoria';
             }
         };
 

@@ -9,50 +9,51 @@
             controller: function ($scope, $log, Toast) {
                 var event = $scope.event;
 
-                // reset
-                event.current_event_session_ocurrence_room = '';
-
                 var sessions = event.sessions;
-                event.current_event_has_session = sessions.length > 0;
+                var keep_checking = true;
 
-                if(event.current_event_has_session) {
-                    event.current_event_session = sessions[0];
+                var promise;
+                event.has_session = false;
 
-                    var occurrences = sessions[0].occurrences;
-                    event.current_event_session_has_occurrence = occurrences.length > 0;
+                angular.forEach(sessions, function (session) {
 
-                    // person
-                    promise = ModelUtils.get(Urls.person(), event.current_event_session.instructor);
+                    if(keep_checking) {
 
-                    promise.then(function (response) { // Success
-                        event.current_event_session_instructor = response;
-                    }, function (result) { // Fail
-                        $log.log('error');
-                        Toast.showToast(result.status + ' ' + result.statusText);
-                    });
+                        event.session = session;
 
-
-                    if(event.current_event_session_has_occurrence)
-                    {
-
-                        event.current_event_session_ocurrence = occurrences[0];
-
-
-
-                        promise = ModelUtils.get(Urls.room(), event.current_event_session_ocurrence.room);
-
+                        // person
+                        promise = ModelUtils.get(Urls.person(), event.session.instructor);
                         promise.then(function (response) { // Success
-                            event.current_event_session_ocurrence_room = response;
+                            event.session.instructor = response;
+
+                            $log.log(event);
                         }, function (result) { // Fail
                             $log.log('error');
                             Toast.showToast(result.status + ' ' + result.statusText);
                         });
 
+                        angular.forEach(session.occurrences, function (occurrence) {
 
+                            if(keep_checking){
 
-                    }
+                                event.session.occurrence = occurrence;
 
-                }
+                                promise = ModelUtils.get(Urls.room(), event.session.occurrence.room);
+                                promise.then(function (response) { // Success
+                                    event.session.occurrence.room = response;
+                                }, function (result) { // Fail
+                                    $log.log('error');
+                                    Toast.showToast(result.status + ' ' + result.statusText);
+                                });
+
+                                keep_checking = false;
+
+                            };
+
+                        });
+
+                    };
+                });
             },
         };
     });

@@ -1,6 +1,6 @@
 
     <figure class="mdl-card__media">
-        <img src="https://images.unsplash.com/photo-1450849608880-6f787542c88a?crop=entropy&fit=crop&fm=jpg&h=1000&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1925" alt="" />
+        <img src="{[{ event.category.image }]}" alt="" />
     </figure>
     <span class="mdl-card__event-fee" ng-bind="event.fee == 0 ? 'Grátis' : (event.fee | currency) "></span>
 
@@ -14,8 +14,8 @@
                     vert-align">
             <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">date_range</i>
             {[{
-                event.current_event_session_ocurrence?
-                (event.current_event_session_ocurrence.begin_date_time | date: 'EEE, d MMM yy') :
+                event.session.occurrence?
+                (event.session.occurrence.begin_date_time | date: 'EEE, d MMM yy') :
                 eventCtrl.Label.tbd()
             }]}
         </span>
@@ -24,8 +24,8 @@
                     vert-align">
             <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">alarm</i>
             {[{
-                event.current_event_session_ocurrence?
-                (event.current_event_session_ocurrence.begin_date_time | date: 'h:mm a') :
+                event.session.occurrence?
+                (event.session.occurrence.begin_date_time | date: 'h:mm a') :
                 eventCtrl.Label.tbd()
             }]}
         </span>
@@ -34,8 +34,8 @@
                     vert-align">
                 <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">place</i>
                 {[{
-                    event.current_event_session_ocurrence?
-                    event.current_event_session_ocurrence_room.name :
+                    event.session.occurrence.room?
+                    event.session.occurrence.room.name :
                     eventCtrl.Label.tbd()
                 }]}
         </span>
@@ -44,8 +44,8 @@
                     vert-align">
                 <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">assignment_ind</i>
                 {[{
-                    event.current_event_session?
-                    ( event.current_event_session_instructor.name ) :
+                    event.session.instructor?
+                    ( event.session.instructor.name ) :
                     eventCtrl.Label.tbd()
                 }]}
         </span>

@@ -44,6 +44,7 @@ class SessionSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only=True)
     event = serializers.PrimaryKeyRelatedField(queryset=Event.objects.all())
     instructor = serializers.PrimaryKeyRelatedField(queryset=Person.objects.all())
+    spots = serializers.IntegerField()
     is_active = serializers.BooleanField()
 
     # Foreign
@@ -53,7 +54,7 @@ class SessionSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Session
-        fields = ('id', 'event', 'instructor', 'is_active', 'occurrences')
+        fields = ('id', 'event', 'instructor', 'is_active', 'spots', 'occurrences')
 
     def create(self, validated_data):
         return Session.objects.create(**validated_data)
@@ -61,6 +62,7 @@ class SessionSerializer(serializers.HyperlinkedModelSerializer):
     def update(self, instance, validated_data):
         instance.event = validated_data.get('event', instance.event)
         instance.instructor = validated_data.get('instructor', instance.instructor)
+        instance.spots = validated_data.get('spots', instance.spots)
         instance.is_active = validated_data.get('is_active', instance.is_active)
         instance.save()
 
@@ -70,8 +72,8 @@ class SessionSerializer(serializers.HyperlinkedModelSerializer):
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only=True)
     edition = serializers.PrimaryKeyRelatedField(queryset=Edition.objects.all())
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     name = serializers.CharField(validators=[UniqueValidator(queryset=Event.objects.all(), message='Nome ja existente')])
-    type = serializers.CharField()
     fee = serializers.FloatField()
     workload = serializers.IntegerField()
     description = serializers.CharField()
@@ -85,20 +87,45 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Event
         ordering = ['name']
-        fields = ('id', 'edition', 'name', 'type', 'fee', 'workload', 'description', 'is_active', 'sessions')
+        fields = ('id', 'edition', 'category', 'name', 'fee', 'workload', 'description', 'is_active', 'sessions')
 
     def create(self, validated_data):
         return Event.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         instance.edition = validated_data.get('edition', instance.edition)
+        instance.category = validated_data.get('category', instance.category)
         instance.name = validated_data.get('name', instance.name)
-        instance.type = validated_data.get('type', instance.type)
         instance.fee = validated_data.get('fee', instance.fee)
         instance.workload = validated_data.get('workload', instance.workload)
         instance.description = validated_data.get('description', instance.description)
         instance.is_active = validated_data.get('is_active', instance.is_active)
 
+        instance.save()
+
+        return instance
+
+
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    name = serializers.CharField()
+    image = serializers.ImageField()
+
+    events = EventSerializer(many=True, read_only=True)
+
+    # Foreign
+    # occurrences = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='occurrence-detail')
+
+    class Meta:
+        model = Category
+        fields = ('id', 'name', 'image', 'events')
+
+    def create(self, validated_data):
+        return Category.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.image = validated_data.get('image', instance.image)
         instance.save()
 
         return instance
