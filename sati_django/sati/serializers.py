@@ -33,7 +33,7 @@ class OccurrenceSerializer(serializers.HyperlinkedModelSerializer):
         instance.begin_date_time = validated_data.get('begin_date_time', instance.begin_date_time)
         instance.end_date_time = validated_data.get('end_date_time', instance.end_date_time)
         instance.session = validated_data.get('session', instance.session)
-        instance.room = validated_data.get('session', instance.room)
+        instance.room = validated_data.get('room', instance.room)
         instance.is_active = validated_data.get('is_active', instance.is_active)
         instance.save()
 

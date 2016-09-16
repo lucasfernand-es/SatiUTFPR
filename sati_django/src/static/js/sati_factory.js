@@ -52,6 +52,12 @@
             },
             none: function () {
                 return 'Nenhum';
+            },
+            until: function () {
+                return ' até ';
+            },
+            at: function () {
+                return ' ás ';
             }
         };
 
