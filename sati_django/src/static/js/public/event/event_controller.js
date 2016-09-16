@@ -10,7 +10,7 @@
     app.controller('EventCtrl', function EventCtrl($scope, $log, $http,
                                                    ModelUtils, Urls,
                                                    Label,
-                                                   EventLabel,
+                                                   EventLabel, EventUrls,
                                                    Toast) {
         var eventCtrl = this;
 
@@ -40,6 +40,15 @@
                         $log.log('error');
                         Toast.showToast(result.status + ' ' + result.statusText);
                     });
+
+                    var promiseSpotsEvent = ModelUtils.get_request(EventUrls.spots_event(event.id));
+
+                    promiseSpotsEvent.then(function (response) {
+                        $log.log(response);
+                    }, function (result) { // Fail
+                        $log.log('error');
+                        Toast.showToast(result.status + ' ' + result.statusText);
+                    })
 
                     //$log.log(event);
                     eventCtrl.events.push(event);

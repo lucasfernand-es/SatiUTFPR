@@ -27,6 +27,12 @@
 
 
         var ModelUtils = {
+            get_request: function(url) {
+                return $http.get(url).then(function(response){
+                        return response;
+                    }
+                );
+            },
             get: function(url, id) {
                 return $http.get(url + id + '/').then(function(response){
                         //$log.log('get');
