@@ -24,8 +24,6 @@
                         if(occurrences.length > 0 && keep_checking)
                         {
                             angular.forEach(occurrences, function (occurrence) {
-                                //console.log(occurrence);
-                                //console.log(occurrence.begin_date_time);
 
                                 if(keep_checking)
                                 {
@@ -34,8 +32,6 @@
                                         filteredArray.push(event);
                                         keep_checking = false;
                                     }
-                                    //console.log('searchCriteria');
-                                    //console.log(searchCriteria);
                                 }
                             });
                         };

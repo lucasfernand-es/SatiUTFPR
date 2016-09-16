@@ -24,22 +24,63 @@
 
         $scope.message = Label.no_results();
 
+        var promise;
+
 
         eventCtrl.loadEvents = function () {
             var promise = ModelUtils.get_all(Urls.event());
 
             promise.then(function (response) { // Success
-                //$log.log('event');
                 angular.forEach(response.results, function (event) {
 
-                    var promiseCategory = ModelUtils.get(Urls.category(), event.category);
+                    promise = ModelUtils.get(Urls.category(), event.category);
 
-                    promiseCategory.then(function (response) { // Success
+                    promise.then(function (response) { // Success
                         event.category = response;
                     }, function (result) { // Fail
                         $log.log('error');
                         Toast.showToast(result.status + ' ' + result.statusText);
                     });
+
+                    var keep_checking = true;
+
+                    angular.forEach(event.sessions, function (session) {
+                        if(keep_checking)
+                        {
+                            event.session = session;
+
+                            promise = ModelUtils.get(Urls.person(), session.instructor);
+                            promise.then(function (response) { // Success
+                                event.session.instructor = response;
+                            }, function (result) { // Fail
+                                $log.log('error');
+                                Toast.showToast(result.status + ' ' + result.statusText);
+                            });
+
+                            angular.forEach(session.occurrences, function (occurrence) {
+
+                                if(keep_checking){
+
+                                    event.session.occurrence = occurrence;
+
+                                    promise = ModelUtils.get(Urls.room(), occurrence.room);
+                                    promise.then(function (response) { // Success
+                                        event.session.occurrence.room = response;
+                                    }, function (result) { // Fail
+                                        $log.log('error');
+                                        Toast.showToast(result.status + ' ' + result.statusText);
+                                    });
+
+                                    keep_checking = false;
+
+                                };
+
+                            });
+                        };
+
+                    });
+
+                    /*
 
                     var promiseSpotsEvent = ModelUtils.get_request(EventUrls.spots_event(event.id));
 
@@ -48,9 +89,9 @@
                     }, function (result) { // Fail
                         $log.log('error');
                         Toast.showToast(result.status + ' ' + result.statusText);
-                    })
+                    });
+                    */
 
-                    //$log.log(event);
                     eventCtrl.events.push(event);
 
 
@@ -65,7 +106,7 @@
             var promise = ModelUtils.get_all(Urls.category());
 
             promise.then(function (response) { // Success
-                //$log.log('event');
+
                 angular.forEach(response.results, function (item) {
 
                     eventCtrl.categories.push(item);
@@ -94,7 +135,6 @@
 
         var eventDetail = this;
         eventDetail.event_id = $scope.event_id;
-        //$log.log($scope.event_id);
 
         // Factories
         eventDetail.EventLabel = EventLabel;
@@ -105,13 +145,11 @@
             var promiseEvent = ModelUtils.get(Urls.event(), eventDetail.event_id);
 
             promiseEvent.then(function (response) { // Success
-                //$log.log(response);
                 eventDetail.event = response;
 
                 var promiseEdition  = ModelUtils.get(Urls.edition(), eventDetail.event.edition);
 
                 promiseEdition.then(function (response) {
-                        //$log.log(response);
                         eventDetail.event.edition = response;
                     }, function (result) {
                         Toast.showToast(result.status + ' ' + result.statusText);
@@ -148,8 +186,6 @@
                         });
 
                     });
-
-
                 });
 
 

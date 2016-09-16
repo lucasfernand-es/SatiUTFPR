@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^event/spots_event/(?P<event_id>[0-9]+)/$', session_controller.get_events_spots, name='event-spots'),
 
     url(r'^event/spots_session/(?P<event_id>[0-9]+)/(?P<session_id>[0-9]+)/$', session_controller.get_session_spots, name='session-spots'),
+
     url(r'^event/spots_session_available/(?P<event_id>[0-9]+)/(?P<session_id>[0-9]+)/$',
         session_controller.get_session_available_spots, name='session-spots-available')
 

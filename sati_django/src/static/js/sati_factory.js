@@ -12,8 +12,8 @@
         $scope.text = message;
 
         $scope.closeToast = function() {
-            if (isDlgOpen) return;
 
+            if (isDlgOpen) return;
             $mdToast.hide().then(function() {
                 isDlgOpen = false;
             });
