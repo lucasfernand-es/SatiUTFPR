@@ -33,7 +33,7 @@
             <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">alarm</i>
             {[{
                 event.session.occurrence?
-                (event.session.occurrence.begin_date_time | date: 'h:mm a') :
+                (event.session.occurrence.begin_date_time | date: 'H:mm') :
                 eventCtrl.Label.tbd()
             }]}
         </span>

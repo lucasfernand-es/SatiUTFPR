@@ -1,1 +1,73 @@
-<p>Bacon ipsum dolor amet sirloin cupim tail fatback tongue swine bresaola prosciutto pork cow sausage. Cow landjaeger tri-tip meatball pork chop, sirloin kielbasa. Andouille kevin beef ribs chicken chuck. Salami biltong hamburger, landjaeger cow frankfurter short loin porchetta.</p>
+<div class="mdl-grid mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone
+            vert-align mdl-color-text--blue-grey-400"
+     ng-hide="occurrence.is_same_day">
+
+    <div class="mdl-cell--12-col">
+        <i class="material-icons vert-align" role="presentation">date_range</i>
+        <span
+                class="vert-align"
+                ng-bind=" (occurrence.begin_date_time | date : 'EEEE, dd/MM/yyyy') +
+                eventDetail.Label.at() + (occurrence.begin_date_time | date : 'H:mm')">
+        </span>
+
+        <span
+                class="vert-align"
+                ng-bind=" eventDetail.Label.until() +
+                ( occurrence.end_date_time | date : 'EEEE, dd/MM/yyyy') +
+                eventDetail.Label.at() +
+                (occurrence.end_date_time | date : 'H:mm')">
+        </span>
+    </div>
+
+</div>
+
+
+
+
+<div class="mdl-grid mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone
+            vert-align mdl-color-text--blue-grey-400"
+     ng-show="occurrence.is_same_day">
+
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone
+                vert-align">
+        <i class="material-icons vert-align" role="presentation">date_range</i>
+
+        <span
+                class="vert-align"
+                ng-bind=" (occurrence.begin_date_time | date : 'EEEE, dd/MM/yyyy')">
+        </span>
+
+    </div>
+
+    <div class="mdl-layout-spacer"></div>
+
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone
+                vert-align">
+        <i class="material-icons vert-align" role="presentation">alarm</i>
+
+        <span
+                class="vert-align"
+                ng-bind="(occurrence.begin_date_time | date : 'H:mm') +
+                eventDetail.Label.until() +
+                (occurrence.end_date_time | date : 'H:mm') ">
+        </span>
+
+    </div>
+
+</div>
+
+<div class="mdl-layout-spacer"></div>
+
+<div class="mdl-grid mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-cell--4-col-phone
+            vert-align mdl-color-text--blue-grey-400">
+
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone
+                vert-align">
+         <i class="material-icons vert-align" role="presentation">place</i>
+        <span
+                class="vert-align"
+                ng-bind="occurrence.room.name">
+        </span>
+    </div>
+
+</div>

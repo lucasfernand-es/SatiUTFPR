@@ -52,6 +52,12 @@
                             class="mdl-grid mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp"
                             ng-repeat="session in eventDetail.event.sessions">
                     </session-detail>
+
+                    <noresult-message
+                        class="mdl-grid mdl-cell mdl-cell--12-col"
+                        ng-hide="eventDetail.event.sessions.length"
+                        ng-init="message = eventDetail.EventLabel.no_results_session()">
+                    </noresult-message>
                 </div>
 
                 </md-content>

@@ -11,6 +11,7 @@ from rest_framework.response import Response
 # def index(request):
 #    return HttpResponse("Hello, world. You're at the polls index.")
 
+
 def index(request):
     print "index"
     return render(request, 'public/index.html')
