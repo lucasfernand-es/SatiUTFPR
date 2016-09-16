@@ -15,8 +15,14 @@ urlpatterns = [
     # url(r'^events/card_detail', views.event_card_detail, name='event-card-detail'),
 
     url(r'^event/(?P<event_id>[0-9]+)/$', views.event_detail, name='event-detail'),
-    url(r'^event/(?P<event_id>[0-9]+)/spots_event/$', session_controller.get_events_spots , name='event-spots'),
-    url(r'^event/(?P<event_id>[0-9]+)/(?P<session_id>[0-9]+)/spots_session/$', session_controller.get_session_spots, name='session-spots'),
+
+    url(r'^event/(?P<event_id>[0-9]+)/spots_event/$', session_controller.get_events_spots,
+        name='event-spots'),
+    url(r'^event/(?P<event_id>[0-9]+)/spots_event_available/$', session_controller.get_events_spots_available,
+        name='event-spots-available'),
+
+    url(r'^event/(?P<event_id>[0-9]+)/(?P<session_id>[0-9]+)/spots_session/$', session_controller.get_session_spots,
+        name='session-spots'),
     url(r'^event/(?P<event_id>[0-9]+)/(?P<session_id>[0-9]+)/spots_session_available/$',
         session_controller.get_session_available_spots, name='session-spots-available')
 
