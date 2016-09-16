@@ -80,39 +80,44 @@
     });
 
     app.controller('EventDetailCtrl', function EventDetailCtrl($scope, $log, $http,
-                                                               ModelUtils, Urls, Toast) {
+                                                               ModelUtils, Urls, Toast,
+                                                               Label, EventLabel) {
 
         var eventDetail = this;
-        eventDetail.current_event_id = $scope.current_event_id;
-        //$log.log($scope.current_event_id);
+        eventDetail.event_id = $scope.event_id;
+        //$log.log($scope.event_id);
+
+        // Factories
+        eventDetail.EventLabel = EventLabel;
+        eventDetail.Label = Label;
 
         eventDetail.loadEvent = function () {
 
-            var promiseEvent = ModelUtils.get(Urls.event(), eventDetail.current_event_id);
+            var promiseEvent = ModelUtils.get(Urls.event(), eventDetail.event_id);
 
             promiseEvent.then(function (response) { // Success
                 //$log.log(response);
-                eventDetail.current_event = response;
+                eventDetail.event = response;
 
-                var promiseEdition  = ModelUtils.get(Urls.edition(), eventDetail.current_event.edition);
+                var promiseEdition  = ModelUtils.get(Urls.edition(), eventDetail.event.edition);
 
                 promiseEdition.then(function (response) {
                         //$log.log(response);
-                        eventDetail.current_event.edition = response;
+                        eventDetail.event.edition = response;
                     }, function (result) {
                         Toast.showToast(result.status + ' ' + result.statusText);
                     });
 
-                var promiseCategory = ModelUtils.get(Urls.category(), eventDetail.current_event.category);
+                var promiseCategory = ModelUtils.get(Urls.category(), eventDetail.event.category);
 
                     promiseCategory.then(function (response) { // Success
-                        eventDetail.current_event.category = response;
+                        eventDetail.event.category = response;
                     }, function (result) { // Fail
                         $log.log('error');
                         Toast.showToast(result.status + ' ' + result.statusText);
                     });
 
-                angular.forEach(eventDetail.current_event.sessions, function (session) {
+                angular.forEach(eventDetail.event.sessions, function (session) {
 
                     var promiseInstructor = ModelUtils.get(Urls.person(), session.instructor);
                     // get instructor

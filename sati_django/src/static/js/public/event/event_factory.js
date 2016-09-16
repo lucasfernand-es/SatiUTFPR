@@ -16,6 +16,13 @@
             },
             filter_label_event_category: function () {
                 return 'Categoria';
+            },
+            no_results_session : function () {
+                return 'Nenhuma turma disponível';
+
+            },
+            no_results_occurrence : function () {
+                return 'Nenhuma ocorrência disponível';
             }
         };
 

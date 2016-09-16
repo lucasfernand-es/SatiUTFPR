@@ -57,12 +57,23 @@
             },
         };
     });
-/*
-    app.directive("productDescriptions", function() {
+
+    app.directive('sessionDetail', function(ModelUtils, Urls) {
         return {
-          restrict: 'E',
-          templateUrl: "../html/product-descriptions.html"
+            restrict: 'E',
+            templateUrl: '/static/templates/public/event/session_card.html',
+            controller: function ($scope, $log, Toast) {
+            },
         };
     });
-*/
+
+    app.directive('occurrenceDetail', function(ModelUtils, Urls) {
+        return {
+            restrict: 'E',
+            templateUrl: '/static/templates/public/event/occurrence_card.html',
+            controller: function ($scope, $log, Toast) {
+            },
+        };
+    });
+
 })();

@@ -1,0 +1,34 @@
+
+    <div class="mdl-grid mdl-cell mdl-cell--12-col mdl-card__title mdl-card__title__event mdl-color-text--blue-grey-600 mdl-typography--headline">
+
+        <div  class="mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+            <i class="material-icons vert-align" role="presentation">assignment_ind</i>
+            &nbsp;
+            <span class="vert-align" ng-bind="session.instructor.name"></span>
+        </div>
+
+
+        <div class="mdl-layout-spacer"></div>
+
+        <div class="mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+            <i class="material-icons vert-align" role="presentation">event_seat</i>
+            &nbsp;
+            <span class="vert-align" ng-bind="session.spots"></span>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border mdl-grid mdl-cell mdl-cell--12-col">
+
+        <occurrence-detail ng-repeat="occurrence in session.occurrences" class="mdl-cell--12-col">
+        </occurrence-detail>
+
+        <noresult-message
+                        class="mdl-grid mdl-cell mdl-cell--12-col"
+                        ng-hide="session.occurrences.length"
+                        ng-init="message = eventDetail.EventLabel.no_results_occurrence()">
+        </noresult-message>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Read more</a>
+        <div class="mdl-layout-spacer"></div>
+        <button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">favorite</i></button>
+    </div>
