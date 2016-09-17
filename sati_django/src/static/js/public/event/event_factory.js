@@ -23,6 +23,18 @@
             },
             no_results_occurrence : function () {
                 return 'Nenhuma ocorrência disponível';
+            },
+            no_spot : function () {
+                return 'Esgotado';
+            },
+            no_session : function () {
+                return 'Sem turmas';
+            },
+            no_occurrence : function () {
+                return 'Sem sessões';
+            },
+            open_sessions : function () {
+                return 'Turmas Abertas';
             }
         };
 
@@ -31,14 +43,11 @@
 
     app.factory('EventUrls', function () {
         var EventUrls = {
-            spots_event : function (event_id) {
-                return '/event/spots_event/' + event_id + '/';
+            spots_event_available : function (event_id) {
+                return '/event/' + event_id + '/spots_event_available/';
             },
-            spots_session: function () {
-                return 'event/spots_session/';
-            },
-            spots_session_available: function () {
-                return 'event/spots_session_available/';
+            spots_session_available: function (session_id) {
+                return '/session/' + session_id + '/spots_session_available/';
             },
         };
 

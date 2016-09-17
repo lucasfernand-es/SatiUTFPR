@@ -53,7 +53,7 @@ class Event(models.Model):
 class Person(models.Model):
     # user = models.OneToOneField(User) # on_delete=models.CASCADE
     name = models.CharField(max_length=standard_name_size)
-    email = models.CharField(max_length=100,  unique=True)
+    email = models.EmailField(max_length=100,  unique=True)
     password = models.CharField(max_length=32)
     institution = models.CharField(max_length=255)
     cpf = models.CharField(max_length=15, unique=True)
@@ -120,13 +120,12 @@ class Report(models.Model):
 
 
 
-
-
 class Participant(models.Model):
     person = models.ForeignKey('Person', on_delete=models.DO_NOTHING)
     session = models.ForeignKey('Session', on_delete=models.DO_NOTHING)
     status = models.BooleanField(default=True)
     is_confirmed = models.BooleanField(default=False)
+
     class Meta:
         app_label = 'sati'
 

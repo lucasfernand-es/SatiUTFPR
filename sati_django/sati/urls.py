@@ -40,4 +40,5 @@ urlpatterns = [
     url(r'^api/occurrence/$', OccurrenceList.as_view(), name='occurrence-list'),
     url(r'^api/occurrence/(?P<pk>\d+)/$', OccurrenceDetail.as_view(), name='occurrence-detail'),
 
+
 ]

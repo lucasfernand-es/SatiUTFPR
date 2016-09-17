@@ -3,7 +3,9 @@
 
     var app = angular.module('sati', [ 'crud-factory', 'sati-factory', 'sati-directive',
                                         // public
-                                        'event-controller',
+                                        'event-controller', 'signup-controller',
+                                        // Addon
+                                        'ui.utils.masks',
                                         // essencials
                                         'ngSanitize'
                                         ]);

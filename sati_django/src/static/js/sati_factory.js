@@ -58,6 +58,9 @@
             },
             at: function () {
                 return ' ás ';
+            },
+            open_sessions : function () {
+                return 'Turmas Abertas';
             }
         };
 

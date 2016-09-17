@@ -45,7 +45,7 @@ pre {
   margin: 15px auto;
   padding: 10px;
   font-family: Consolas, Menlo, Courier, monsopace;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.5;
   border: 1px solid #ddd;
   background-color: #f4f4f4;
@@ -225,6 +225,7 @@ ul.thumbnails > li:nth-of-type(6) {
   height: 120px;
   overflow: hidden;
 }
+
 .ribbon.top-right {
   top: -3px;
   right: -6px;

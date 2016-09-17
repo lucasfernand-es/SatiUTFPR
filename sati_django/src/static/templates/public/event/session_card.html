@@ -1,4 +1,7 @@
 
+    <span class="ribbon top-right ribbon-danger ribbon-session" ng-show="!session.has_spots && session.occurrences.length">
+        <small ng-bind="eventDetail.EventLabel.no_spot()"></small>
+    </span>
     <div class="mdl-grid mdl-cell mdl-cell--12-col mdl-card__title mdl-card__title__event mdl-color-text--blue-grey-600 mdl-typography--headline">
 
         <div  class="mdl-cell--8-col-tablet mdl-cell--4-col-phone">
@@ -13,7 +16,7 @@
         <div class="mdl-cell--8-col-tablet mdl-cell--4-col-phone">
             <i class="material-icons vert-align" role="presentation">event_seat</i>
             &nbsp;
-            <span class="vert-align" ng-bind="session.spots"></span>
+            <span class="vert-align" ng-bind="session.spots_available"></span>
         </div>
     </div>
     <occurrence-detail

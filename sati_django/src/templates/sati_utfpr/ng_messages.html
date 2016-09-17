@@ -1,0 +1,9 @@
+<script type="text/ng-template" id="form-messages-error">
+    <div ng-message="required" ng-bind="CRUDLabel.label_required_field_error()"></div>
+    <div ng-message="minlength">Too short</div>
+    <div ng-message="maxlength" ng-bind=""> Too long</div>
+    <div ng-message="email" ng-bind="CRUDLabel.label_valid_email_error()"></div>
+    <div ng-message="pattern" ng-bind="CRUDLabel.label_valid_email_error()"></div>
+    <div ng-message="compareTo" ng-bind="CRUDLabel.label_password_match_error()"></div>
+    <div ng-message="cpf" ng-bind="CRUDLabel.label_valid_cpf_error()"></div>
+</script>

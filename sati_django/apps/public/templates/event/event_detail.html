@@ -45,11 +45,11 @@
                     <div class="mdl-layout-spacer"></div>
                 </div>
 
-                <div class="divider mdl-cell--12-col mdl-color-text--grey-800"><span></span><span>Turmas Abertas</span><span></span></div>
+                <div class="divider mdl-cell--12-col mdl-color-text--grey-800"><span></span><span ng-bind="eventDetail.EventLabel.open_sessions()"></span><span></span></div>
 
                 <div class="mdl-grid mdl-cell--12-col session-detail">
                     <session-detail
-                            class="mdl-grid mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp"
+                            class="mdl-grid mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dpn"
                             ng-repeat="session in eventDetail.event.sessions">
                     </session-detail>
 

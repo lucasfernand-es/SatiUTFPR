@@ -6,133 +6,9 @@
 
     var hasEvents = false;
 
-
-    app.controller('EventCtrl', function EventCtrl($scope, $log, $http,
-                                                   ModelUtils, Urls,
-                                                   Label,
-                                                   EventLabel, EventUrls,
-                                                   Toast) {
-        var eventCtrl = this;
-
-        eventCtrl.hasEvents = hasEvents;
-        // Factories
-        eventCtrl.EventLabel = EventLabel;
-        eventCtrl.Label = Label;
-
-        eventCtrl.events = [];
-        eventCtrl.categories = [];
-
-        $scope.message = Label.no_results();
-
-        var promise;
-
-
-        eventCtrl.loadEvents = function () {
-            var promise = ModelUtils.get_all(Urls.event());
-
-            promise.then(function (response) { // Success
-                angular.forEach(response.results, function (event) {
-
-                    promise = ModelUtils.get(Urls.category(), event.category);
-
-                    promise.then(function (response) { // Success
-                        event.category = response;
-                    }, function (result) { // Fail
-                        $log.log('error');
-                        Toast.showToast(result.status + ' ' + result.statusText);
-                    });
-
-                    var keep_checking = true;
-
-                    angular.forEach(event.sessions, function (session) {
-                        if(keep_checking)
-                        {
-                            event.session = session;
-
-                            promise = ModelUtils.get(Urls.person(), session.instructor);
-                            promise.then(function (response) { // Success
-                                event.session.instructor = response;
-                            }, function (result) { // Fail
-                                $log.log('error');
-                                Toast.showToast(result.status + ' ' + result.statusText);
-                            });
-
-                            angular.forEach(session.occurrences, function (occurrence) {
-
-                                if(keep_checking){
-
-                                    event.session.occurrence = occurrence;
-
-                                    promise = ModelUtils.get(Urls.room(), occurrence.room);
-                                    promise.then(function (response) { // Success
-                                        event.session.occurrence.room = response;
-                                    }, function (result) { // Fail
-                                        $log.log('error');
-                                        Toast.showToast(result.status + ' ' + result.statusText);
-                                    });
-
-                                    keep_checking = false;
-
-                                };
-
-                            });
-                        };
-
-                    });
-
-                    /*
-
-                    var promiseSpotsEvent = ModelUtils.get_request(EventUrls.spots_event(event.id));
-
-                    promiseSpotsEvent.then(function (response) {
-                        $log.log(response);
-                    }, function (result) { // Fail
-                        $log.log('error');
-                        Toast.showToast(result.status + ' ' + result.statusText);
-                    });
-                    */
-
-                    eventCtrl.events.push(event);
-
-
-                });
-
-            }, function (result) { // Fail
-                Toast.showToast(result.status + ' ' + result.statusText);
-            });
-        };
-
-        eventCtrl.loadCategories = function () {
-            var promise = ModelUtils.get_all(Urls.category());
-
-            promise.then(function (response) { // Success
-
-                angular.forEach(response.results, function (item) {
-
-                    eventCtrl.categories.push(item);
-
-                });
-
-            }, function (result) { // Fail
-                Toast.showToast(result.status + ' ' + result.statusText);
-            });
-
-        };
-
-        eventCtrl.loadEvents();
-        eventCtrl.loadCategories();
-
-        eventCtrl.clearFilter = function () {
-            $scope.search = '';
-            $scope.filter.begin_date = null;
-        };
-
-    });
-
     app.controller('EventDetailCtrl', function EventDetailCtrl($scope, $log, $http,
-                                                               ModelUtils, Urls, Toast,
-                                                               Label, EventLabel) {
-
+                                                               ModelUtils, Urls, Toast, Label,
+                                                               EventLabel, EventUrls) {
         var eventDetail = this;
         eventDetail.event_id = $scope.event_id;
 
@@ -171,6 +47,16 @@
                     promiseInstructor.then(function (response) {
                         session.instructor = response;
                     }, function (result) {
+                        Toast.showToast(result.status + ' ' + result.statusText);
+                    });
+
+                    var promiseSpotsSession = ModelUtils.get_request(EventUrls.spots_session_available(session.id));
+                    promiseSpotsSession.then(function (response) {
+                        session.spots_available = response.available_spots;
+                        session.has_spots = response.available_spots > 0;
+
+                    }, function (result) { // Fail
+                        $log.log('error');
                         Toast.showToast(result.status + ' ' + result.statusText);
                     });
 

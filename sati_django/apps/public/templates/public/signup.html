@@ -2,106 +2,121 @@
 
 {% block content %}
 
-    <main class="mdl-layout__content">
-        <div class="mdl-layout-spacer "></div>
+    <div class="mdl-grid" ng-controller="SignupCtrl as signupCtrl">
 
-        <div class="mdl-grid">
-            <div class="mdl-layout-spacer "></div>
-            <form action="{% url 'user_signup' %}" method="POST">
-                {% csrf_token %}
-                <div class="mdl-grid">
-                    <div class="mdl-layout-spacer "></div>
-                    <div class="mdl-cell mdl-cell--5-col">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="nome_completo" name="nome_completo"
-                                   value="{{ nome_completo }}">
-                            <label class="mdl-textfield__label" for="nome_completo">Nome Completo</label>
-                        </div>
-                    </div>
+        <div class="mdl-layout-spacer"></div>
 
-                    <div class="mdl-cell mdl-cell--3-col ">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="date" id="data_nascimento" name="data_nascimento"
-                                   value="{{ data_nascimento }}">
-                            <label class="mdl-textfield__label" for="date_birth">Data Nascimento</label>
-                        </div>
-                    </div>
-                    <div class="mdl-layout-spacer"></div>
+        {% include 'sati_utfpr/ng_messages.html' %}
+
+        <div class="mdl-grid mdl-cell mdl-cell--5-col mdl-cell--7-col-tablet mdl-cell--4-col-phone">
+
+            <md-toolbar class="vert-align mdl-grid">
+                <div class="md-display-1 mdl-typography--text-center mdl-cell--12-col">
+                   <span class="vert-align" ng-bind="SignupLabel.label_signup_title()"></span>
                 </div>
+            </md-toolbar>
 
-                <div class="mdl-grid ">
-                    <div class="mdl-layout-spacer"></div>
-                    <div class="mdl-cell mdl-cell--8-col ">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
-                            <input class="mdl-textfield__input" type="email" id="email" name="email" value="{{ Email }}">
-                            <label class="mdl-textfield__label" for="email">Email</label>
+            <md-content class="mdl-shadow--3dp mdl-grid" flex layout-padding>
+                <!--div class="mdl-layout-spacer"></div-->
+
+                <form name="signup_form" class="mdl-cell mdl-cell--12-col mdl-grid" novalidade ng-submit="signup_form.$valid">
+
+                    <md-input-container class="mdl-cell mdl-cell--12-col">
+                        <label ng-bind="CRUDLabel.label_person_full_name()"></label>
+                        <input required  type="text" maxlength="{[{ FieldSize.name() }]}"
+                               name="personFullName" ng-model="signupCtrl.signup_form.person.name">
+                        <div ng-messages="signup_form.personFullName.$error">
+                            <div ng-messages-include="form-messages-error"></div>
+                        </div> <!-- md-no-asterisk -->
+
+                    </md-input-container>
+
+                    <md-input-container class="mdl-cell mdl-cell--12-col">
+                        <label  ng-bind="CRUDLabel.label_person_email()"></label>
+                        <input required  maxlength="{[{ FieldSize.email() }]}"
+                               type="email" name="personEmail" ng-model="signupCtrl.signup_form.person.email"/>
+                        <div ng-messages="signup_form.personEmail.$error" role="alert">
+                            <div ng-messages-include="form-messages-error"></div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <label ng-bind="CRUDLabel.label_person_password()"></label>
+                        <input required type="password" maxlength="{[{ FieldSize.password() }]}"
+                               name="personPassword" ng-model="signupCtrl.signup_form.person.password">
+                        <div ng-messages="signup_form.personPassword.$error" role="alert">
+                            <div ng-messages-include="form-messages-error"></div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <label ng-bind="CRUDLabel.label_person_confirm_password()"></label>
+                        <input required type="password" maxlength="{[{ FieldSize.password() }]}"
+                               name="personConfirmPassword" ng-model="signupCtrl.signup_form.person.confirm_password"
+                               compare-to="signupCtrl.signup_form.person_password">
+                        <div ng-messages="signup_form.personConfirmPassword.$error" role="alert">
+                            <div ng-messages-include="form-messages-error"></div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <label ng-bind="CRUDLabel.label_person_cpf()"></label>
+                        <input required type="text" maxlength="{[{ FieldSize.cpf() }]}" ui-br-cpf-mask
+                               name="personCPF" ng-model="signupCtrl.signup_form.person.cpf">
+                        <div ng-messages="signup_form.personCPF.$error" role="alert">
+                            <div ng-messages-include="form-messages-error"></div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <label ng-bind="CRUDLabel.label_person_ra()"></label>
+                        <input type="number" maxlength="{[{ FieldSize.ra() }]}"
+                               name="personRA" ng-model="signupCtrl.signup_form.person_ra">
+                        <div ng-messages="signup_form.personRA.$error" role="alert">
+                            <div ng-messages-include="form-messages-error"></div>
+                        </div>
+                    </md-input-container>
+
+                    <div class="mdl-cell mdl-cell--12-col mdl-grid checkboxdemoSyncing">
+                        <div flex="100" layout="column">
+                            <div>
+                                <fieldset class="standard">
+                                    <legend class="mdl-typography--headline mdl-typography--text-center" ng-bind="Label.open_sessions()"></legend>
+                                    <div layout="row" layout-wrap="" flex="">
+                                        <div flex="100" ng-repeat="item in items">
+                                            <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                                                {{ item }} <span ng-if="exists(item, selected)">selected</span>
+                                            </md-checkbox>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div flex="100">
+                            <h2 class="md-title">Selected Items</h2>
+                            <code style="display: block; padding: 8px;">{{selected}}</code>
                         </div>
                     </div>
-                    <div class="mdl-layout-spacer"></div>
-                </div>
 
-                <div class="mdl-grid">
+                    <md-button class="md-raised md-warn mdl-cell mdl-cell--3-col mdl-cell--2-col-phone">Limpar</md-button>
                     <div class="mdl-layout-spacer"></div>
-                    <div class="mdl-cell mdl-cell--8-col">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--full-width">
-                            <input class="mdl-textfield__input" type="text" id="instituicao" name="instituicao" value="{{ instituicao }}">
-                            <label class="mdl-textfield__label" for="instituicao">Instituição</label>
-                        </div>
-                    </div>
-                    <div class="mdl-layout-spacer"></div>
-                </div>
+                    <md-button ng-click="signupCtrl.create()"
+                               ng-disabled="!signup_form.$valid"
+                               aria-label="Add"
+                               class="md-raised md-primary mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone"
+                               ng-bind="CRUDLabel.label_add_item()">
+                    </md-button>
 
-                <div class="mdl-grid">
-                    <div class="mdl-layout-spacer "></div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="senha" name="senha" value="{{ senha }}">
-                            <label class="mdl-textfield__label" for="senha">Senha</label>
-                        </div>
-                    </div>
+                </form>
 
-                    <div class="mdl-cell mdl-cell--4-col ">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="confirmar_senha" name="confirmar_senha"
-                                   value="{{ confirmar_senha }}">
-                            <label class="mdl-textfield__label" for="confirmar_senha">Confirmar Senha</label>
-                        </div>
-                    </div>
-                    <div class="mdl-layout-spacer"></div>
-                </div>
 
-                <div class="mdl-grid">
-                    <div class="mdl-layout-spacer "></div>
-                    <div class="mdl-cell mdl-cell--5-col">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="number" id="cpf" name="cpf" value="{{ cpf }}">
-                            <label class="mdl-textfield__label" for="cpf">CPF</label>
-                        </div>
-                    </div>
+                <!--div class="mdl-layout-spacer"></div-->
 
-                    <div class="mdl-cell mdl-cell--3-col ">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="registro_academico" name="registro_academico"
-                                   value="{{ registro_academico }}">
-                            <label class="mdl-textfield__label" for="registro_academico">Registro Acadêmico</label>
-                        </div>
-                    </div>
-                    <div class="mdl-layout-spacer"></div>
-                </div>
-                <div class="mdl-grid">
-                    <div class="mdl-layout-spacer"></div>
-                    {#                    <div class="mdl-cell mdl-cell--8-col mdl-cell--middle">#}
-                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Cadastrar
-                    </button>
-                    {#                    </div>#}
-                    <div class="mdl-layout-spacer"></div>
-                </div>
-
-            </form>
-            <div class="mdl-layout-spacer "></div>
-
+            </md-content>
         </div>
-        <div class="mdl-layout-spacer "></div>
 
-    </main>
+        <div class="mdl-layout-spacer"></div>
+
+    </div>
 {% endblock %}

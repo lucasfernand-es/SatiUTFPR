@@ -45,6 +45,8 @@ def event_detail(request, event_id):
     event = Event.objects.get(pk=event_id)
     serializer = EventSerializer(event, many=False)
     data = serializer.data
+    print data
+
     request.event = data
     request.event_id = event_id
 

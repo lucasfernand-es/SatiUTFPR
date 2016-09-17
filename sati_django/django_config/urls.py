@@ -19,6 +19,8 @@ urlpatterns = [
                 # CRUD
                 url(r'^', include('sati.urls')),
 
+
+
                 # url(r'^$', views.index, name='home'),
                 # url(r'^login', views.login, name='login'),
                 # url(r'test', 'sati.views.test', name='test'),

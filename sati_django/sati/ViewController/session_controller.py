@@ -1,5 +1,12 @@
 from django.shortcuts import render, render_to_response, HttpResponse
+from django.http import JsonResponse
 from sati.models import Session, Participant, Event
+
+
+def create_json_response(available_spots, error, error_message):
+    return JsonResponse({'available_spots': available_spots,
+                         'error': error,
+                         'error_message': error_message})
 
 
 def get_events_spots(request, event_id):
@@ -19,26 +26,24 @@ def get_events_spots(request, event_id):
 
 
 def get_events_spots_available(request, event_id):
-    sessions = Session.objects.filter(event_id=request.POST.get(event_id))
-    context = {}
+    sessions = Session.objects.filter(event_id=event_id)
 
     if sessions:
         event_available_spots = 0
         for session in sessions:
-            participants = Participant(is_confirmed=True, session_id=session.id)
+            participants = Participant.objects.filter(is_confirmed=True, session_id=session.id)
             session_available_spots = session.spots - len(participants)
             event_available_spots += session_available_spots
 
         if event_available_spots > 0:
-            context['event_available_spots'] = event_available_spots
-            context['error'] = False
+            response = create_json_response(event_available_spots, False, '')
+
         else:
-            context['error_msg'] = 'no_spots_available'
-            context['error'] = True
+            response = create_json_response(0, False, 'no_spots_available')
     else:
-        context['error'] = True
-        context['error_msg'] = 'session_not_found'
-    return HttpResponse(context)
+        response = create_json_response(0, True, 'session_not_found')
+
+    return HttpResponse(response)
 
 
 def get_session_spots(request, event_id, session_id):
@@ -55,23 +60,17 @@ def get_session_spots(request, event_id, session_id):
     return HttpResponse(context)
 
 
-def get_session_available_spots(request, event_id,session_id):
-    participants = Participant.objects.filter(is_confirmed=True, session_id=request.POST.get(session_id))
-    session = Session.objects.filter(id=request.POST.get(session_id))
-    context = {}
+def get_session_available_spots(request, session_id):
+    participants = Participant.objects.filter(is_confirmed=True, session_id=session_id)
+    session = Session.objects.get(id=session_id)
 
     if session:
         session_available_spots = session.spots - len(participants)
         if session_available_spots > 0:
-            context['session_available_spots'] = session_available_spots
-            context['error'] = False
+            response = create_json_response(session_available_spots, False, '')
         else:
-            context['error_msg'] = 'no_spots_available'
-            context['error'] = True
+            response = create_json_response(0, False, 'no_spots_available')
     else:
-        context['error'] = True
-        context['error_msg'] = 'session_not_found'
-        
-    return HttpResponse(context)
+            response = create_json_response(0, True, 'session_not_found')
 
-
+    return HttpResponse(response)

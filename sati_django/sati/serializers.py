@@ -167,8 +167,8 @@ class EditionSerializer(serializers.HyperlinkedModelSerializer):
 class PersonSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only=True)
     # user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
-    name = serializers.CharField()
-    email = serializers.CharField(validators=[UniqueValidator(queryset=Person.objects.all(), message='Email ja cadastrado')])
+    name = serializers.CharField(max_length=255)
+    email = serializers.EmailField(max_length=100, validators=[UniqueValidator(queryset=Person.objects.all(), message='Email ja cadastrado')])
     password = serializers.CharField(style={'input_type': 'password'})
     institution = serializers.CharField()
     cpf = serializers.CharField(validators=[UniqueValidator(queryset=Person.objects.all(), message='CPF ja cadastrado')])
@@ -184,7 +184,6 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
         ordering = ['name']
         fields = ('id', 'name', 'email', 'password', 'institution',
                   'cpf', 'academic_registry', 'role', 'is_active', 'sessions')  # 'password',
-
 
     def validate_cpf(self, value):
         cpf_value = ''.join(re.findall('\d', str(value)))

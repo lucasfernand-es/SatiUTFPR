@@ -1,13 +1,13 @@
-    <span class="ribbon top-left ribbon-danger" ng-show="false">
-        <small>Doação</small>
+    <span class="ribbon top-left ribbon-danger" ng-show="!event.has_spots || !event.has_session">
+        <small ng-bind=" !event.has_session? eventCtrl.EventLabel.no_session() : eventCtrl.EventLabel.no_spot()"></small>
     </span>
 
-    <span class="ribbon top-left ribbon-warn" ng-show="false">
-        <small>Doação</small>
+    <span class="ribbon top-left ribbon-warning" ng-show="!event.session.occurrence && event.has_session">
+        <small ng-bind="eventCtrl.EventLabel.no_occurrence()"></small>
     </span>
 
     <figure class="mdl-card__media">
-        <img src="{[{ event.category.image }]}" alt="" />
+        <img ng-src="{[{ event.category.image }]}" alt="{[{ event.name }]}" />
 
     </figure>
     <span class="mdl-card__event-fee" ng-bind="event.fee == 0 ? 'Grátis' : (event.fee | currency) "></span>
