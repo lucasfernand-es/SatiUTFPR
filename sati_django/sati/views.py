@@ -2,9 +2,11 @@
 from django import forms
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from rest_framework import viewsets, generics, permissions
+from rest_framework import viewsets, generics, permissions, authentication
+from rest_framework_oauth import authentication
 from sati.models import *
 from sati.serializers import *
+from sati.ViewController import authentication as local_authentication
 
 
 class EditionList(generics.ListCreateAPIView):
@@ -48,7 +50,10 @@ class EventList(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
     ]
 
 
@@ -57,7 +62,10 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
     ]
 
 

@@ -8,6 +8,7 @@
     var isDlgOpen;
 
     app.controller('ToastCtrl', function($scope, $mdToast, $mdDialog, $log, message) {
+            $log.log("errors")
 
         $scope.text = message;
 
