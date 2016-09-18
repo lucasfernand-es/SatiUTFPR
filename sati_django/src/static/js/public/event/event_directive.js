@@ -2,7 +2,7 @@
 
     var app = angular.module('event-directive', []);
 
-    app.directive('eventList', function(ModelUtils, Urls) {
+    app.directive('eventList', function() {
         return {
             restrict: 'E',
             templateUrl: '/static/templates/public/event/event_list.html',
@@ -15,101 +15,49 @@
                 var eventCtrl = this;
 
                 // Factories
-                eventCtrl.EventLabel = EventLabel;
-                eventCtrl.Label = Label;
+                $scope.EventLabel = EventLabel;
+                $scope.Label = Label;
+                eventCtrl.filteredEvents = [1];
 
-                eventCtrl.events = [];
                 eventCtrl.categories = [];
-
-                $scope.message = Label.no_results();
 
                 var promise;
 
 
                 eventCtrl.loadEvents = function () {
-                    var promise = ModelUtils.get_all(Urls.event());
+                    eventCtrl.events = [];
 
-                    promise.then(function (response) { // Success
-                        angular.forEach(response.results, function (event) {
+                    promise = ModelUtils.get_request(Urls.get_all_events())
+                        .then(function (response) {
+                            angular.forEach(response, function (event) {
 
-                            promise = ModelUtils.get(Urls.category(), event.category);
+                                var keep_checking = true;
+                                angular.forEach(event.sessions, function (session) {
+                                    if(keep_checking) {
 
-                            promise.then(function (response) { // Success
-                                event.category = response;
-                            }, function (result) { // Fail
+                                        angular.forEach(session.occurrences, function (occurrence) {
+                                            if(keep_checking) {
+                                                session.occurrence = occurrence;
+                                                event.session = session;
+                                                keep_checking = false;
+                                            };
+                                        });
+                                    };
+                                });
+
+                                eventCtrl.events.push(event);
+                            });
+                        }, function (response) { // Fail
                                 $log.log('error');
-                                Toast.showToast(result.status + ' ' + result.statusText);
-                            });
-
-                            var keep_checking = true;
-
-                            angular.forEach(event.sessions, function (session) {
-                                if(keep_checking)
-                                {
-                                    event.session = session;
-
-                                    promise = ModelUtils.get(Urls.person(), session.instructor);
-                                    promise.then(function (response) { // Success
-                                        event.session.instructor = response;
-                                    }, function (result) { // Fail
-                                        $log.log('error');
-                                        Toast.showToast(result.status + ' ' + result.statusText);
-                                    });
-
-                                    angular.forEach(session.occurrences, function (occurrence) {
-
-                                        if(keep_checking){
-
-                                            event.session.occurrence = occurrence;
-
-                                            promise = ModelUtils.get(Urls.room(), occurrence.room);
-                                            promise.then(function (response) { // Success
-                                                event.session.occurrence.room = response;
-                                            }, function (result) { // Fail
-                                                $log.log('error');
-                                                Toast.showToast(result.status + ' ' + result.statusText);
-                                            });
-
-                                            keep_checking = false;
-
-                                        };
-
-                                    });
-                                };
-
-                            });
-
-                            var promiseSpotsEvent = ModelUtils.get_request(EventUrls.spots_event_available(event.id));
-                            promiseSpotsEvent.then(function (response) {
-
-                                event.has_spots = response.available_spots > 0;
-                                event.has_session = !response.error;
-
-                            }, function (result) { // Fail
-                                $log.log('error');
-                                Toast.showToast(result.status + ' ' + result.statusText);
-                            });
-
-
-                            eventCtrl.events.push(event);
-
-
+                                Toast.showToast(response.status + ' ' + response.statusText);
                         });
-
-                    }, function (result) { // Fail
-                        Toast.showToast(result.status + ' ' + result.statusText);
-                    });
                 };
 
                 eventCtrl.loadCategories = function () {
                     var promise = ModelUtils.get_all(Urls.category());
-
                     promise.then(function (response) { // Success
-
                         angular.forEach(response.results, function (item) {
-
                             eventCtrl.categories.push(item);
-
                         });
 
                     }, function (result) { // Fail
@@ -123,6 +71,7 @@
 
                 eventCtrl.clearFilter = function () {
                     $scope.search = '';
+                    $scope.filter = {};
                     $scope.filter.begin_date = null;
                 };
 

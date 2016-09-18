@@ -1,9 +1,15 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.http import JsonResponse
+from rest_framework.response import Response
+from rest_framework import status
+import json
 
 from sati.models import Person
+from sati_django.sati.serializers import *
 
 
 def user_authenticate(username, password):
@@ -45,6 +51,19 @@ def user_signup(request):
     if request.method == 'POST':
         print 'postou algo'
         print request.body
+
+        person = json.loads(request.body)
+
+        serializer = PersonSerializer(data=person)
+        if serializer.is_valid():
+            # serializer.save()
+            print 'save'
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+        print 'nope'
+
+        serializer.errors.sessions = 'Vários erros'
+
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     print 'chegou aqui'
     return JsonResponse(2, safe=False)

@@ -6,23 +6,29 @@ from django.http import JsonResponse, HttpResponse
 from sati.ViewController.participant_controller import *
 
 
-def get_event_by_id(request, event_id):
+def get_event_info(event_id):
     events = Event.objects.filter(id=event_id, is_active=True)
 
     if not len(events):
-        json_response = {}
+        return {}
 
     else:
         event = events[0]
-        sessions = Session.objects.filter(event_id=event_id, is_active=True)
+        sessions = Session.objects.filter(event_id=event.id, is_active=True)
         session_array = []
 
         available_spots_event = 0
 
+        event_has_session = False
+        event_has_occurrence = False
+
         for session in sessions:
+            event_has_session = True
             occurrences = Occurrence.objects.filter(session_id=session.id, is_active=True)
             occurrences_array = []
             for occurrence in occurrences:
+                event_has_occurrence = True
+
                 occurrences_json = {
                     'room_name': occurrence.room.name,
                     'begin_date_time': occurrence.begin_date_time,
@@ -47,6 +53,7 @@ def get_event_by_id(request, event_id):
         event_category = {'name': category.name, 'image': category.image.url}
 
         event_json = {
+            'id': event.id,
             'category': event_category,
             'edition': event.edition.name,
             'name': event.name,
@@ -55,11 +62,30 @@ def get_event_by_id(request, event_id):
             'description': event.description,
             'available_spots': available_spots_event,
             'has_spots': available_spots_event > 0,
+            'has_session': event_has_session,
+            'has_occurrence': event_has_occurrence,
             'sessions': session_array,
         }
-        json_response = event_json
 
-    return JsonResponse(json_response)
+        return event_json
+
+
+def get_event_by_id(request, event_id):
+
+    response = get_event_info(event_id)
+    return JsonResponse(response)
+
+
+def get_all_events(request):
+    events = Event.objects.all()
+    events_array = []
+
+    for event in events:
+        events_array.append(get_event_info(event.id))
+
+    return JsonResponse(events_array, safe=False)
+
+
 
 
 def create_event(request):
@@ -138,54 +164,3 @@ def create_event(request):
             'erros': erros
         }
     return render(request, 'dashboard/event.html', context=context_dict)
-
-
-def get_all_events(request):
-    events = Event.objects.all()
-    events_array = []
-
-    for event in events:
-        sessions = Session.objects.filter(event_id=event.id, is_active=True)
-        session_array = []
-        available_spots_event = 0
-
-        for session in sessions:
-            occurrences = Occurrence.objects.filter(session_id=session.id, is_active=True)
-            occurrences_array = []
-            for occurrence in occurrences:
-                occurrences_json = {
-                    'room': occurrence.room.number,
-                    'begin_date_time': occurrence.begin_date_time,
-                    'end_date_time': occurrence.end_date_time,
-                }
-                occurrences_array.append(occurrences_json)
-            session_json = {
-                'instructor_name': session.instructor.name,
-                'spots': session.spots,
-                'occurrences': occurrences_array,
-            }
-            print session_json
-            available_spots_session = session_available_spots(session.id)
-            available_spots_event += available_spots_session
-
-            session_array.append(session_json)
-
-        print (event.category.image)
-        categorySerializer = CategorySerializer(event.category.image)
-        print categorySerializer
-
-        event_json = {
-            'category_name': event.category.name,
-            'name': event.name,
-            'fee': event.fee,
-            'workload': event.workload,
-            'description': event.description,
-            'sessions': session_array,
-        }
-        events_array.append(event_json)
-
-    events_json = {
-        'error': False,
-        'events': events_array
-    }
-    return JsonResponse(events_json)

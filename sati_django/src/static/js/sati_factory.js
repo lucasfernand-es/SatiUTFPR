@@ -40,6 +40,43 @@
 
     });
 
+    app.factory('Addons', function ($log, ErrorLabel) {
+        var Addon = {
+            toggle : function (item, list) {
+                var idx = list.indexOf(item);
+                if (idx > -1) {
+                    list.splice(idx, 1);
+                }
+                else {
+                    list.push(item);
+                }
+            },
+            exists : function (item, list) {
+                    return list.indexOf(item) > -1;
+            },
+            convertErrorFields : function (errors) {
+                $log.log(errors);
+                var newErrors = [];
+
+                angular.forEach(errors, function (error, key) {
+                    var new_error = {};
+                    new_error.name = ErrorLabel(key);
+                    new_error.message = error;
+
+                    newErrors.push(new_error);
+                });
+
+
+
+                return newErrors;
+            },
+
+
+        };
+        return Addon;
+    });
+
+
     app.factory('Label', function () {
         var Label = {
             tbd: function () {

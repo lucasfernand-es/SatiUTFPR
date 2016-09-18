@@ -23,7 +23,7 @@
             person: function () {
                 return '/api/public_person/';
             },
-            test_person: function () {
+            api_person: function () {
                 return '/api/person/';
             },
 
