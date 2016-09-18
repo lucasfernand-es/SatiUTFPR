@@ -12,7 +12,7 @@
                 background: 'url(' + eventDetail.event.category.image + ') center',}">
             <div class="mdl-cell--12-col headline-overflow">
                 <h1 class="mdl-typography--display-4 mdl-color-text--white headline-title" ng-bind="eventDetail.event.name"></h1>
-                <h1 class="mdl-typography--display-1 mdl-color-text--white headline-subtitle"  ng-bind="eventDetail.event.edition.name"></h1>
+                <h1 class="mdl-typography--display-1 mdl-color-text--white headline-subtitle"  ng-bind="eventDetail.event.edition"></h1>
             </div>
         </div>
 
@@ -37,9 +37,8 @@
 
                     <div class="mdl-cell--10-col mdl-grid mdl-grid">
 
-                        <p ng-bind="eventDetail.event.description">
+                        <p ng-bind="eventDetail.event.description"></p>
 
-                        </p>
                     </div>
 
                     <div class="mdl-layout-spacer"></div>
@@ -56,7 +55,7 @@
                     <noresult-message
                         class="mdl-grid mdl-cell mdl-cell--12-col"
                         ng-hide="eventDetail.event.sessions.length"
-                        ng-init="message = eventDetail.EventLabel.no_results_session()">
+                        ng-init="message = EventLabel.no_results_session()">
                     </noresult-message>
                 </div>
 

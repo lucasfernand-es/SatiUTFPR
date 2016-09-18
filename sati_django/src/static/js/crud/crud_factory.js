@@ -52,13 +52,28 @@
                 );
             },
 
-            create: function(url, obj, errors) {
+            post_request: function(url, obj, errors) {
                 $log.log(obj);
                 return $http.post(url, obj, auth).
                     success(function(response, status, headers, config) {
+                        $log.log(response);
                         angular.extend(obj, response);
                     }).
                     error(function(response, status, headers, config) {
+                        $log.log(response);
+                        handleErrors(response, status, errors);
+                    });
+            },
+
+            create: function(url, obj, errors) {
+                $log.log(obj);
+                return $http.post(url, obj).
+                    success(function(response, status, headers, config) {
+                        //$log.log(response);
+                        angular.extend(obj, response);
+                    }).
+                    error(function(response, status, headers, config) {
+                        $log.log(response);
                         handleErrors(response, status, errors);
                     });
             },
@@ -100,6 +115,9 @@
             // Person
             label_add_item: function () {
                 return 'Cadastrar';
+            },
+            label_clear: function () {
+                return 'Limpar';
             },
 
             label_person_full_name: function () {

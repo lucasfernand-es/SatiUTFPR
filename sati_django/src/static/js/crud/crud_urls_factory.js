@@ -31,6 +31,9 @@
             get_all_events: function () {
                 return '/event/get_all_events/';
             },
+            get_event: function (id_event) {
+                return '/event/'+ id_event +'/get_event/';
+            },
 
             // Get all sessions
             get_all_sessions: function () {

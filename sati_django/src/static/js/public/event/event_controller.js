@@ -12,11 +12,29 @@
         var eventDetail = this;
         eventDetail.event_id = $scope.event_id;
 
+        var promise;
+
         // Factories
-        eventDetail.EventLabel = EventLabel;
-        eventDetail.Label = Label;
+        $scope.EventLabel = EventLabel;
+        $scope.Label = Label;
+
+        $log.log(EventLabel.no_results_session());
+
+        $scope.message = '';
 
         eventDetail.loadEvent = function () {
+
+            promise = ModelUtils.get_request(Urls.get_event(eventDetail.event_id))
+                .then(function (response) {
+                    $log.log(response);
+                    eventDetail.event = response;
+
+                }, function (response) {
+                    Toast.showToast(response.status + ' ' + response.statusText);
+                });
+
+
+            /*
 
             var promiseEvent = ModelUtils.get(Urls.event(), eventDetail.event_id);
 
@@ -78,7 +96,7 @@
             }, function (result) { // Fail
                 Toast.showToast(result.status + ' ' + result.statusText);
             });
-
+            */
         };
 
         eventDetail.loadEvent();

@@ -7,13 +7,18 @@
                                         // Addon
                                         'ui.utils.masks',
                                         // essencials
-                                        'ngSanitize'
+                                        'ngSanitize', 'ngResource'
                                         ]);
 
-    app.config(function($interpolateProvider) {
+    app.config(function($interpolateProvider, $httpProvider , $resourceProvider) {
         $interpolateProvider.startSymbol('{[{');
         $interpolateProvider.endSymbol('}]}');
-    });
 
+        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+        //** django urls loves trailling slashes which angularjs removes by default.
+        $resourceProvider.defaults.stripTrailingSlashes = false;
+
+    });
 
 })(window.angular);

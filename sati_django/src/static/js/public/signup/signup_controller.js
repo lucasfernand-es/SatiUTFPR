@@ -5,7 +5,10 @@
         ['signup-factory', 'signup-directive', 'public-directive', 'ngMaterial', 'ngMessages']);
 
 
-    app.controller('SignupCtrl', function($scope, $log,
+    //var ListDropdown = angular.module('ListDropdown', []);
+
+
+    app.controller('SignupCtrl', function($scope, $log, $http,
                                           SignupLabel, Label, CRUDLabel,
                                           ModelUtils, Urls,
                                           FieldSize, Toast) {
@@ -20,8 +23,8 @@
 
         $scope.message = Label.no_results();
 
-        signupCtrl.signup_form.person = {};
-        signupCtrl.signup_form.person.sessions = [];
+        $scope.Instituions = ['UTFPR', 'UEPG'];
+        $scope.UTFPR = 'UTFPR';
 
         signupCtrl.loadSessions = function () {
 
@@ -40,46 +43,20 @@
 
         };
 
-        signupCtrl.loadSessions();
+        $scope.create = function () {
 
-        $scope.Instituions = ['UTFPR', 'UEPG'];
-        $scope.UTFPR = 'UTFPR';
-
-
-        signupCtrl.create = function () {
-            var person = {}
-
-
-            person.name = 'Lucas';
-
-            person.email = 'email@email.com';
-            person.password = '123';
-            person.instituion = 'UTFPR';
-            person.cpf = '37789417800';
-            person.academic_registry = '1371800';
-            person.role = 1;
-            person.is_active = true;
-
-            $log.log(person);
-
-            $log.log('passou');
-
-            $log.log($scope.errors);
-
-            ModelUtils.create(Urls.test_person(), person, $scope.errors)
+            ModelUtils.post_request(Urls.add_new_participant(), signupCtrl.signup_form.person, $scope.errors)
                 .then(function () {
-                    $log.log($scope.errors);
+                    $log.log($scope);
                 });
-
-            /*ModelUtils.create(Urls.add_new_participant(), signupCtrl.signup_form.person, $scope.errors)
-                .then(function () {
-                    $log.log($scope.errors);
-                });*/
-
-
-
-            $log.log($scope);
         };
+
+        $scope.clear = function () {
+            signupCtrl.signup_form.person = {};
+            signupCtrl.signup_form.person.sessions = [];
+        };
+
+        signupCtrl.loadSessions();
 
         $scope.toggle = function (item, list) {
             var idx = list.indexOf(item);
