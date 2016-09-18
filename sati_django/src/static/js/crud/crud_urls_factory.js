@@ -42,6 +42,11 @@
 
             add_new_participant : function () {
                 return '/user_signup/';
+            },
+
+            // Login
+            login : function () {
+                return '/user_login/';
             }
         };
 

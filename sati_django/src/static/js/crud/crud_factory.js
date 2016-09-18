@@ -57,6 +57,7 @@
 
                 return $http.post(url, obj, auth).
                     success(function(response, status, headers, config) {
+                        $log.log('response');
                         $log.log(response);
                         angular.extend(obj, response);
                     }).
@@ -128,6 +129,13 @@
 
     app.factory('CRUDLabel', function () {
         var CRUDLabel = {
+            label_login_title : function () {
+                return 'Entrar';
+            },
+            label_login_button : function () {
+                return 'Log in';
+            },
+
             // main
             label_insert_error : function () {
               return "O(s) seguinte(s) foram detectad(os):"

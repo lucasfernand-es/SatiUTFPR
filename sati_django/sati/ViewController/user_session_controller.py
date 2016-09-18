@@ -2,8 +2,8 @@
 from __future__ import unicode_literals
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.shortcuts import render
-from django.http import JsonResponse
+from django.shortcuts import render, render_to_response, redirect
+from django.http import JsonResponse, HttpResponse
 from rest_framework.response import Response
 from rest_framework import status
 import json
@@ -15,7 +15,7 @@ from sati_django.sati.serializers import *
 def user_authenticate(username, password):
     print password, username
     user = authenticate(username=username, password=password)
-    return user;
+    return user
 
 
 def user_session(request):
@@ -26,16 +26,20 @@ def user_session(request):
 
 
 def user_login(request):
-    user = user_authenticate(request.POST.get('username'), request.POST.get('userpass'))
+    # required_login = json.loads(request.body)
+
+    user = user_authenticate('email@email.com', '123')  # (required_login['email'], required_login['password'])
+
     if user is not None:
         login(request, user)
-        return render(
-            request,
-            'dashboard/index.html',
+
+        print 'oi passou'
+
+        return HttpResponse(
+            'dashboard/index.html'
         )
     else:
-        return render(
-            request,
+        return HttpResponse(
             'public/login.html'
         )
 
@@ -53,6 +57,7 @@ def user_signup(request):
         print request.body
 
         person = json.loads(request.body)
+        print person['name']
 
         serializer = PersonSerializer(data=person)
         if serializer.is_valid():

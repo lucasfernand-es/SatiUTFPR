@@ -7,9 +7,33 @@
 
     //var ListDropdown = angular.module('ListDropdown', []);
 
+    app.controller('LoginCtrl', function ($scope, $log,
+                                          Label, CRUDLabel,
+                                          ModelUtils, Urls, Addons) {
+
+        var loginCtrl = this
+        $scope.Label = Label;
+        $scope.CRUDLabel = CRUDLabel;
+
+
+        loginCtrl.login_form = {};
+        $scope.convertErrorFields = Addons.convertErrorFields;
+
+        $scope.login = function () {
+                $log.log(loginCtrl.login_form);
+
+            ModelUtils.post_request(Urls.login(), loginCtrl.login_form, $scope.errors)
+            .then(function () {
+            }, function () {
+                $log.log($scope.convertErrorFields($scope.errors));
+                loginCtrl.errors = $scope.convertErrorFields($scope.errors);
+            });
+        };
+
+    });
 
     app.controller('SignupCtrl', function($scope, $log, $http, $window, $location, $anchorScroll,
-                                          SignupLabel, Label, CRUDLabel, ErrorLabel,
+                                          SignupLabel, Label, CRUDLabel,
                                           ModelUtils, Urls, Addons,
                                           FieldSize, Toast) {
         var signupCtrl = this;
