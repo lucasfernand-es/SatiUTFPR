@@ -1,0 +1,55 @@
+<div class="mdl-grid mdl-cell mdl-cell--12-col
+            vert-align"
+     ng-hide="occurrence.is_same_day">
+
+        <i class="material-icons vert-align" role="presentation">date_range</i>
+        <span
+                class="vert-align"
+                ng-bind=" (occurrence.begin_date_time | date : 'EEEE, dd/MM/yyyy') +
+                Label.at() + (occurrence.begin_date_time | date : 'H:mm')">
+        </span>
+
+        <span
+                class="vert-align"
+                ng-bind=" Label.until() +
+                ( occurrence.end_date_time | date : 'EEEE, dd/MM/yyyy') +
+                Label.at() +
+                (occurrence.end_date_time | date : 'H:mm')">
+        </span>
+
+
+</div>
+
+<div class="mdl-grid mdl-cell mdl-cell--12-col"
+     ng-show="occurrence.is_same_day">
+
+    <div class="mdl-grid--no-spacing mdl-cell-6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+        <i class="material-icons vert-align" role="presentation">date_range</i>
+        <label
+            class="vert-align"
+            ng-bind=" (occurrence.begin_date_time | date : 'EEEE, dd/MM/yyyy')">
+        </label>
+    </div>
+
+    <div class="mdl-layout-spacer"></div>
+
+    <div class="mdl-grid--no-spacing mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+        <i class="material-icons vert-align" role="presentation">alarm</i>
+        <label
+            class="vert-align"
+            ng-bind="(occurrence.begin_date_time | date : 'H:mm') +
+            Label.until() +
+            (occurrence.end_date_time | date : 'H:mm') ">
+        </label>
+    </div>
+
+    <div class="mdl-grid--no-spacing mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+         <i class="material-icons vert-align" role="presentation">place</i>
+        <label
+                class="vert-align"
+                ng-bind="occurrence.room">
+        </label>
+    </div>
+
+
+</div>

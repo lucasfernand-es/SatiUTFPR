@@ -3,7 +3,7 @@ from django import forms
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from rest_framework import viewsets, generics, permissions, authentication
-from rest_framework_oauth import authentication
+import rest_framework_oauth
 from sati.models import *
 from sati.serializers import *
 from sati.ViewController import authentication as local_authentication
@@ -85,6 +85,9 @@ class PersonList(generics.ListCreateAPIView):
     permission_classes = [
         permissions.AllowAny
     ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
+    ]
 
 
 class PersonDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -93,6 +96,9 @@ class PersonDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PersonSerializer
     permission_classes = [
         permissions.AllowAny
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
     ]
 
 

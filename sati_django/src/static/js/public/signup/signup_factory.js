@@ -28,8 +28,8 @@
         return Label;
     });
 
-    app.factory('EventUrls', function () {
-        var EventUrls = {
+    app.factory('SignupUrls', function () {
+        var SignupUrls = {
             spots_event_available : function (event_id) {
                 return '/event/' + event_id + '/spots_event_available/';
             },

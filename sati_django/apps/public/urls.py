@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from sati.ViewController import user_session_controller as session, session_controller
-from sati.ViewController import event_controller
+from sati.ViewController import event_controller, session_controller
 
 from . import views
 
@@ -48,7 +48,11 @@ urlpatterns = [
     # Get event by id and all events
 
     url(r'^event/(?P<event_id>[0-9]+)/get_event/$', event_controller.get_event_by_id,
-        name='event-spots'),
+        name='events'),
     url(r'^event/get_all_events/$', event_controller.get_all_events,
-        name='event-spots-available'),
+        name='events'),
+
+    # Get all sessions
+    url(r'^session/get_all/$', session_controller.get_all_sessions,
+        name='sessions-list'),
 ]

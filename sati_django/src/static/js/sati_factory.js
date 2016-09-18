@@ -60,8 +60,17 @@
             at: function () {
                 return ' ás ';
             },
+            by: function () {
+                return ' por ';
+            },
             open_sessions : function () {
                 return 'Turmas Abertas';
+            },
+            no_spot : function () {
+                return 'Esgotado';
+            },
+            occurence: function () {
+                return 'Cronograma';
             }
         };
 

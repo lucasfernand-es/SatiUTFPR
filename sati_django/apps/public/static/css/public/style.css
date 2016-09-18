@@ -1,3 +1,17 @@
+.repeated-occurrence {
+  border-bottom: 1px dashed #969696;
+  border-tpo: 1px dashed #969696;
+}
+
+#vertical-container {
+  height: 400px;
+}
+.repeated-item {
+  border-bottom: 1px solid #ddd;
+  padding-bottom : 10px;
+  padding-top: 10px;
+}
+
 .checkboxdemoSyncing .checkboxDemo1 div {
   clear: both; }
 

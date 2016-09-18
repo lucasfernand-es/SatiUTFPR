@@ -1,4 +1,5 @@
 from sati.models import Event, Edition, Session, Occurrence
+from sati.serializers import *
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseForbidden
 from django.http import JsonResponse, HttpResponse
@@ -47,47 +48,6 @@ def get_event_by_id(request, event_id):
         }
 
     return JsonResponse(json_response)
-
-
-def get_all_events(request):
-    events = Event.objects.all()
-    events_array = []
-    for event in events:
-        sessions = Session.objects.filter(event_id=event.id, is_active=True)
-        session_array = []
-        for session in sessions:
-            occurrences = Occurrence.objects.filter(session_id=session.id, is_active=True)
-            occurrences_array = []
-            for occurrence in occurrences:
-                occurrences_json = {
-                    'room':occurrence.room.number,
-                    'begin_date_time': occurrence.begin_date_time,
-                    'end_date_time': occurrence.end_date_time,
-                }
-                occurrences_array.append(occurrences_json)
-            session_json = {
-                'instructor_name': session.instructor.name,
-                'spots': session.spots,
-                'occurrences': occurrences_array,
-            }
-            print session_json
-            session_array.append(session_json)
-
-        event_json ={
-            'category_name' : event.category.name,
-            'event_name': event.name,
-            'event_fee': event.fee,
-            'event_workload': event.workload,
-            'event_description': event.description,
-            'sessions': session_array,
-        }
-        events_array.append(event_json)
-
-    events_json = {
-        'error': False,
-        'events': events_array
-    }
-    return JsonResponse(events_json)
 
 
 def create_event(request):
@@ -166,3 +126,50 @@ def create_event(request):
             'erros': erros
         }
     return render(request, 'dashboard/event.html', context=context_dict)
+
+
+def get_all_events(request):
+    events = Event.objects.all()
+    events_array = []
+    print events
+
+    for event in events:
+        sessions = Session.objects.filter(event_id=event.id, is_active=True)
+        session_array = []
+        for session in sessions:
+            occurrences = Occurrence.objects.filter(session_id=session.id, is_active=True)
+            occurrences_array = []
+            for occurrence in occurrences:
+                occurrences_json = {
+                    'room': occurrence.room.number,
+                    'begin_date_time': occurrence.begin_date_time,
+                    'end_date_time': occurrence.end_date_time,
+                }
+                occurrences_array.append(occurrences_json)
+            session_json = {
+                'instructor_name': session.instructor.name,
+                'spots': session.spots,
+                'occurrences': occurrences_array,
+            }
+            print session_json
+            session_array.append(session_json)
+
+        print (event.category.image)
+        categorySerializer = CategorySerializer(event.category.image)
+        print categorySerializer
+
+        event_json = {
+            'category_name': event.category.name,
+            'event_name': event.name,
+            'event_fee': event.fee,
+            'event_workload': event.workload,
+            'event_description': event.description,
+            'sessions': session_array,
+        }
+        events_array.append(event_json)
+
+    events_json = {
+        'error': False,
+        'events': events_array
+    }
+    return JsonResponse(events_json)

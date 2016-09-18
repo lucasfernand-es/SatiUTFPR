@@ -23,6 +23,23 @@
             person: function () {
                 return '/api/public_person/';
             },
+            test_person: function () {
+                return '/api/person/';
+            },
+
+            // Get event by id and all events
+            get_all_events: function () {
+                return '/event/get_all_events/';
+            },
+
+            // Get all sessions
+            get_all_sessions: function () {
+                return '/session/get_all/';
+            },
+
+            add_new_participant : function () {
+                return '/user_signup/';
+            }
         };
 
         return Urls;

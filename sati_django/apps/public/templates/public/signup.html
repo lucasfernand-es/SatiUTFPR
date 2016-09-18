@@ -8,7 +8,7 @@
 
         {% include 'sati_utfpr/ng_messages.html' %}
 
-        <div class="mdl-grid mdl-cell mdl-cell--5-col mdl-cell--7-col-tablet mdl-cell--4-col-phone">
+        <div class="mdl-grid mdl-cell mdl-cell--6-col mdl-cell--7-col-tablet mdl-cell--4-col-phone">
 
             <md-toolbar class="vert-align mdl-grid">
                 <div class="md-display-1 mdl-typography--text-center mdl-cell--12-col">
@@ -31,11 +31,20 @@
 
                     </md-input-container>
 
-                    <md-input-container class="mdl-cell mdl-cell--12-col">
+                    <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
                         <label  ng-bind="CRUDLabel.label_person_email()"></label>
                         <input required  maxlength="{[{ FieldSize.email() }]}"
                                type="email" name="personEmail" ng-model="signupCtrl.signup_form.person.email"/>
                         <div ng-messages="signup_form.personEmail.$error" role="alert">
+                            <div ng-messages-include="form-messages-error"></div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <label ng-bind="CRUDLabel.label_person_cpf()"></label>
+                        <input required type="text" maxlength="{[{ FieldSize.cpf() }]}" ui-br-cpf-mask
+                               name="personCPF" ng-model="signupCtrl.signup_form.person.cpf">
+                        <div ng-messages="signup_form.personCPF.$error" role="alert">
                             <div ng-messages-include="form-messages-error"></div>
                         </div>
                     </md-input-container>
@@ -53,56 +62,128 @@
                         <label ng-bind="CRUDLabel.label_person_confirm_password()"></label>
                         <input required type="password" maxlength="{[{ FieldSize.password() }]}"
                                name="personConfirmPassword" ng-model="signupCtrl.signup_form.person.confirm_password"
-                               compare-to="signupCtrl.signup_form.person_password">
+                               compare-to="signupCtrl.signup_form.person.password">
                         <div ng-messages="signup_form.personConfirmPassword.$error" role="alert">
                             <div ng-messages-include="form-messages-error"></div>
                         </div>
                     </md-input-container>
 
+
                     <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                        <label ng-bind="CRUDLabel.label_person_cpf()"></label>
-                        <input required type="text" maxlength="{[{ FieldSize.cpf() }]}" ui-br-cpf-mask
-                               name="personCPF" ng-model="signupCtrl.signup_form.person.cpf">
-                        <div ng-messages="signup_form.personCPF.$error" role="alert">
-                            <div ng-messages-include="form-messages-error"></div>
-                        </div>
+                        <label ng-bind="CRUDLabel.label_institution()"></label>
+                        <md-select ng-model="signupCtrl.signup_form.person.instituion">
+                            <md-option><em ng-bind=""></em></md-option>
+                            <md-option ng-repeat="instituion in Instituions"
+                                       ng-value="instituion"
+                                       ng-bind="instituion">
+                            </md-option>
+                        </md-select>
                     </md-input-container>
 
                     <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
                         <label ng-bind="CRUDLabel.label_person_ra()"></label>
                         <input type="number" maxlength="{[{ FieldSize.ra() }]}"
-                               name="personRA" ng-model="signupCtrl.signup_form.person_ra">
+                               ng-required="signupCtrl.signup_form.person.instituion == UTFPR"
+                               name="personRA" ng-model="signupCtrl.signup_form.person.ra">
                         <div ng-messages="signup_form.personRA.$error" role="alert">
                             <div ng-messages-include="form-messages-error"></div>
                         </div>
                     </md-input-container>
+
 
                     <div class="mdl-cell mdl-cell--12-col mdl-grid checkboxdemoSyncing">
                         <div flex="100" layout="column">
                             <div>
                                 <fieldset class="standard">
                                     <legend class="mdl-typography--headline mdl-typography--text-center" ng-bind="Label.open_sessions()"></legend>
-                                    <div layout="row" layout-wrap="" flex="">
-                                        <div flex="100" ng-repeat="item in items">
-                                            <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
-                                                {{ item }} <span ng-if="exists(item, selected)">selected</span>
+
+                                    <md-input-container class="mdl-cell mdl-cell--12-col">
+                                        <label ng-bind="CRUDLabel.filter_label_event_name()"></label>
+                                        <input ng-model="search.event_name">
+                                    </md-input-container>
+
+                                    <md-virtual-repeat-container id="vertical-container">
+
+                                        <md-list-item
+                                                ng-repeat="session in signupCtrl.filterSession = (signupCtrl.sessions | filter: search)"
+                                                class="mdl-color-text--blue-grey-500 repeated-item"
+
+                                                ng-class="{'mdl-color--red-300': !session.has_spots, 'mdl-color-text--grey-100': !session.has_spots}">
+
+                                            <div class="mdl-grid--no-spacing mdl-cell--11-col mdl-cell--7-col-tablet mdl-cell--3-col-phone">
+
+                                                <div class="mdl-cell--12-col mdl-grid">
+                                                    <div class="mdl-grid--no-spacing mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                                                        <i class="material-icons vert-align" role="presentation">event</i>
+                                                        <label class="vert-align" ng-bind="session.event_name"></label>
+                                                    </div>
+
+                                                    <div class="mdl-layout-spacer"></div>
+
+                                                    <div class="mdl-grid--no-spacing mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                                                        <i class="material-icons vert-align" role="presentation">label</i>
+                                                        <label class="vert-align" ng-bind="session.category_name"></label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mdl-cell--12-col mdl-grid">
+                                                    <div class="mdl-grid--no-spacing mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                                                        <i class="material-icons vert-align" role="presentation">assignment_ind</i>
+                                                        <label class="vert-align" ng-bind="session.instructor_name"></label>
+                                                    </div>
+
+                                                    <div class="mdl-layout-spacer"></div>
+
+                                                    <div class="mdl-grid--no-spacing mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                                                        <i class="material-icons vert-align" role="presentation">event_seat</i>
+                                                        <label class="vert-align" ng-bind="session.has_spots? session.available_spots : Label.no_spot()"></label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mdl-cell--12-col mdl-grid">
+                                                     <div class="mdl-grid--no-spacing mdl-cell--12-col">
+                                                         <i class="material-icons vert-align" role="presentation">schedule</i>
+                                                         <label class="vert-align" ng-bind="CRUDLabel.label_occurrence()"></label>
+                                                     </div>
+
+                                                    <occurrence-info ng-repeat="occurrence in session.occurrences"
+                                                                     class="mdl-cell--12-col mdl-grid--no-spacing repeated-occurrence">
+                                                    </occurrence-info>
+                                                </div>
+
+
+                                            </div>
+
+                                            <md-checkbox ng-checked="exists(session.id, signupCtrl.signup_form.person.sessions)"
+                                                          ng-click="toggle(session.id, signupCtrl.signup_form.person.sessions)"
+                                                          ng-disabled="!session.has_spots"
+                                                          class="md-secondary mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"
+                                                          aria-label="{[{ session.name }]}" aria-labelledby="{[{ session.id }]}">
+
                                             </md-checkbox>
-                                        </div>
-                                    </div>
+
+                                        </md-list-item>
+
+                                        <noresult-message
+                                                class="mdl-grid mdl-cell mdl-cell--12-col"
+                                                ng-hide="signupCtrl.filterSession.length">
+                                        </noresult-message>
+
+                                    </md-virtual-repeat-container>
+
                                 </fieldset>
                             </div>
                         </div>
-
                         <div flex="100">
-                            <h2 class="md-title">Selected Items</h2>
-                            <code style="display: block; padding: 8px;">{{selected}}</code>
-                        </div>
+                              <h2 class="md-title">Selected Items</h2>
+                              <code style="display: block; padding: 8px;">{[{signupCtrl.signup_form.person.sessions | json}]}</code>
+                            </div>
                     </div>
 
                     <md-button class="md-raised md-warn mdl-cell mdl-cell--3-col mdl-cell--2-col-phone">Limpar</md-button>
                     <div class="mdl-layout-spacer"></div>
                     <md-button ng-click="signupCtrl.create()"
-                               ng-disabled="!signup_form.$valid"
+
                                aria-label="Add"
                                class="md-raised md-primary mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone"
                                ng-bind="CRUDLabel.label_add_item()">
@@ -111,7 +192,7 @@
                 </form>
 
 
-                <!--div class="mdl-layout-spacer"></div-->
+                <!--div class="mdl-layout-spacer"> ng-disabled="!signup_form.$valid" </div-->
 
             </md-content>
         </div>

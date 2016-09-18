@@ -25,16 +25,17 @@
             }
         };
 
+        var auth = {params:{"source":"angular"}};
 
         var ModelUtils = {
             get_request: function(url) {
-                return $http.get(url).then(function(response){
+                return $http.get(url, auth).then(function(response){
                         return response.data;
                     }
                 );
             },
             get: function(url, id) {
-                return $http.get(url + id + '/').then(function(response){
+                return $http.get(url + id + '/', auth).then(function(response){
                         //$log.log('get');
                         //$log.log(response.data);
                         return response.data;
@@ -43,7 +44,7 @@
             },
 
             get_all: function(url) {
-                return $http.get(url).then(function(response){
+                return $http.get(url, auth).then(function(response){
                         //$log.log('get');
                         //$log.log(response.data);
                         return response.data;
@@ -53,7 +54,7 @@
 
             create: function(url, obj, errors) {
                 $log.log(obj);
-                return $http.post(url, obj).
+                return $http.post(url, obj, auth).
                     success(function(response, status, headers, config) {
                         angular.extend(obj, response);
                     }).
@@ -89,6 +90,14 @@
 
     app.factory('CRUDLabel', function () {
         var CRUDLabel = {
+            // Filters
+            filter_label_event_name : function () {
+                return 'Nome do Evento';
+            },
+            filter_label_category: function () {
+                return 'Categoria';
+            },
+            // Person
             label_add_item: function () {
                 return 'Cadastrar';
             },
@@ -110,6 +119,12 @@
             },
             label_person_ra : function () {
                 return 'Registro Acadêmico';
+            },
+            label_occurrence : function () {
+                return 'Cronograma:';
+            },
+            label_institution : function () {
+                return 'Instituição';
             },
 
             // Forms
@@ -171,26 +186,5 @@
 
         return FieldSize;
     });
-
-
-    /*
-    app.factory('EventFactory', function ($log, ModelUtils, Urls, EditionFactory) {
-
-        var get_edition = function (id) {
-            return EditionFactory.get(id);
-        };
-
-        var EventFactory = {
-            get: function(id) {
-                return ModelUtils.get(Urls.event(), id);
-            },
-            get_all: function() {
-                return ModelUtils.get_all(Urls.event());
-            }
-        };
-
-        return EventFactory;
-    });
-    */
 
 })(window.angular);
