@@ -89,11 +89,11 @@
 
                     <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
                         <label ng-bind="CRUDLabel.label_institution()"></label>
-                        <md-select ng-model="signupCtrl.signup_form.person.instituion">
+                        <md-select ng-model="signupCtrl.signup_form.person.institution">
                             <md-option><em ng-bind=""></em></md-option>
-                            <md-option ng-repeat="instituion in Instituions"
-                                       ng-value="instituion"
-                                       ng-bind="instituion">
+                            <md-option ng-repeat="institution in Institutions"
+                                       ng-value="institution"
+                                       ng-bind="institution">
                             </md-option>
                         </md-select>
                     </md-input-container>
@@ -101,7 +101,7 @@
                     <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
                         <label ng-bind="CRUDLabel.label_academic_registry()"></label>
                         <input type="number" maxlength="{[{ FieldSize.academic_registry() }]}"
-                               ng-required="signupCtrl.signup_form.person.instituion == UTFPR"
+                               ng-required="signupCtrl.signup_form.person.institution == UTFPR"
                                name="personRA" ng-model="signupCtrl.signup_form.person.academic_registry">
                         <div ng-messages="signup_form.personRA.$error" role="alert">
                             <div ng-messages-include="form-messages-error"></div>
