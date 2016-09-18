@@ -6,14 +6,15 @@
         <small ng-bind="EventLabel.no_occurrence()"></small>
     </span>
 
-    <figure class="mdl-card__media">
-        <img ng-src="{[{ event.category.image }]}" alt="{[{ event.name }]}" />
+    <div    class="mdl-card__media card_event_headline_image"
+                ng-style="{
+                background: 'url(' + event.category.image + ') center',}">
+        </div>
 
-    </figure>
     <span class="mdl-card__event-fee" ng-bind="event.fee == 0 ? 'Grátis' : (event.fee | currency) "></span>
 
-    <div class="mdl-card__title mdl-card__title__event">
-        <h4>{[{ event.name }]}</h4>
+    <div class="mdl-card__title mdl-card__title__event card_event_headline_title ">
+        <h4 class="mdl-typography--text-center">{[{ event.name }]}</h4>
     </div>
 
     <div class="mdl-card__supporting-text mdl-grid mdl-card--border">
@@ -42,8 +43,8 @@
                     vert-align">
                 <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">place</i>
                 {[{
-                    event.session.occurrence.room?
-                    event.session.occurrence.room :
+                    event.session.occurrence.room_name?
+                    event.session.occurrence.room_name :
                     Label.tbd()
                 }]}
         </span>

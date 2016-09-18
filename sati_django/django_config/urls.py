@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from sati_django.apps.dashboard import views as dashboardviews
 
 urlpatterns = [
                 # Examples:
@@ -12,7 +13,7 @@ urlpatterns = [
                 url(r'^admin/', include(admin.site.urls)),
 
                 # Dashboard
-                url(r'^dashboard/', include('apps.dashboard.urls')),
+                url(r'^dashboard/', include('apps.dashboard.urls'), name='dashboard'),
 
                 # public
                 url(r'^', include('apps.public.urls')),

@@ -2,12 +2,11 @@
     'use strict';
 
     var app = angular.module('signup-controller',
-        ['signup-factory', 'signup-directive', 'public-directive', 'ngMaterial', 'ngMessages']);
+        ['signup-factory', 'signup-directive', 'ngRoute', 'public-directive', 'ngMaterial', 'ngMessages']);
 
 
-    //var ListDropdown = angular.module('ListDropdown', []);
 
-    app.controller('LoginCtrl', function ($scope, $log,
+    app.controller('LoginCtrl', function ($scope, $log, $location, $window,
                                           Label, CRUDLabel,
                                           ModelUtils, Urls, Addons) {
 
@@ -20,14 +19,16 @@
         $scope.convertErrorFields = Addons.convertErrorFields;
 
         $scope.login = function () {
-                $log.log(loginCtrl.login_form);
+            $log.log(loginCtrl.login_form);
 
+            //$window.location.href = '/index.html';
             ModelUtils.post_request(Urls.login(), loginCtrl.login_form, $scope.errors)
             .then(function () {
             }, function () {
                 $log.log($scope.convertErrorFields($scope.errors));
                 loginCtrl.errors = $scope.convertErrorFields($scope.errors);
             });
+
         };
 
     });

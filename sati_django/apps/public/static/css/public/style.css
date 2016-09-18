@@ -3,6 +3,14 @@
   border-tpo: 1px dashed #969696;
 }
 
+.card_event_headline_image {
+    height : 300px;
+}
+
+.card_event_headline_title {
+    height : 100px;
+}
+
 #vertical-container {
   height: 400px;
 }
@@ -223,8 +231,6 @@
 
 .headline-title {
     vertical-align: middle;
-    padding-top: 0px;
-    line-height: 250px;
 }
 
 .headline-subtitle {

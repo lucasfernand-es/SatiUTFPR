@@ -7,7 +7,7 @@
                                         // Addon
                                         'ui.utils.masks',
                                         // essencials
-                                        'ngSanitize', 'ngResource'
+                                        'ngSanitize', 'ngResource', 'ngRoute'
                                         ]);
 
     app.config(function($interpolateProvider, $httpProvider , $resourceProvider) {
@@ -20,5 +20,7 @@
         $resourceProvider.defaults.stripTrailingSlashes = false;
 
     });
+
+
 
 })(window.angular);

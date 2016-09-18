@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, render_to_response, redirect
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from rest_framework.response import Response
 from rest_framework import status
 import json
@@ -28,19 +28,20 @@ def user_session(request):
 def user_login(request):
     # required_login = json.loads(request.body)
 
-    user = user_authenticate('email@email.com', '123')  # (required_login['email'], required_login['password'])
+    user = user_authenticate('123@email.com', '123')  # (required_login['email'], required_login['password'])
 
     if user is not None:
         login(request, user)
 
         print 'oi passou'
 
-        return HttpResponse(
+        return HttpResponseRedirect(
+            request,
             'dashboard/index.html'
         )
     else:
-        return HttpResponse(
-            'public/login.html'
+        return HttpResponseRedirect(
+            '/'
         )
 
 
