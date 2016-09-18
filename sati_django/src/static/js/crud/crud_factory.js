@@ -54,13 +54,14 @@
 
             post_request: function(url, obj, errors) {
                 $log.log(obj);
+
                 return $http.post(url, obj, auth).
                     success(function(response, status, headers, config) {
+                        $log.log('response');
                         $log.log(response);
                         angular.extend(obj, response);
                     }).
                     error(function(response, status, headers, config) {
-                        $log.log(response);
                         handleErrors(response, status, errors);
                     });
             },
@@ -103,8 +104,51 @@
 
     });
 
+    app.factory('ErrorLabel', function (CRUDLabel) {
+        var ErrorLabel = function (key) {
+            switch (key) {
+                case 'name' : return CRUDLabel.error_name();
+                case 'password' : return CRUDLabel.label_password();
+                case 'confirm_password' : return CRUDLabel.label_password();
+                case 'email' : return CRUDLabel.label_email();
+                case 'academic_registry': return CRUDLabel.label_academic_registry();
+                case 'cpf': return CRUDLabel.label_cpf();
+                case 'role': return CRUDLabel.label_role();
+                case 'institution': return CRUDLabel.label_institution();
+                case 'sessions': return CRUDLabel.label_sessions();
+
+                default: return key;
+            };
+
+
+        };
+
+        return ErrorLabel;
+    });
+
+
     app.factory('CRUDLabel', function () {
         var CRUDLabel = {
+            label_login_title : function () {
+                return 'Entrar';
+            },
+            label_login_button : function () {
+                return 'Log in';
+            },
+
+            // main
+            label_insert_error : function () {
+              return "O(s) seguinte(s) foram detectad(os):"
+            },
+
+            // error
+            error_name: function () {
+              return 'Nome';
+            },
+            label_sessions: function () {
+              return 'Turma';
+            },
+
             // Filters
             filter_label_event_name : function () {
                 return 'Nome do Evento';
@@ -113,6 +157,9 @@
                 return 'Categoria';
             },
             // Person
+            label_role: function () {
+                return 'Cargo'
+            },
             label_add_item: function () {
                 return 'Cadastrar';
             },
@@ -123,19 +170,19 @@
             label_person_full_name: function () {
                 return 'Nome Completo';
             },
-            label_person_email : function () {
+            label_email : function () {
                 return 'E-mail';
             },
-            label_person_password : function () {
+            label_password : function () {
                 return 'Senha';
             },
-            label_person_confirm_password : function () {
+            label_confirm_password : function () {
                 return 'Confirmar Senha';
             },
-            label_person_cpf : function () {
+            label_cpf : function () {
                 return 'CPF';
             },
-            label_person_ra : function () {
+            label_academic_registry : function () {
                 return 'Registro Acadêmico';
             },
             label_occurrence : function () {
@@ -188,11 +235,11 @@
             cpf_error: function () {
                 return textFieldSize(FieldSize.cpf());
             },
-            ra: function () {
+            academic_registry: function () {
                 return 15;
             },
-            ra_error: function () {
-                return textFieldSize(FieldSize.ra_error());
+            academic_registry_error: function () {
+                return textFieldSize(FieldSize.academic_registry());
             },
             password: function () {
                 return 32;

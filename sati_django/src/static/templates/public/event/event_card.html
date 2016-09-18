@@ -1,9 +1,9 @@
     <span class="ribbon top-left ribbon-danger" ng-show="!event.has_spots || !event.has_session">
-        <small ng-bind=" !event.has_session? eventCtrl.EventLabel.no_session() : eventCtrl.EventLabel.no_spot()"></small>
+        <small ng-bind=" !event.has_session? EventLabel.no_session() : EventLabel.no_spot()"></small>
     </span>
 
-    <span class="ribbon top-left ribbon-warning" ng-show="!event.session.occurrence && event.has_session">
-        <small ng-bind="eventCtrl.EventLabel.no_occurrence()"></small>
+    <span class="ribbon top-left ribbon-warning" ng-show="!event.has_occurrence && event.has_session">
+        <small ng-bind="EventLabel.no_occurrence()"></small>
     </span>
 
     <figure class="mdl-card__media">
@@ -24,7 +24,7 @@
             {[{
                 event.session.occurrence?
                 (event.session.occurrence.begin_date_time | date: 'EEE, d MMM yy') :
-                eventCtrl.Label.tbd()
+                Label.tbd()
             }]}
         </span>
 
@@ -34,7 +34,7 @@
             {[{
                 event.session.occurrence?
                 (event.session.occurrence.begin_date_time | date: 'H:mm') :
-                eventCtrl.Label.tbd()
+                Label.tbd()
             }]}
         </span>
 
@@ -43,8 +43,8 @@
                 <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">place</i>
                 {[{
                     event.session.occurrence.room?
-                    event.session.occurrence.room.name :
-                    eventCtrl.Label.tbd()
+                    event.session.occurrence.room :
+                    Label.tbd()
                 }]}
         </span>
 
@@ -52,9 +52,9 @@
                     vert-align">
                 <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">assignment_ind</i>
                 {[{
-                    event.session.instructor?
-                    ( event.session.instructor.name ) :
-                    eventCtrl.Label.tbd()
+                    event.session.instructor_name?
+                    ( event.session.instructor_name ) :
+                    Label.tbd()
                 }]}
         </span>
 

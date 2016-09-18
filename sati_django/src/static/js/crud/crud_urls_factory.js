@@ -23,7 +23,7 @@
             person: function () {
                 return '/api/public_person/';
             },
-            test_person: function () {
+            api_person: function () {
                 return '/api/person/';
             },
 
@@ -42,6 +42,11 @@
 
             add_new_participant : function () {
                 return '/user_signup/';
+            },
+
+            // Login
+            login : function () {
+                return '/user_login/';
             }
         };
 

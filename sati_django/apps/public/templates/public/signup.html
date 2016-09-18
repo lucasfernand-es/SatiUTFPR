@@ -21,10 +21,27 @@
 
                 <form name="signup_form" class="mdl-cell mdl-cell--12-col mdl-grid" novalidade ng-submit="signup_form.$valid">
 
+                    <div ng-show="signupCtrl.errors.length"
+                         class="mdl-grid mdl-cell mdl-cell--12-col mdl-color--grey-200 error">
+                        <div class="mdl-typography--text-center mdl-cell--12-col mdl-typography--title">
+                            <i class="material-icons vert-align">report_problem</i>
+                            <label class="vert-align" ng-bind="CRUDLabel.label_insert_error()"></label>
+                        </div>
+
+                        <ul class="mdl-list mdl-grid--no-spacing">
+                            <li class="mdl-list__item" ng-repeat="error in signupCtrl.errors">
+                                <i class="material-icons mdl-list__item-icon mdl-color-text--red-600">priority_high</i>
+                                <span class="mdl-list__item-primary-content mdl-color-text--red-600" ng-bind="error.name + ' : &nbsp;&nbsp;' + error.message">
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
                     <md-input-container class="mdl-cell mdl-cell--12-col">
                         <label ng-bind="CRUDLabel.label_person_full_name()"></label>
                         <input required  type="text" maxlength="{[{ FieldSize.name() }]}"
-                               name="personFullName" ng-model="signupCtrl.signup_form.person.name">
+                               name="personFullName"
+                               ng-model="signupCtrl.signup_form.person.name">
                         <div ng-messages="signup_form.personFullName.$error">
                             <div ng-messages-include="form-messages-error"></div>
                         </div> <!-- md-no-asterisk -->
@@ -32,7 +49,7 @@
                     </md-input-container>
 
                     <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                        <label  ng-bind="CRUDLabel.label_person_email()"></label>
+                        <label  ng-bind="CRUDLabel.label_email()"></label>
                         <input required  maxlength="{[{ FieldSize.email() }]}"
                                type="email" name="personEmail" ng-model="signupCtrl.signup_form.person.email"/>
                         <div ng-messages="signup_form.personEmail.$error" role="alert">
@@ -41,7 +58,7 @@
                     </md-input-container>
 
                     <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                        <label ng-bind="CRUDLabel.label_person_cpf()"></label>
+                        <label ng-bind="CRUDLabel.label_cpf()"></label>
                         <input required type="text" maxlength="{[{ FieldSize.cpf() }]}" ui-br-cpf-mask
                                name="personCPF" ng-model="signupCtrl.signup_form.person.cpf">
                         <div ng-messages="signup_form.personCPF.$error" role="alert">
@@ -50,16 +67,17 @@
                     </md-input-container>
 
                     <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                        <label ng-bind="CRUDLabel.label_person_password()"></label>
+                        <label ng-bind="CRUDLabel.label_password()"></label>
                         <input required type="password" maxlength="{[{ FieldSize.password() }]}"
-                               name="personPassword" ng-model="signupCtrl.signup_form.person.password">
+                               name="personPassword"
+                               ng-model="signupCtrl.signup_form.person.password" >
                         <div ng-messages="signup_form.personPassword.$error" role="alert">
                             <div ng-messages-include="form-messages-error"></div>
                         </div>
                     </md-input-container>
 
                     <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                        <label ng-bind="CRUDLabel.label_person_confirm_password()"></label>
+                        <label ng-bind="CRUDLabel.label_confirm_password()"></label>
                         <input required type="password" maxlength="{[{ FieldSize.password() }]}"
                                name="personConfirmPassword" ng-model="signupCtrl.signup_form.person.confirm_password"
                                compare-to="signupCtrl.signup_form.person.password">
@@ -81,10 +99,10 @@
                     </md-input-container>
 
                     <md-input-container class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-                        <label ng-bind="CRUDLabel.label_person_ra()"></label>
-                        <input type="number" maxlength="{[{ FieldSize.ra() }]}"
+                        <label ng-bind="CRUDLabel.label_academic_registry()"></label>
+                        <input type="number" maxlength="{[{ FieldSize.academic_registry() }]}"
                                ng-required="signupCtrl.signup_form.person.instituion == UTFPR"
-                               name="personRA" ng-model="signupCtrl.signup_form.person.ra">
+                               name="personRA" ng-model="signupCtrl.signup_form.person.academic_registry">
                         <div ng-messages="signup_form.personRA.$error" role="alert">
                             <div ng-messages-include="form-messages-error"></div>
                         </div>
@@ -159,7 +177,6 @@
                                                           ng-disabled="!session.has_spots"
                                                           class="md-secondary mdl-cell--1-col mdl-cell--1-col-tablet mdl-cell--1-col-phone"
                                                           aria-label="{[{ session.name }]}" aria-labelledby="{[{ session.id }]}">
-
                                             </md-checkbox>
 
                                         </md-list-item>
@@ -174,10 +191,10 @@
                                 </fieldset>
                             </div>
                         </div>
-                        <div flex="100">
+                        <!--div flex="100">
                               <h2 class="md-title">Selected Items</h2>
                               <code style="display: block; padding: 8px;">{[{signupCtrl.signup_form.person.sessions | json}]}</code>
-                            </div>
+                            </div-->
                     </div>
 
                     <md-button
@@ -188,7 +205,7 @@
 
                     <div class="mdl-layout-spacer"></div>
                     <md-button ng-click="create()"
-                               ng-disabled="!signup_form.$valid"
+                              ng-disabled="!signup_form.$valid"
                                aria-label="Add"
                                class="md-raised md-primary mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone"
                                ng-bind="CRUDLabel.label_add_item()">
@@ -197,7 +214,7 @@
                 </form>
 
 
-                <!--div class="mdl-layout-spacer">  </div-->
+                <!--div class="mdl-layout-spacer">   </div-->
 
             </md-content>
         </div>

@@ -7,10 +7,34 @@
 
     //var ListDropdown = angular.module('ListDropdown', []);
 
+    app.controller('LoginCtrl', function ($scope, $log,
+                                          Label, CRUDLabel,
+                                          ModelUtils, Urls, Addons) {
 
-    app.controller('SignupCtrl', function($scope, $log, $http,
+        var loginCtrl = this
+        $scope.Label = Label;
+        $scope.CRUDLabel = CRUDLabel;
+
+
+        loginCtrl.login_form = {};
+        $scope.convertErrorFields = Addons.convertErrorFields;
+
+        $scope.login = function () {
+                $log.log(loginCtrl.login_form);
+
+            ModelUtils.post_request(Urls.login(), loginCtrl.login_form, $scope.errors)
+            .then(function () {
+            }, function () {
+                $log.log($scope.convertErrorFields($scope.errors));
+                loginCtrl.errors = $scope.convertErrorFields($scope.errors);
+            });
+        };
+
+    });
+
+    app.controller('SignupCtrl', function($scope, $log, $http, $window, $location, $anchorScroll,
                                           SignupLabel, Label, CRUDLabel,
-                                          ModelUtils, Urls,
+                                          ModelUtils, Urls, Addons,
                                           FieldSize, Toast) {
         var signupCtrl = this;
         var promise;
@@ -46,31 +70,40 @@
         $scope.create = function () {
 
             ModelUtils.post_request(Urls.add_new_participant(), signupCtrl.signup_form.person, $scope.errors)
-                .then(function () {
-                    $log.log($scope);
-                });
+            .then(function () {
+                $log.log($scope);
+            }, function () {
+                $log.log($scope.convertErrorFields($scope.errors));
+                signupCtrl.errors = $scope.convertErrorFields($scope.errors);
+                $scope.anchorTop();
+                // the element you wish to scroll to.
+            });
         };
 
+        $scope.anchorTop =function () {
+            $location.hash('top');
+            $anchorScroll();
+        };
+
+        $scope.convertErrorFields = Addons.convertErrorFields;
+
         $scope.clear = function () {
+            $scope.anchorTop();
+            signupCtrl.errors = {};
             signupCtrl.signup_form.person = {};
             signupCtrl.signup_form.person.sessions = [];
         };
 
         signupCtrl.loadSessions();
+        $scope.clear();
 
-        $scope.toggle = function (item, list) {
-            var idx = list.indexOf(item);
-            if (idx > -1) {
-            list.splice(idx, 1);
-            }
-            else {
-            list.push(item);
-            }
-        };
+        $scope.errors = {};
 
-        $scope.exists = function (item, list) {
-            return list.indexOf(item) > -1;
-        };
+        $scope.toggle = Addons.toggle;
+
+        $scope.exists = Addons.exists;
+
+        //href="#top"
 
 
 
