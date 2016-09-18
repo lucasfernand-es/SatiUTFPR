@@ -7,9 +7,10 @@ from django.http import JsonResponse, HttpResponse
 from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
+from django.db import Error
 import json
 
-from sati.models import Person
+from sati.models import Person, Participant, Session
 from sati_django.sati.serializers import *
 
 
@@ -65,8 +66,26 @@ def user_signup(request):
         serializer = PersonSerializer(data=person)
 
         if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+            try:
+                person_response = serializer.save()
+            except:
+                person_response = None
+
+            if person_response is not None:
+                errors_array = []
+                for id_session in person['sessions']:
+                    participant = Participant()
+                    participant.person = person_response
+                    participant.session = Session.objects.get(id=id_session)
+                    participant.is_confirmed = False
+                    participant.status = False
+                    try:
+                        participant.save()
+                    except Error:
+                        errors_array.append('error_session_' + str(id_session))
+                if len(errors_array):
+                    return JsonResponse({'errors': errors_array}, status=status.HTTP_400_BAD_REQUEST)
+                return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
         else:
             serializer.errors.sessions = 'Vários erros'
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

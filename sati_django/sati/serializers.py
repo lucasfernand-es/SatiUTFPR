@@ -3,6 +3,7 @@ from sati.models import *
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
+from django.db import Error
 import re
 
 
@@ -212,9 +213,11 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
         password = validated_data.get('password')
         username = validated_data.get('email')
         firstname = validated_data.get('name')
-        person = Person.objects.create(**validated_data)
-        if person:
-            User.objects.create_user(username=username, first_name=firstname, email=username, password=password)
+        try:
+            person = Person.objects.create(**validated_data)
+        except Error:
+            return person
+        User.objects.create_user(username=username, first_name=firstname, email=username, password=password)
         return person
 
     def validate_name(self, value):
