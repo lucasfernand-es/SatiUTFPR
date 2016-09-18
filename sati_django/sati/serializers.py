@@ -171,19 +171,19 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
     email = serializers.EmailField(max_length=100, validators=[UniqueValidator(queryset=Person.objects.all(), message='Email ja cadastrado')])
     password = serializers.CharField(style={'input_type': 'password'})
     institution = serializers.CharField()
-    cpf = serializers.CharField()#validators=[UniqueValidator(queryset=Person.objects.all(), message='CPF ja cadastrado')]
-    academic_registry = serializers.CharField()
+    cpf = serializers.CharField(validators=[UniqueValidator(queryset=Person.objects.all(), message='CPF ja cadastrado')])
+    academic_registry = serializers.IntegerField()
     role = serializers.CharField()
     is_active = serializers.BooleanField()
 
     # Foreign
-    sessions = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='session-detail')
+    #sessions = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='session-detail')
 
     class Meta:
         model = Person
         ordering = ['name']
         fields = ('id', 'name', 'email', 'password', 'institution',
-                  'cpf', 'academic_registry', 'role', 'is_active', 'sessions')  # 'password',
+                  'cpf', 'academic_registry', 'role', 'is_active')# 'sessions')  # 'password',
 
     def validate_cpf(self, value):
         cpf_value = ''.join(re.findall('\d', str(value)))
@@ -209,12 +209,13 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
             raise serializers.ValidationError('CPF Invalido.')
 
     def create(self, validated_data):
-        # print validated_data.get('password')
         password = validated_data.get('password')
         username = validated_data.get('email')
         firstname = validated_data.get('name')
-        User.objects.create_user(username=username, first_name=firstname, email=username, password=password)
-        return Person.objects.create(**validated_data)
+        person = Person.objects.create(**validated_data)
+        if person:
+            User.objects.create_user(username=username, first_name=firstname, email=username, password=password)
+        return person
 
     def validate_name(self, value):
         return value

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, render_to_response, redirect
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 import json
 
@@ -50,29 +51,29 @@ def user_logout(request):
     return render(request,
                   'public/index.html')
 
-
+@csrf_exempt
 def user_signup(request):
 
     if request.method == 'POST':
         print 'postou algo'
         print request.body
 
+        print
         person = json.loads(request.body)
-        print person['name']
+        person['is_active'] = True
+        person['role'] = 0
 
         serializer = PersonSerializer(data=person)
+
         if serializer.is_valid():
-            # serializer.save()
-            print 'save'
+            serializer.save()
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
-        print 'nope'
+        else:
+            serializer.errors.sessions = 'Vários erros'
+            return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer.errors.sessions = 'Vários erros'
-
-        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    print 'chegou aqui'
-    return JsonResponse(2, safe=False)
+    # print 'chegou aqui'
+    # return JsonResponse(2, safe=False)
     # return render(
     #    request,
     #    'sati_utfpr/test.html'

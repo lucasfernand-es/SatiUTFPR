@@ -48,7 +48,7 @@
 
         $scope.message = Label.no_results();
 
-        $scope.Instituions = ['UTFPR', 'UEPG'];
+        $scope.Institutions = ['UTFPR', 'UEPG'];
         $scope.UTFPR = 'UTFPR';
 
         signupCtrl.loadSessions = function () {

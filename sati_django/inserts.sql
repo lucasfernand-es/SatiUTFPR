@@ -120,3 +120,17 @@ INSERT INTO sati_occurrence(id, begin_date_time, end_date_time, is_active, room_
   (25, 'September 30 10:20:00 2016', 'September 29 12:00:00 2016', true, 5, 18),
   (26, 'September 30 19:00:00 2016', 'September 29 21:00:00 2016', true, 5, 19);
 
+-- Sync ids no banco
+SELECT setval('auth_user_id_seq', COALESCE((SELECT MAX(id)+1 FROM auth_user), 1), false);
+SELECT setval('sati_person_id_seq', COALESCE((SELECT MAX(id)+1 FROM sati_person), 1), false);
+SELECT setval('sati_edition_id_seq', COALESCE((SELECT MAX(id)+1 FROM sati_edition), 1), false);
+SELECT setval('sati_category_id_seq', COALESCE((SELECT MAX(id)+1 FROM sati_category), 1), false);
+SELECT setval('sati_event_id_seq', COALESCE((SELECT MAX(id)+1 FROM sati_event), 1), false);
+SELECT setval('sati_occurrence_id_seq', COALESCE((SELECT MAX(id)+1 FROM sati_occurrence), 1), false);
+SELECT setval('sati_session_id_seq', COALESCE((SELECT MAX(id)+1 FROM sati_session), 1), false);
+
+
+
+
+
+
