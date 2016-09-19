@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render, render_to_response
 from django.contrib.auth.decorators import login_required
 # from django.template import RequestContext
@@ -8,6 +9,7 @@ from django.template import loader
 
 import json
 
+
 @login_required
 def index(request):
     # Construct a dictionary to pass to the template engine as its context.
@@ -17,14 +19,27 @@ def index(request):
     }
     return render(request, 'dashboard/index.html', context=context_dict)
 
+
 @login_required()
 def edition(request):
     if request.user.is_staff:
         context_dict = {
-            'title': "Dashboard / Edicao",
-            'type': "Cadastro Edicao"
+            'title': "Dashboard / Edição",
+            'type': "Cadastro Edição"
         }
         return render(request, 'dashboard/edition.html', context=context_dict)
+    else:
+        return HttpResponseForbidden()
+
+
+@login_required()
+def participant(request):
+    if request.user.is_staff:
+        context_dict = {
+            'title': "Dashboard / Participante",
+            'type': "Manutenção de Participantes"
+        }
+        return render(request, 'dashboard/participant.html', context=context_dict)
     else:
         return HttpResponseForbidden()
 

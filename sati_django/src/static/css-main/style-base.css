@@ -14,6 +14,11 @@
   border: 1px solid hsl(131, 68%, 55%);
 }
 
+.m-t-n60 {
+    margin-top: -60px;
+    position: relative;
+}
+
 
 .img-responsive {
     display: block;

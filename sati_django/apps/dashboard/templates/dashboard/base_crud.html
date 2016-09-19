@@ -6,8 +6,7 @@
 {% block body_content %}
 
 
-    <section ng-app="crud-app">
-
+    <section>
 
         <div class="mdl-color--blue-grey ml-header relative clear">
             <div class="p-20">
@@ -20,36 +19,17 @@
 
         <div class="mdl-grid mdl-grid--no-spacing ">
 
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-grid">
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--4-col-phone mdl-grid">
                 <div class="mdl-color-text--blue-grey-400 content-description mdl-cell mdl-cell--12-col">
                     {% block description %} {% endblock %}
                 </div>
             </div>
 
 
-            <div class="mdl-cell mdl-cell--9-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-grid">
+            <div class="mdl-cell mdl-cell--9-col mdl-cell--5-col-tablet mdl-cell--4-col-phone mdl-grid">
 
-                <div ng-controller="AppCtrl" layout="column" ng-cloak>
-                    <md-toolbar class="search-filter-header">
-                        <div class="md-toolbar-tools">
-                            <h2 class="display-3 search-filter-title md-flex">{{ type }}</h2>
-                        </div>
-                    </md-toolbar>
+                {% block main_content %} {% endblock %}
 
-                    <md-content flex layout-padding>
-
-                        {% block search_filter %} {% endblock %}
-
-{#                        <p>Lorem ipsum dolor sit amet, ne quod novum mei. Sea omnium invenire mediocrem at,#}
-{#                            in lobortis conclusionemque nam. Ne deleniti appetere reprimique pro, inani labitur disputationi te sed. At vix sale omnesque, id pro labitur reformidans accommodare, cum labores honestatis eu. Nec quem lucilius in, eam praesent reformidans no. Sed laudem aliquam ne.</p>#}
-                    </md-content>
-                </div>
-
-
-
-                <div class="m mdl-cell--12-col mdl-grid  ">
-
-                </div>
             </div>
 
 {#            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-grid ">#}

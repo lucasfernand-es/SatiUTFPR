@@ -1,0 +1,66 @@
+{% extends 'dashboard/base_crud.html' %}
+
+
+
+{% block title %} Dashboard / Participantes {% endblock %}
+
+{% block description %}
+
+    <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">face</i> Participante
+
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="mdl-grid--no-spacing mdl-cell--12-col m-t-n60" ng-controller="ParticipantCtrl as participantCtrl">
+
+        <md-toolbar class="md-theme-light vert-align mdl-grid mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="md-display-1 mdl-cell--12-col mdl-typography--text-center">
+                <span>Lista de Participantes</span>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </md-toolbar>
+
+        <md-content class="mdl-shadow--3dp mdl-grid" flex layout-padding>
+
+
+
+                <div class="mdl-cell--12-col mdl-grid mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+
+                    <div class="mdl-cell--10-col mdl-grid mdl-grid">
+
+                        <p ng-bind="eventDetail.event.description"></p>
+
+                    </div>
+
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+
+                <div class="divider mdl-cell--12-col mdl-color-text--grey-800"><span></span><span ng-bind="eventDetail.EventLabel.open_sessions()"></span><span></span></div>
+
+                <div class="mdl-grid mdl-cell--12-col session-detail">
+                    <session-detail
+                            class="mdl-grid mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dpn"
+                            ng-repeat="session in eventDetail.event.sessions">
+                    </session-detail>
+
+                    <noresult-message
+                        class="mdl-grid mdl-cell mdl-cell--12-col"
+                        ng-hide="eventDetail.event.sessions.length"
+                        ng-init="message = EventLabel.no_results_session()">
+                    </noresult-message>
+                </div>
+
+                </md-content>
+
+
+    </div>
+
+
+
+
+
+
+{% endblock %}

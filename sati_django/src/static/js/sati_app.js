@@ -3,7 +3,7 @@
 
     var app = angular.module('sati', [ 'crud-factory', 'sati-factory', 'sati-directive',
                                         // public
-                                        'event-controller', 'signup-controller',
+                                        'event-controller', 'signup-controller', 'participant-controller',
                                         // Addon
                                         'ui.utils.masks',
                                         // essencials
