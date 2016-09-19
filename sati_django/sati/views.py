@@ -14,7 +14,10 @@ class EditionList(generics.ListCreateAPIView):
     queryset = Edition.objects.all()
     serializer_class = EditionSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
     ]
 
 
@@ -23,7 +26,10 @@ class EditionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Edition.objects.all()
     serializer_class = EditionSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
     ]
 
 
@@ -32,7 +38,10 @@ class CategoryList(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
     ]
 
 
@@ -41,7 +50,10 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
     ]
 
 
@@ -95,7 +107,7 @@ class PersonDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
     ]
     authentication_classes = [
         local_authentication.SuperUserSessionAuthentication,
@@ -107,7 +119,10 @@ class SessionList(generics.ListCreateAPIView):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
     ]
 
 
@@ -116,7 +131,10 @@ class SessionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
     ]
 
 
@@ -125,7 +143,10 @@ class RoomList(generics.ListCreateAPIView):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
     ]
 
 
@@ -134,16 +155,21 @@ class RoomDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
     ]
-
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
+    ]
 
 class OccurrenceList(generics.ListCreateAPIView):
     model = Occurrence
     queryset = Occurrence.objects.all()
     serializer_class = OccurrenceSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
     ]
 
 
@@ -152,5 +178,8 @@ class OccurrenceDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Occurrence.objects.all()
     serializer_class = OccurrenceSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
     ]

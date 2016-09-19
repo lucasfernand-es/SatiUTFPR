@@ -43,10 +43,10 @@ values
   (9, 'Robert Janssen', 'senha', 'UTFPR', 123566, 11111 ,'123333@email.com', true, 1),
   (10, 'Bruno Campagnolo', 'senha', 'UTFPR', 1223166, 11111 ,'1112333@email.com', true, 1),
   (11, 'Ronald Wolochn', 'senha', 'UTFPR', 12231888, 11111 ,'188333@email.com', true, 1),
-  (12, 'Malcon', 'senha', 'UTFPR', 12231888, 11111 ,'1883323@email.com', true, 1),
-  (13, 'Rafael Althaus', 'senha', 'UTFPR', 1224441888, 11111 ,'18844333@email.com', true, 1),
-  (14, 'Rafael Althaus', 'senha', 'UTFPR', 1224441888, 11111 ,'1884444333@email.com', true, 1),
-  (15, 'Sandro Alex', 'senha', 'UTFPR', 12244141888, 11111 ,'18855544333@email.com', true, 1);
+  (12, 'Malcon', 'senha', 'UTFPR', 122318848, 11111 ,'1883323@email.com', true, 1),
+  (13, 'Rafael Althaus', 'senha', 'UTFPR', 12324441888, 11111 ,'18844333@email.com', true, 1),
+  (14, 'Rafael Althaus', 'senha', 'UTFPR', 122164441888, 11111 ,'1884444333@email.com', true, 1),
+  (15, 'Sandro Alex', 'senha', 'UTFPR', 1224414145888, 11111 ,'18855544333@email.com', true, 1);
 
 -- INSERT INTO AUTH_USER(password, username, is_staff, is_active, email, first_name, last_name,is_superuser, date_joined)
 -- VALUES
