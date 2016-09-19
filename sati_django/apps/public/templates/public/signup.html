@@ -21,39 +21,26 @@
             <md-content class="mdl-shadow--3dp mdl-grid" flex layout-padding>
                 <!--div class="mdl-layout-spacer"></div-->
 
-                <div ng-show="signupCtrl.errors.length"
-                     class="mdl-grid mdl-cell mdl-cell--12-col mdl-shadow--3dp error">
-                    <div class="mdl-typography--text-center mdl-cell--12-col mdl-typography--title">
-                        <i class="material-icons vert-align">report_problem</i>
-                        <label class="vert-align" ng-bind="CRUDLabel.label_insert_error()"></label>
-                    </div>
-
-                    <ul class="mdl-list mdl-grid--no-spacing">
-                        <li class="mdl-list__item" ng-repeat="error in signupCtrl.errors">
-                            <i class="material-icons mdl-list__item-icon mdl-color-text--red-600">priority_high</i>
-                            <span class="mdl-list__item-primary-content mdl-color-text--red-600" ng-bind="error.name + ' : &nbsp;&nbsp;' + error.message">
-                            </span>
-                        </li>
-                    </ul>
-                </div>
+                <error-response messages="signupCtrl.errors" ng-show="signupCtrl.errors.length" class="mdl-cell mdl-cell--12-col mdl-grid"></error-response>
+                <success-response messages="signupCtrl.success" ng-show="signupCtrl.success.length" class="mdl-cell mdl-cell--12-col mdl-grid"></success-response>
 
                 <div class="mdl-cell mdl-cell--12-col mdl-grid">
                     <md-button
                             aria-label="CRUDLabel.label_clear()"
-                            ng-click="isNewParticipant = true"
+                            ng-click="isNewParticipant = true; clear()"
                             ng-bind="SignupLabel.label_new_enroll()"
                             class="md-raised md-primary md-hue-1 mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
                     </md-button>
 
                     <div class="mdl-layout-spacer"></div>
-                    <md-button ng-click="isNewParticipant = false"
+                    <md-button ng-click="isNewParticipant = false;"
                                aria-label="Add"
                                class="md-raised md-primary md-hue-1 mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet mdl-cell--4-col-phone"
                                ng-bind="SignupLabel.label_has_registry()">
                     </md-button>
                 </div>
 
-                <form name="signup_form" class="mdl-cell mdl-cell--12-col mdl-grid" novalidade ng-submit="signup_form.$valid">
+                <form name="signup_form" class="mdl-cell mdl-cell--12-col mdl-grid" novalidade ng-submit="signup_form.$valid" ng-hide="signupCtrl.success.length">
 
                     <md-input-container class="mdl-cell mdl-cell--12-col" ng-show="isNewParticipant">
                         <label ng-bind="CRUDLabel.label_person_full_name()"></label>
@@ -127,21 +114,23 @@
                     </md-input-container>
 
                     <div class="mdl-cell mdl-cell--12-col mdl-grid" ng-hide="isNewParticipant">
-                    <div class="mdl-layout-spacer"></div>
+                        <div class="mdl-layout-spacer"></div>
 
-                    <md-button aria-label="Add"
-                               class="md-raised md-primary mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone"
-                               ng-bind="SignupLabel.label_load_information()">
-                    </md-button>
+                        <md-button aria-label="SignupLabel.label_load_information()"
+                                   ng-click="loadParticipantInfo()"
+                                   ng-disabled=" signup_form.personEmail.$error.email || signup_form.personEmail.$error.required || signup_form.personPassword.$error.required "
+                                   class="md-raised md-primary mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone"
+                                   ng-bind="SignupLabel.label_load_information()">
+                        </md-button>
 
-                    <div class="mdl-layout-spacer"></div>
+                        <div class="mdl-layout-spacer"></div>
 
                     </div>
 
                     {[{ signupCtrl.signup_form.person.sessions }]}
 
 
-                    <div class="mdl-cell mdl-cell--12-col mdl-grid checkboxdemoSyncing">
+                    <div class="mdl-cell mdl-cell--12-col mdl-grid checkboxdemoSyncing" ng-show="signupCtrl.sessions.length">
                         <div flex="100" layout="column">
                             <div>
                                 <fieldset class="standard">
@@ -149,7 +138,7 @@
 
                                     <md-input-container class="mdl-cell mdl-cell--12-col">
                                         <label ng-bind="CRUDLabel.filter_label_event_name()"></label>
-                                        <input ng-model="search.event_name">
+                                        <input ng-model="search.event_name" id="filter_event" name="filter_event">
                                     </md-input-container>
 
                                     <md-virtual-repeat-container id="vertical-container">

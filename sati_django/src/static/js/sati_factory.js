@@ -40,7 +40,7 @@
 
     });
 
-    app.factory('Addons', function ($log, ErrorLabel) {
+    app.factory('Addons', function ($log, ConvertFieldLabel) {
         var Addon = {
             toggle : function (item, list) {
                 var idx = list.indexOf(item);
@@ -54,21 +54,20 @@
             exists : function (item, list) {
                     return list.indexOf(item) > -1;
             },
-            convertErrorFields : function (errors) {
-                $log.log(errors);
-                var newErrors = [];
+            convertFields : function (items) {
+                var newItems = [];
 
-                angular.forEach(errors, function (error, key) {
-                    var new_error = {};
-                    new_error.name = ErrorLabel(key);
-                    new_error.message = error;
+                angular.forEach(items, function (value, key) {
+                    var new_item = {};
+                    new_item.name = ConvertFieldLabel(key);
+                    new_item.message = value;
 
-                    newErrors.push(new_error);
+                    newItems.push(new_item);
                 });
 
 
 
-                return newErrors;
+                return newItems;
             },
 
 

@@ -146,6 +146,7 @@ def user_signup(request):
 
             if person_response is not None:
                 errors_array = []
+                sessions_array = []
                 for id_session in person['sessions']:
                     participant = Participant()
                     participant.person = person_response
@@ -154,11 +155,12 @@ def user_signup(request):
                     participant.status = True
                     try:
                         participant.save()
+                        sessions_array.append({'event_name': participant.session.event.name})
                     except Error:
-                        errors_array.append('error_session_' + str(id_session))
+                        errors_array.append('error_session_event_' + participant.session.event.name)
                 if len(errors_array):
                     return JsonResponse({'errors': errors_array}, status=status.HTTP_400_BAD_REQUEST)
-                return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+                return JsonResponse({'person': serializer.data, 'sessions': sessions_array}, status=status.HTTP_201_CREATED)
         else:
             serializer.errors.sessions = 'Vários erros'
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

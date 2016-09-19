@@ -24,6 +24,51 @@
         };
     });
 
+    app.directive('errorResponse', function() {
+        return {
+            restrict: 'E',
+            scope : {
+                messages : '='
+            },
+            transclude: true,
+            templateUrl: '/static/templates/sati/crud_response.html',
+            controller: function ($scope, $log, CRUDLabel) {
+                var responseCtrl = this;
+                //responseCtrl.messages = $scope.messages;
+
+                responseCtrl.style = 'error';
+                responseCtrl.text_style = 'mdl-color-text--red-600';
+                responseCtrl.title_icon = 'report_problem';
+                responseCtrl.item_icon =  'priority_high';
+                responseCtrl.title = CRUDLabel.label_insert_error();
+
+            },
+            controllerAs: 'responseCtrl',
+        };
+    });
+
+    app.directive('successResponse', function() {
+        return {
+            restrict: 'E',
+            scope : {
+                messages : '='
+            },
+            transclude: true,
+            templateUrl: '/static/templates/sati/crud_response.html',
+            controller: function ($scope, $log, CRUDLabel) {
+                var responseCtrl = this;
+
+                responseCtrl.style = 'success';
+                responseCtrl.text_style = 'mdl-color-text--green-500';
+                responseCtrl.title_icon = 'done_all';
+                responseCtrl.item_icon =  'add_box';
+                responseCtrl.title = CRUDLabel.label_insert_success();
+
+            },
+            controllerAs: 'responseCtrl',
+        };
+    });
+
     var compareTo = function() {
         return {
             require: "ngModel",

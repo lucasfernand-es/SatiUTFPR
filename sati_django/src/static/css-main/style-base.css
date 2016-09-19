@@ -4,8 +4,16 @@
   background-color: hsla(0, 15%, 97%, 1);*/
   color: hsla(9, 87%, 46%, 1);
   border: 1px solid hsla(9, 87%, 46%, 1);
-  background-color: hsla(9, 15%, 97%, 1);
 }
+
+.success {
+  /*color: hsla(0, 95%, 35%, 1);
+  border: 1px solid hsla(0, 95%, 35%, 1);
+  background-color: hsla(0, 15%, 97%, 1);*/
+  color: hsl(131, 68%, 55%);
+  border: 1px solid hsl(131, 68%, 55%);
+}
+
 
 .img-responsive {
     display: block;

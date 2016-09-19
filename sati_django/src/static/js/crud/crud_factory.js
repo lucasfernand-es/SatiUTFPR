@@ -105,8 +105,8 @@
 
     });
 
-    app.factory('ErrorLabel', function (CRUDLabel) {
-        var ErrorLabel = function (key) {
+    app.factory('ConvertFieldLabel', function (CRUDLabel) {
+        var ConvertFieldLabel = function (key) {
             switch (key) {
                 case 'name' : return CRUDLabel.error_name();
                 case 'password' : return CRUDLabel.label_password();
@@ -125,7 +125,7 @@
 
         };
 
-        return ErrorLabel;
+        return ConvertFieldLabel;
     });
 
 
@@ -140,7 +140,10 @@
 
             // main
             label_insert_error : function () {
-              return "O(s) seguinte(s) foram detectad(os):"
+              return "Erro(s) detectado(s):"
+            },
+            label_insert_success : function () {
+              return "Sucesso!"
             },
 
             // error
@@ -192,6 +195,17 @@
             },
             label_institution : function () {
                 return 'Instituição';
+            },
+
+            // event
+            label_event : function () {
+                return 'Evento';
+            },
+            label_participation : function () {
+                return 'Participação';
+            },
+            label_person : function () {
+                return 'Participante';
             },
 
             // Forms

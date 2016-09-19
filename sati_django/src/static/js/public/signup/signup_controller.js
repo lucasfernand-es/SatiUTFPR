@@ -53,6 +53,7 @@
 
         $scope.isNewParticipant = true;
 
+
         signupCtrl.loadSessions = function () {
 
             promise = ModelUtils.get_request( Urls.get_all_sessions() );
@@ -70,10 +71,19 @@
 
         };
 
-        $scope.create = function () {
-            signupCtrl.errors = {};
+        //noinspection JSAnnotator
+        $scope.loadParticipantInfo = function () {
 
-            signupCtrl.signup_form.person.name = 'nome';
+
+
+        };
+
+        $scope.create = function () {
+
+            signupCtrl.errors = [];
+            signupCtrl.success = [];
+
+            signupCtrl.signup_form.person.name = 'Lucas Emanuel Nome Grande';
             signupCtrl.signup_form.person.password = 'nome';
             signupCtrl.signup_form.person.confirm_password = 'nome';
             signupCtrl.signup_form.person.ra = 1371800;
@@ -81,11 +91,33 @@
 
             ModelUtils.post_request(Urls.add_new_participant(), signupCtrl.signup_form.person, $scope.errors)
             .then(function (response) {
-                $log.log('de volta');
-                $log.log(response);
+                $log.log(response.data);
+
+                var person = response.data.person;
+
+                signupCtrl.success.push({
+                    'name': CRUDLabel.label_person(), 'message' : person.name + ' - ' +
+                    CRUDLabel.label_cpf() + ': '+ person.cpf + ' - ' +
+                    CRUDLabel.label_email() + ': '+ person.email });
+
+                var sessions = response.data.sessions;
+
+                angular.forEach(sessions, function (session) {
+                    var participation = {};
+                    participation.name = CRUDLabel.label_participation();
+                    participation.message = session.event_name;
+
+                    signupCtrl.success.push(participation);
+                });
+
+                $log.log(signupCtrl.success);
+
+                $scope.anchorTop();
+
             }, function () {
-                $log.log($scope.convertErrorFields($scope.errors));
-                signupCtrl.errors = $scope.convertErrorFields($scope.errors);
+                signupCtrl.errors = $scope.convertFields($scope.errors);
+                $log.log('errors');
+                $log.log(signupCtrl.errors);
                 $scope.anchorTop();
                 // the element you wish to scroll to.
             });
@@ -96,15 +128,12 @@
             $anchorScroll();
         };
 
-        $scope.test = function () {
-            $log.log('lo');
-        };
-
-        $scope.convertErrorFields = Addons.convertErrorFields;
+        $scope.convertFields = Addons.convertFields;
 
         $scope.clear = function () {
             $scope.search = {};
-            signupCtrl.errors = {};
+            signupCtrl.errors = [];
+            signupCtrl.success = [];
             signupCtrl.signup_form.person = {};
             signupCtrl.signup_form.person.email = '';
             signupCtrl.signup_form.person.cpf = '';
