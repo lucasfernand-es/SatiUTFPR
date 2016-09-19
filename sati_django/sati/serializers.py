@@ -231,7 +231,7 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
         instance.password = validated_data.get('password', instance.password)
         instance.institution = validated_data.get('institution', instance.institution)
         instance.cpf = validated_data.get('cpf', instance.cpf)
-        instance.academic_registry = validated_data.get('academic_registry', instance.cpf)
+        instance.academic_registry = validated_data.get('academic_registry', instance.academic_registry)
         instance.role = validated_data.get('role', instance.role)
         instance.is_active = validated_data.get('is_active', instance.is_active)
         instance.save()
@@ -267,3 +267,24 @@ class RoomSerializer(serializers.HyperlinkedModelSerializer):
 
         return instance
 
+
+class ParticipantSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    session = serializers.PrimaryKeyRelatedField(queryset=Session.objects.all())
+    person = serializers.PrimaryKeyRelatedField(queryset=Person.objects.all())
+    is_confirmed = serializers.BooleanField()
+    status = serializers.BooleanField()
+
+    class Meta:
+        model = Participant
+        fields = ('id', 'session', 'person', 'is_confirmed', 'status')
+
+    def create(self, validated_data):
+        return Room.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.session = validated_data.get('session', instance.session)
+        instance.person = validated_data.get('person', instance.person)
+        instance.is_confirmed = validated_data.get('is_confirmed', instance.is_confirmed)
+        instance.status = validated_data.get('status', instance.status)
+        return instance
