@@ -28,22 +28,23 @@ def user_session(request):
 
 
 def user_login(request):
+    user = {"email": request.POST.get('email'), 'password': request.POST.get('password')}
     # required_login = json.loads(request.body)
+    print user
+    print 'user'
 
-    user = user_authenticate('123@email.com', '123')  # (required_login['email'], required_login['password'])
+    user = user_authenticate(user['email'], user['password'])  # (required_login['email'], required_login['password'])
 
     if user is not None:
         login(request, user)
-
-        print 'oi passou'
-
         return HttpResponseRedirect(
             request,
-            'dashboard/index.html'
+            '/dashboard/'
         )
     else:
+        oops = 'Ops! Ocorreu um erro inesperado. Tente novamente.'
         return HttpResponseRedirect(
-            '/'
+            '/login/'
         )
 
 
