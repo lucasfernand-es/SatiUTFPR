@@ -11,7 +11,7 @@ from django.db import Error
 import json
 
 from sati.models import Person, Participant, Session
-from sati_django.sati.serializers import *
+from sati.serializers import *
 
 
 def user_authenticate(username, password):
@@ -71,6 +71,7 @@ def user_signup(request):
         serializer = PersonSerializer(data=person)
 
         if serializer.is_valid():
+            print "SIM É VALIDO"
             try:
                 person_response = serializer.save()
             except:

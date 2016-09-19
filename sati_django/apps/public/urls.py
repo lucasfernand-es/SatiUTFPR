@@ -1,7 +1,6 @@
 from django.conf.urls import url
 from sati.ViewController import user_session_controller as session, session_controller
 from sati.ViewController import event_controller, session_controller
-from sati_django.apps.dashboard import views as dashboardviews
 
 from . import views
 
