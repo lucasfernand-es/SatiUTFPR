@@ -245,7 +245,6 @@
 
                     <div class="mdl-layout-spacer"></div>
                     <md-button ng-click="create()"
-                               ng-disabled="!signup_form.$valid"
                                aria-label="Add"
                                class="md-raised md-primary mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone"
                                ng-bind="CRUDLabel.label_add_item()">
@@ -254,7 +253,8 @@
                 </form>
 
 
-                <!--div class="mdl-layout-spacer">   </div-->
+                <!--div class="mdl-layout-spacer">
+                               ng-disabled="!signup_form.$valid" </div-->
 
             </md-content>
         </div>

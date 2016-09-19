@@ -72,9 +72,17 @@
 
         $scope.create = function () {
             signupCtrl.errors = {};
+
+            signupCtrl.signup_form.person.name = 'nome';
+            signupCtrl.signup_form.person.password = 'nome';
+            signupCtrl.signup_form.person.confirm_password = 'nome';
+            signupCtrl.signup_form.person.ra = 1371800;
+
+
             ModelUtils.post_request(Urls.add_new_participant(), signupCtrl.signup_form.person, $scope.errors)
-            .then(function () {
-                $log.log($scope);
+            .then(function (response) {
+                $log.log('de volta');
+                $log.log(response);
             }, function () {
                 $log.log($scope.convertErrorFields($scope.errors));
                 signupCtrl.errors = $scope.convertErrorFields($scope.errors);

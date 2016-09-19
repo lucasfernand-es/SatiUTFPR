@@ -53,12 +53,13 @@
             },
 
             post_request: function(url, obj, errors) {
-                $log.log(obj);
+                //$log.log(obj);
 
                 return $http.post(url, obj, auth).
                     success(function(response, status, headers, config) {
-                        $log.log('response');
-                        $log.log(response);
+                        //$log.log('response');
+                        //$log.log(response);
+                        return response.data;
                         angular.extend(obj, response);
                     }).
                     error(function(response, status, headers, config) {
@@ -116,6 +117,7 @@
                 case 'role': return CRUDLabel.label_role();
                 case 'institution': return CRUDLabel.label_institution();
                 case 'sessions': return CRUDLabel.label_sessions();
+                case 'errors': return 'Erro(s) Detectado(s): ';
 
                 default: return key;
             };
