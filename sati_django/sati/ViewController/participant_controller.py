@@ -62,7 +62,7 @@ def get_all_participants(request):
             sessions_array.append(create_session_json(session, participants_array))
         events_array.append(create_event_json(event, sessions_array))
 
-    print create_response('events', events_array, False, {})
+    # print create_response('events', events_array, False, {})
     return JsonResponse(create_response('events', events_array, False, {}))
 
 
