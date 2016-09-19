@@ -1,7 +1,7 @@
 from sati.models import Person, Session, Participant, Event
 from django.http import JsonResponse, HttpResponse
 from rest_framework import status
-from sati_django.sati.serializers import *
+from sati.serializers import *
 
 
 def get_all_participants(request):
@@ -12,7 +12,7 @@ def get_all_participants(request):
         sessions = Session.objects.filter(event_id=event.id)
         sessions_array = []
         for session in sessions:
-            participants = Participant.objects.filter(session_id=session.id)
+            participants = Participant.objects.filter(session_id=session.id, status=True)
             participants_array = []
             for participant in participants:
                 participants_array.append(create_participant_json(participant))
@@ -89,42 +89,6 @@ def get_session_available_spots(session_id):
             response = 0
 
     return response
-# def get_all_participants(request):
-#     persons = Person.objects.all()
-#
-#     if persons:
-#         persons_array = []
-#         for person in persons:
-#             participate = Participant.objects.filter(person_id=person.id)
-#             if not len(participate):
-#                 continue
-#             sessions_array = []
-#             for registry in participate:
-#                 session = Session.objects.filter(id=registry.session.id)
-#                 sessions_array.append(create_session_json(session))
-#             participate_json ={
-#                 'sessions': sessions_array
-#             }
-#
-# def create_session_json(session):
-#     return {
-#         'event_id' : session.event_id
-#     }
-#
-# def create_person_dict(person):
-#     return {
-#         'cpf': person.cpf,
-#         'name': person.name,
-#         'academic_registry': person.academic_registry
-#     }
-#
-#
-# def create_json_response(response_key, response_dict, error, error_messages):
-#     return {
-#         response_key : response_dict,
-#         'error': error,
-#         'error_messages': error_messages
-#     }
 
 
 def session_available_spots(session_id):
