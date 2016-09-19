@@ -20,28 +20,48 @@ def get_all_participants(request):
             sessions_array.append(create_session_json(session, participants_array))
         events_array.append(create_event_json(event, sessions_array))
 
+    print create_response('events', events_array, False, {})
     return JsonResponse(create_response('events', events_array, False, {}))
 
 
 def create_response(response_key, response, error, error_messages):
     return{
-        response_key : response,
+        response_key: response,
         'error': error,
         'error_messages': error_messages,
         'status_code' : status.HTTP_100_CONTINUE,
 
     }
 
+
 def create_event_json(event, sessions_array):
     return {
-        'event': EventSerializer(data=event),
+        'event_name': event.name,
+        'event_fee': event.fee,
+        'event_category': event.category.name,
         'sessions': sessions_array,
     }
 
+
 def create_session_json(session, participant_array):
+    occurrences = Occurrence.objects.filter(session_id=session.id)
+    occurrences_array = []
+    for occurrence in occurrences:
+        occurrences_array.append(create_occurrence_json(occurrence))
     return {
-        'session': session,
-        'participants': participant_array
+        'session_instructor': session.instructor.name,
+        'session_spots': session.spots,
+        'session_spots_available': get_session_available_spots(session.id),
+        'has_spots': get_session_available_spots(session.id) > 0,
+        'occurrences': occurrences_array,
+        'participants': participant_array,
+    }
+
+
+def create_occurrence_json(occurrence):
+    return {
+        'begin_date_time': occurrence.begin_date_time,
+        'end_date_time': occurrence.end_date_time
     }
 
 
@@ -53,6 +73,22 @@ def create_participant_json(participant):
         'person_cpf': participant.person.cpf,
         'person_academic_registry': participant.person.academic_registry
     }
+
+
+def get_session_available_spots(session_id):
+    participants = Participant.objects.filter(is_confirmed=True, session_id=session_id)
+    session = Session.objects.get(id=session_id)
+
+    if session:
+        available_spots = session.spots - len(participants)
+        if available_spots > 0:
+            response = available_spots
+        else:
+            response = 0
+    else:
+            response = 0
+
+    return response
 # def get_all_participants(request):
 #     persons = Person.objects.all()
 #
