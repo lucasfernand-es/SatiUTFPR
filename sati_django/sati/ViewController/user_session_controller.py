@@ -64,6 +64,10 @@ def user_signup(request):
         person['is_active'] = True
         person['role'] = 0
 
+        if 'password' in person:
+            if ('confirm_password' not in person) or person['password'] != person['confirm_password']:
+                error = {'confirm_password': 'As senhas informadas devem ser iguas.'}
+                return JsonResponse(error, status=status.HTTP_400_BAD_REQUEST)
         serializer = PersonSerializer(data=person)
 
         if serializer.is_valid():

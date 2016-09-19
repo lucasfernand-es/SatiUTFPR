@@ -109,7 +109,7 @@
             switch (key) {
                 case 'name' : return CRUDLabel.error_name();
                 case 'password' : return CRUDLabel.label_password();
-                case 'confirm_password' : return CRUDLabel.label_password();
+                case 'confirm_password' : return CRUDLabel.label_confirm_password();
                 case 'email' : return CRUDLabel.label_email();
                 case 'academic_registry': return CRUDLabel.label_academic_registry();
                 case 'cpf': return CRUDLabel.label_cpf();

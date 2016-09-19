@@ -69,7 +69,7 @@
         };
 
         $scope.create = function () {
-
+            signupCtrl.errors = {};
             ModelUtils.post_request(Urls.add_new_participant(), signupCtrl.signup_form.person, $scope.errors)
             .then(function () {
                 $log.log($scope);
