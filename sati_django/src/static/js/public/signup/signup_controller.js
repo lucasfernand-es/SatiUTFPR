@@ -124,7 +124,7 @@
 
             ModelUtils.post_request(Urls.get_sessions_user(), send_user, $scope.errors)
             .then(function (response) {
-                $log.log(response.data);
+                $log.log('Xou da Xuxa');
 
                 if(response.data.error) {
                     signupCtrl.errors.push({
@@ -134,7 +134,6 @@
                 else {
                     var sessions = response.data.sessions;
                     var person = response.data.person;
-                    $log.log(person);
                     
                     angular.forEach(sessions, function (session) {
                         $scope.toggle(session.id, $scope.sessions);
@@ -170,7 +169,6 @@
 
             ModelUtils.post_request(Urls.update_participant(), signupCtrl.signup_form.person, $scope.errors)
             .then(function (response) {
-                $log.log(response.data);
 
                 var person = response.data.person;
 
@@ -186,7 +184,7 @@
                     participation.name = CRUDLabel.label_participation();
                     var is_new = '';
                     if(!session.new)
-                        is_new = ' - ' + CRUDLabel.label_confirm();
+                        is_new = ' - ' + Label.label_already_registered();
                     participation.message = session.event_name + is_new;
 
                     signupCtrl.success.push(participation);
@@ -212,7 +210,6 @@
 
             ModelUtils.post_request(Urls.add_new_participant(), signupCtrl.signup_form.person, $scope.errors)
             .then(function (response) {
-                $log.log(response.data);
 
                 var person = response.data.person;
 

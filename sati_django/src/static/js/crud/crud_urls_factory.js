@@ -46,8 +46,17 @@
             get_sessions_user : function () {
                 return '/get_sessions_user/';
             },
+            get_all_participants : function () {
+                return Urls.dashboard() +  'get_all_participants/';
+            },
             update_participant : function () {
                 return '/update_participant/';
+            },
+            confirm_participant : function () {
+                return Urls.dashboard() + 'confirm_participant/';
+            },
+            dashboard :function () {
+                return '/dashboard/'
             },
             // Login
             login : function () {

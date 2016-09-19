@@ -69,9 +69,11 @@ def create_response(response_key, response, error, error_messages):
 
 def create_event_json(event, sessions_array):
     return {
-        'event_name': event.name,
-        'event_fee': event.fee,
-        'event_category': event.category.name,
+        'name': event.name,
+        'fee': event.fee,
+        'id': event.id,
+        'edition_name': event.edition.name,
+        'category_name': event.category.name,
         'sessions': sessions_array,
     }
 
@@ -82,9 +84,9 @@ def create_session_json(session, participant_array):
     for occurrence in occurrences:
         occurrences_array.append(create_occurrence_json(occurrence))
     return {
-        'session_instructor': session.instructor.name,
-        'session_spots': session.spots,
-        'session_spots_available': get_session_available_spots(session.id),
+        'instructor_name': session.instructor.name,
+        'spots': session.spots,
+        'available_spots': get_session_available_spots(session.id),
         'has_spots': get_session_available_spots(session.id) > 0,
         'occurrences': occurrences_array,
         'participants': participant_array,
@@ -94,17 +96,19 @@ def create_session_json(session, participant_array):
 def create_occurrence_json(occurrence):
     return {
         'begin_date_time': occurrence.begin_date_time,
-        'end_date_time': occurrence.end_date_time
+        'end_date_time': occurrence.end_date_time,
+        'room': occurrence.room.name
+
     }
 
 
 def create_participant_json(participant):
     return {
-        'participant_id': participant.id,
-        'participant_is_confirmed': participant.is_confirmed,
-        'person_name': participant.person.name,
-        'person_cpf': participant.person.cpf,
-        'person_academic_registry': participant.person.academic_registry
+        'id': participant.id,
+        'is_confirmed': participant.is_confirmed,
+        'name': participant.person.name,
+        'cpf': participant.person.cpf,
+        'academic_registry': participant.person.academic_registry
     }
 
 

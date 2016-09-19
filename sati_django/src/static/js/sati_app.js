@@ -5,7 +5,7 @@
                                         // public
                                         'event-controller', 'signup-controller', 'participant-controller',
                                         // Addon
-                                        'ui.utils.masks',
+                                        'ui.utils.masks', 'idf.br-filters',
                                         // essencials
                                         'ngSanitize', 'ngResource', 'ngRoute'
                                         ]);

@@ -117,10 +117,10 @@
 
                     <div class="mdl-cell mdl-cell--12-col mdl-grid" ng-hide="isNewParticipant || signupCtrl.has_account">
                         <div class="mdl-layout-spacer"></div>
-<!-- ng-disabled=" signupCtrl.signup_form.personEmail.$error.email || signupCtrl.signup_form.personEmail.$error.required || signupCtrl.signup_form.personPassword.$error.required " -->
 
                         <md-button aria-label="SignupLabel.label_load_information()"
                                    ng-click="loadParticipantInfo()"
+                                   ng-disabled=" signupCtrl.signup_form.personEmail.$error.email || signupCtrl.signup_form.personEmail.$error.required || signupCtrl.signup_form.personPassword.$error.required "
                                    class="md-raised md-primary mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone"
                                    ng-bind="SignupLabel.label_load_information()">
                         </md-button>

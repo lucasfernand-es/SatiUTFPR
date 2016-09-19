@@ -12,8 +12,17 @@
 
 {% block main_content %}
 
+
+
     <div class="mdl-grid--no-spacing mdl-cell--12-col m-t-n60" ng-controller="ParticipantCtrl as participantCtrl">
 
+
+
+    <md-button aria-label="SignupLabel.label_load_information()"
+                       ng-click="participantCtrl.confirmParticipations($event)"
+                       class="md-raised md-primary mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet mdl-cell--3-col-phone"
+                       ng-bind="Label.label_button_confirm_participation()">
+            </md-button>
         <md-toolbar class="md-theme-light vert-align mdl-grid mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="md-display-1 mdl-cell--12-col mdl-typography--text-center">
@@ -24,36 +33,166 @@
 
         <md-content class="mdl-shadow--3dp mdl-grid" flex layout-padding>
 
+            <div class="mdl-cell mdl-cell--12-col mdl-grid checkboxdemoSyncing">
+                <div flex="100" layout="column">
+                    <div class="standard">
+                        <fieldset class="standard">
+                            <legend class="mdl-typography--headline" ng-bind="Label.filters()"></legend>
+
+                            <md-input-container class="mdl-cell mdl-cell--7-col">
+                                <label ng-bind="Label.filter_label_event_name()"></label>
+                                <input ng-model="event.name" ng-model-options="{ debounce: 100 }" id="filter_event" name="filter_event">
+                            </md-input-container>
+
+                            <md-input-container class="mdl-cell mdl-cell--4-col">
+                                <label ng-bind="Label.label_cpf()"></label>
+                                <input ng-model="participant.cpf" ng-model-options="{ debounce: 100 }" id="filter_participant_cpf" name="filter_participant_cpf">
+                            </md-input-container>
+
+                            <md-input-container class="mdl-cell mdl-cell--7-col">
+                                <label ng-bind="Label.filter_label_participant_name()"></label>
+                                <input ng-model="participant.name" ng-model-options="{ debounce: 100 }" id="filter_participant_name" name="filter_participant_name">
+                            </md-input-container>
+
+                            <md-input-container class="mdl-cell mdl-cell--4-col">
+                                <label ng-bind="Label.label_academic_registry()"></label>
+                                <input ng-model="participant.academic_registry" ng-model-options="{ debounce: 100 }" id="filter_participant_academic_registry" name="filter_participant_academic_registry">
+                            </md-input-container>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
 
 
-                <div class="mdl-cell--12-col mdl-grid mdl-grid">
-                    <div class="mdl-layout-spacer"></div>
 
-                    <div class="mdl-cell--10-col mdl-grid mdl-grid">
+            <div class="mdl-grid mdl-cell--12-col">
+            </div>
 
-                        <p ng-bind="eventDetail.event.description"></p>
+            <div class="mdl-grid mdl-shadow--6dp mdl-color-text--blue-grey-500" ng-repeat="event in participantCtrl.events | filter : event">
 
+                <div class="mdl-cell--12-col mdl-grid">
+                    <div class="mdl-grid--no-spacing mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                        <i class="material-icons vert-align" role="presentation">event</i>
+                        <a ng-href="/event/{[{ event.id }]}/" target="_blank"><label class="vert-align" ng-bind="event.name"></label></a>
                     </div>
 
                     <div class="mdl-layout-spacer"></div>
+
+                    <div class="mdl-grid--no-spacing mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                        <i class="material-icons vert-align" role="presentation">label</i>
+                        <label class="vert-align" ng-bind="event.category_name"></label>
+                    </div>
                 </div>
 
-                <div class="divider mdl-cell--12-col mdl-color-text--grey-800"><span></span><span ng-bind="eventDetail.EventLabel.open_sessions()"></span><span></span></div>
+                <div class="mdl-cell--12-col mdl-grid">
+                    <div class="mdl-grid--no-spacing mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <i class="material-icons vert-align" role="presentation">payment</i>
+                        <label class="vert-align" ng-bind="event.fee | currency"></label>
+                    </div>
 
-                <div class="mdl-grid mdl-cell--12-col session-detail">
-                    <session-detail
-                            class="mdl-grid mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dpn"
-                            ng-repeat="session in eventDetail.event.sessions">
-                    </session-detail>
+                    <div class="mdl-layout-spacer"></div>
 
-                    <noresult-message
-                        class="mdl-grid mdl-cell mdl-cell--12-col"
-                        ng-hide="eventDetail.event.sessions.length"
-                        ng-init="message = EventLabel.no_results_session()">
-                    </noresult-message>
+                    <div class="mdl-grid--no-spacing mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <i class="material-icons vert-align" role="presentation">bookmark</i>
+                        <label class="vert-align" ng-bind="event.edition_name"></label>
+                    </div>
                 </div>
 
-                </md-content>
+
+                <div class="divider mdl-cell--12-col mdl-color-text--grey-800"><span></span><span ng-bind="Label.sessions()"></span><span></span></div>
+
+                <div class="mdl-cell--12-col mdl-grid mdl-grid mdl-shadow--4dp" ng-repeat="session in event.sessions" ng-show="session.filterParticipant.length">
+                    <div class="mdl-grid--no-spacing mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                        <i class="material-icons vert-align" role="presentation">assignment_ind</i>
+                        <label class="vert-align" ng-bind="session.instructor_name"></label>
+                    </div>
+
+                    <div class="mdl-layout-spacer"></div>
+
+                    <div class="mdl-grid--no-spacing mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+                        <i class="material-icons vert-align" role="presentation">event_seat</i>
+                        <label class="vert-align" ng-bind="session.has_spots? session.available_spots : Label.no_spot()"></label>
+                    </div>
+
+                    <div class="mdl-cell--12-col mdl-grid">
+                         <div class="mdl-grid--no-spacing mdl-cell--12-col">
+                             <i class="material-icons vert-align" role="presentation">schedule</i>
+                             <label class="vert-align" ng-bind="CRUDLabel.label_occurrence()"></label>
+                         </div>
+
+                        <occurrence-info ng-repeat="occurrence in session.occurrences"
+                                         class="mdl-cell--12-col mdl-grid--no-spacing repeated-occurrence">
+                        </occurrence-info>
+
+
+                        <div class="mdl-layout-spacer"></div>
+
+                        <md-toolbar class="mdl-color--blue-500 mdl-grid--no-spacing mdl-cell--12-col">
+                            <div class="md-toolbar-tools">
+                                <h2 class="md-flex" ng-bind="Label.label_participants()"></h2>
+                            </div>
+                        </md-toolbar>
+
+                        <div class="mdl-layout-spacer"></div>
+
+                        <md-content class="mdl-grid--no-spacing mdl-cell--12-col" ng-show="session.participants.length">
+                            <table class="mdl-data-table mdl-js-data-table mdl-grid--no-spacing mdl-cell--12-col">
+                                <thead>
+                                    <tr>
+                                        <th class="mdl-data-table__cell--non-numeric" ng-bind="Label.label_person_name()"></th>
+                                        <th class="mdl-data-table__cell--non-numeric" ng-bind="Label.label_person_cpf()"></th>
+                                        <th class="mdl-data-table__cell--non-numeric" ng-bind="Label.label_person_academic_registry()"></th>
+                                        <th class="mdl-data-table__cell--non-numeric" ng-bind="Label.label_participant_confirmed()"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="participant in session.filterParticipant = (session.participants | filter : participant)" ng-init="log()">
+                                    <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.name"></td>
+                                    <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.cpf | brCpf"></td>
+                                    <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.academic_registry"></td>
+                                    <td class="mdl-data-table__cell--non-numeric">
+                                        <md-switch class="md-primary"
+                                                   md-no-ink
+                                                   aria-label="Label.label_participant_confirmed()"
+                                                   ng-model="participant.is_confirmed"
+                                                   ng-change="participantCtrl.addModifiedParticipant(participant, event)">
+                                            <label
+                                                   ng-class="{'mdl-color-text--red-500': !participant.is_confirmed, 'mdl-color-text--green-500': participant.is_confirmed}"
+                                                   ng-bind="participant.is_confirmed? Label.label_participant_is_confimed_true() : Label.label_participant_is_confimed_false() ">
+                                            </label>
+                                        </md-switch>
+                                    </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                        </md-content>
+
+                        <div class="mdl-layout-spacer"></div>
+                    </div>
+
+                </div>
+
+                <div class="mdl-layout-spacer"></div>
+
+                <div class="mdl-cell--12-col mdl-grid">
+                    <div class="mdl-layout-spacer"></div>
+                    <md-button aria-label="SignupLabel.label_load_information()"
+                               ng-click="participantCtrl.confirmParticipations($event)"
+                               class="md-raised md-primary mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet mdl-cell--3-col-phone"
+                               ng-bind="Label.label_button_confirm_participation()">
+                    </md-button>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+
+                <!--a class="mdl-typography--font-light" href="#top">
+                    <span ng-bind="Label.back_top()"></span>
+                    <i class="material-icons">expand_less</i>
+                </a-->
+
+
+            </div>
+        </md-content>
 
 
     </div>

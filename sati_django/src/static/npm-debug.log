@@ -1,0 +1,411 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/6.4.0/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'angular-br-filters' ]
+2 info using npm@3.10.3
+3 info using node@v6.4.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData angular-br-filters
+8 silly fetchNamedPackageData angular-br-filters
+9 silly mapToRegistry name angular-br-filters
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'angular-br-filters',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'angular-br-filters',
+12 silly mapToRegistry   name: 'angular-br-filters',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/angular-br-filters
+14 verbose request uri https://registry.npmjs.org/angular-br-filters
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 4:01:17 PM
+17 verbose request id 6566c5b78ac4e11c
+18 verbose etag "ECBM86TAYKWCT9WDMADVDTHCI"
+19 http request GET https://registry.npmjs.org/angular-br-filters
+20 http 304 https://registry.npmjs.org/angular-br-filters
+21 verbose headers { date: 'Mon, 19 Sep 2016 19:01:17 GMT',
+21 verbose headers   via: '1.1 varnish',
+21 verbose headers   'cache-control': 'max-age=300',
+21 verbose headers   etag: '"ECBM86TAYKWCT9WDMADVDTHCI"',
+21 verbose headers   age: '0',
+21 verbose headers   connection: 'keep-alive',
+21 verbose headers   'x-served-by': 'cache-gru7126-GRU',
+21 verbose headers   'x-cache': 'MISS',
+21 verbose headers   'x-cache-hits': '0',
+21 verbose headers   'x-timer': 'S1474311677.153186,VS0,VE211',
+21 verbose headers   vary: 'Accept-Encoding' }
+22 silly get cb [ 304,
+22 silly get   { date: 'Mon, 19 Sep 2016 19:01:17 GMT',
+22 silly get     via: '1.1 varnish',
+22 silly get     'cache-control': 'max-age=300',
+22 silly get     etag: '"ECBM86TAYKWCT9WDMADVDTHCI"',
+22 silly get     age: '0',
+22 silly get     connection: 'keep-alive',
+22 silly get     'x-served-by': 'cache-gru7126-GRU',
+22 silly get     'x-cache': 'MISS',
+22 silly get     'x-cache-hits': '0',
+22 silly get     'x-timer': 'S1474311677.153186,VS0,VE211',
+22 silly get     vary: 'Accept-Encoding' } ]
+23 verbose etag https://registry.npmjs.org/angular-br-filters from cache
+24 verbose get saving angular-br-filters to /Users/lfernandes/.npm/registry.npmjs.org/angular-br-filters/.cache.json
+25 verbose correctMkdir /Users/lfernandes/.npm correctMkdir not in flight; initializing
+26 silly install normalizeTree
+27 silly loadCurrentTree Finishing
+28 silly loadIdealTree Starting
+29 silly install loadIdealTree
+30 silly cloneCurrentTree Starting
+31 silly install cloneCurrentTreeToIdealTree
+32 silly cloneCurrentTree Finishing
+33 silly loadShrinkwrap Starting
+34 silly install loadShrinkwrap
+35 silly loadShrinkwrap Finishing
+36 silly loadAllDepsIntoIdealTree Starting
+37 silly install loadAllDepsIntoIdealTree
+38 silly resolveWithNewModule angular-br-filters@0.6.0 checking installable status
+39 silly cache add args [ 'angular-br-filters', null ]
+40 verbose cache add spec angular-br-filters
+41 silly cache add parsed spec Result {
+41 silly cache add   raw: 'angular-br-filters',
+41 silly cache add   scope: null,
+41 silly cache add   escapedName: 'angular-br-filters',
+41 silly cache add   name: 'angular-br-filters',
+41 silly cache add   rawSpec: '',
+41 silly cache add   spec: 'latest',
+41 silly cache add   type: 'tag' }
+42 silly addNamed angular-br-filters@latest
+43 verbose addNamed "latest" is being treated as a dist-tag for angular-br-filters
+44 info addNameTag [ 'angular-br-filters', 'latest' ]
+45 silly mapToRegistry name angular-br-filters
+46 silly mapToRegistry using default registry
+47 silly mapToRegistry registry https://registry.npmjs.org/
+48 silly mapToRegistry data Result {
+48 silly mapToRegistry   raw: 'angular-br-filters',
+48 silly mapToRegistry   scope: null,
+48 silly mapToRegistry   escapedName: 'angular-br-filters',
+48 silly mapToRegistry   name: 'angular-br-filters',
+48 silly mapToRegistry   rawSpec: '',
+48 silly mapToRegistry   spec: 'latest',
+48 silly mapToRegistry   type: 'tag' }
+49 silly mapToRegistry uri https://registry.npmjs.org/angular-br-filters
+50 verbose addNameTag registry:https://registry.npmjs.org/angular-br-filters not in flight; fetching
+51 verbose get https://registry.npmjs.org/angular-br-filters not expired, no request
+52 silly addNameTag next cb for angular-br-filters with tag latest
+53 silly addNamed angular-br-filters@0.6.0
+54 verbose addNamed "0.6.0" is a plain semver version for angular-br-filters
+55 silly cache afterAdd angular-br-filters@0.6.0
+56 verbose afterAdd /Users/lfernandes/.npm/angular-br-filters/0.6.0/package/package.json not in flight; writing
+57 verbose correctMkdir /Users/lfernandes/.npm correctMkdir not in flight; initializing
+58 verbose afterAdd /Users/lfernandes/.npm/angular-br-filters/0.6.0/package/package.json written
+59 silly fetchNamedPackageData br-masks
+60 silly mapToRegistry name br-masks
+61 silly mapToRegistry using default registry
+62 silly mapToRegistry registry https://registry.npmjs.org/
+63 silly mapToRegistry data Result {
+63 silly mapToRegistry   raw: 'br-masks',
+63 silly mapToRegistry   scope: null,
+63 silly mapToRegistry   escapedName: 'br-masks',
+63 silly mapToRegistry   name: 'br-masks',
+63 silly mapToRegistry   rawSpec: '',
+63 silly mapToRegistry   spec: 'latest',
+63 silly mapToRegistry   type: 'tag' }
+64 silly mapToRegistry uri https://registry.npmjs.org/br-masks
+65 verbose request uri https://registry.npmjs.org/br-masks
+66 verbose request no auth needed
+67 info attempt registry request try #1 at 4:01:17 PM
+68 verbose etag "BFLADJ79Q0U5FYTBA30XP9EF1"
+69 http request GET https://registry.npmjs.org/br-masks
+70 http 304 https://registry.npmjs.org/br-masks
+71 verbose headers { date: 'Mon, 19 Sep 2016 19:01:17 GMT',
+71 verbose headers   via: '1.1 varnish',
+71 verbose headers   'cache-control': 'max-age=300',
+71 verbose headers   etag: '"BFLADJ79Q0U5FYTBA30XP9EF1"',
+71 verbose headers   age: '0',
+71 verbose headers   connection: 'keep-alive',
+71 verbose headers   'x-served-by': 'cache-gru7126-GRU',
+71 verbose headers   'x-cache': 'MISS',
+71 verbose headers   'x-cache-hits': '0',
+71 verbose headers   'x-timer': 'S1474311677.464935,VS0,VE202',
+71 verbose headers   vary: 'Accept-Encoding' }
+72 silly get cb [ 304,
+72 silly get   { date: 'Mon, 19 Sep 2016 19:01:17 GMT',
+72 silly get     via: '1.1 varnish',
+72 silly get     'cache-control': 'max-age=300',
+72 silly get     etag: '"BFLADJ79Q0U5FYTBA30XP9EF1"',
+72 silly get     age: '0',
+72 silly get     connection: 'keep-alive',
+72 silly get     'x-served-by': 'cache-gru7126-GRU',
+72 silly get     'x-cache': 'MISS',
+72 silly get     'x-cache-hits': '0',
+72 silly get     'x-timer': 'S1474311677.464935,VS0,VE202',
+72 silly get     vary: 'Accept-Encoding' } ]
+73 verbose etag https://registry.npmjs.org/br-masks from cache
+74 verbose get saving br-masks to /Users/lfernandes/.npm/registry.npmjs.org/br-masks/.cache.json
+75 verbose correctMkdir /Users/lfernandes/.npm correctMkdir not in flight; initializing
+76 silly resolveWithNewModule br-masks@0.4.1 checking installable status
+77 silly cache add args [ 'br-masks@^0.4.0', null ]
+78 verbose cache add spec br-masks@^0.4.0
+79 silly cache add parsed spec Result {
+79 silly cache add   raw: 'br-masks@^0.4.0',
+79 silly cache add   scope: null,
+79 silly cache add   escapedName: 'br-masks',
+79 silly cache add   name: 'br-masks',
+79 silly cache add   rawSpec: '^0.4.0',
+79 silly cache add   spec: '>=0.4.0 <0.5.0',
+79 silly cache add   type: 'range' }
+80 silly addNamed br-masks@>=0.4.0 <0.5.0
+81 verbose addNamed ">=0.4.0 <0.5.0" is a valid semver range for br-masks
+82 silly addNameRange { name: 'br-masks', range: '>=0.4.0 <0.5.0', hasData: false }
+83 silly mapToRegistry name br-masks
+84 silly mapToRegistry using default registry
+85 silly mapToRegistry registry https://registry.npmjs.org/
+86 silly mapToRegistry data Result {
+86 silly mapToRegistry   raw: 'br-masks',
+86 silly mapToRegistry   scope: null,
+86 silly mapToRegistry   escapedName: 'br-masks',
+86 silly mapToRegistry   name: 'br-masks',
+86 silly mapToRegistry   rawSpec: '',
+86 silly mapToRegistry   spec: 'latest',
+86 silly mapToRegistry   type: 'tag' }
+87 silly mapToRegistry uri https://registry.npmjs.org/br-masks
+88 verbose addNameRange registry:https://registry.npmjs.org/br-masks not in flight; fetching
+89 verbose get https://registry.npmjs.org/br-masks not expired, no request
+90 silly addNameRange number 2 { name: 'br-masks', range: '>=0.4.0 <0.5.0', hasData: true }
+91 silly addNameRange versions [ 'br-masks',
+91 silly addNameRange   [ '0.1.0',
+91 silly addNameRange     '0.1.1',
+91 silly addNameRange     '0.2.0',
+91 silly addNameRange     '0.2.1',
+91 silly addNameRange     '0.2.2',
+91 silly addNameRange     '0.3.0',
+91 silly addNameRange     '0.3.1',
+91 silly addNameRange     '0.3.2',
+91 silly addNameRange     '0.3.3',
+91 silly addNameRange     '0.4.0',
+91 silly addNameRange     '0.4.1' ] ]
+92 silly addNamed br-masks@0.4.1
+93 verbose addNamed "0.4.1" is a plain semver version for br-masks
+94 silly cache afterAdd br-masks@0.4.1
+95 verbose afterAdd /Users/lfernandes/.npm/br-masks/0.4.1/package/package.json not in flight; writing
+96 verbose correctMkdir /Users/lfernandes/.npm correctMkdir not in flight; initializing
+97 verbose afterAdd /Users/lfernandes/.npm/br-masks/0.4.1/package/package.json written
+98 silly loadAllDepsIntoIdealTree Finishing
+99 silly loadIdealTree Finishing
+100 silly currentTree static
+100 silly currentTree ├── angular-animate@1.5.8
+100 silly currentTree ├── angular-aria@1.5.8
+100 silly currentTree ├── angular-input-masks@2.4.0
+100 silly currentTree ├── angular-material@1.1.0
+100 silly currentTree ├── angular-messages@1.5.8
+100 silly currentTree ├── angular-resource@1.5.8
+100 silly currentTree ├── angular-route@1.5.8
+100 silly currentTree ├── angular-sanitize@1.5.8
+100 silly currentTree ├── angular@1.5.8
+100 silly currentTree ├── br-validations@0.2.4
+100 silly currentTree ├── jquery@3.1.0
+100 silly currentTree ├── material-design-lite@1.2.0
+100 silly currentTree ├── moment@2.15.0
+100 silly currentTree └── string-mask@0.2.1
+101 silly idealTree static
+101 silly idealTree ├── angular-animate@1.5.8
+101 silly idealTree ├── angular-aria@1.5.8
+101 silly idealTree ├── angular-br-filters@0.6.0
+101 silly idealTree ├── angular-input-masks@2.4.0
+101 silly idealTree ├── angular-material@1.1.0
+101 silly idealTree ├── angular-messages@1.5.8
+101 silly idealTree ├── angular-resource@1.5.8
+101 silly idealTree ├── angular-route@1.5.8
+101 silly idealTree ├── angular-sanitize@1.5.8
+101 silly idealTree ├── angular@1.5.8
+101 silly idealTree ├── br-masks@0.4.1
+101 silly idealTree ├── br-validations@0.2.4
+101 silly idealTree ├── jquery@3.1.0
+101 silly idealTree ├── material-design-lite@1.2.0
+101 silly idealTree ├── moment@2.15.0
+101 silly idealTree └── string-mask@0.2.1
+102 silly generateActionsToTake Starting
+103 silly install generateActionsToTake
+104 silly generateActionsToTake Finishing
+105 silly diffTrees action count 2
+106 silly diffTrees add br-masks@0.4.1
+107 silly diffTrees add angular-br-filters@0.6.0
+108 silly decomposeActions action count 16
+109 silly decomposeActions fetch br-masks@0.4.1
+110 silly decomposeActions extract br-masks@0.4.1
+111 silly decomposeActions test br-masks@0.4.1
+112 silly decomposeActions preinstall br-masks@0.4.1
+113 silly decomposeActions build br-masks@0.4.1
+114 silly decomposeActions install br-masks@0.4.1
+115 silly decomposeActions postinstall br-masks@0.4.1
+116 silly decomposeActions finalize br-masks@0.4.1
+117 silly decomposeActions fetch angular-br-filters@0.6.0
+118 silly decomposeActions extract angular-br-filters@0.6.0
+119 silly decomposeActions test angular-br-filters@0.6.0
+120 silly decomposeActions preinstall angular-br-filters@0.6.0
+121 silly decomposeActions build angular-br-filters@0.6.0
+122 silly decomposeActions install angular-br-filters@0.6.0
+123 silly decomposeActions postinstall angular-br-filters@0.6.0
+124 silly decomposeActions finalize angular-br-filters@0.6.0
+125 silly executeActions Starting
+126 silly install executeActions
+127 silly doSerial global-install 0
+128 silly doParallel fetch 2
+129 verbose correctMkdir /Users/lfernandes/.npm/_locks correctMkdir not in flight; initializing
+130 verbose lock using /Users/lfernandes/.npm/_locks/staging-f4cdd5764c806510.lock for /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging
+131 silly doParallel extract 2
+132 silly extract br-masks@0.4.1
+133 silly extract angular-br-filters@0.6.0
+134 verbose unbuild node_modules/.staging/br-masks-4e96a5e4
+135 verbose unbuild node_modules/.staging/angular-br-filters-bdda4843
+136 silly gentlyRm /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/br-masks-4e96a5e4 is being purged from base /Users/lfernandes/SatiUTFPR/sati_django/src/static
+137 verbose gentlyRm don't care about contents; nuking /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/br-masks-4e96a5e4
+138 silly gentlyRm /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/angular-br-filters-bdda4843 is being purged from base /Users/lfernandes/SatiUTFPR/sati_django/src/static
+139 verbose gentlyRm don't care about contents; nuking /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/angular-br-filters-bdda4843
+140 verbose tar unpack /Users/lfernandes/.npm/br-masks/0.4.1/package.tgz
+141 verbose tar unpacking to /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/br-masks-4e96a5e4
+142 silly gentlyRm /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/br-masks-4e96a5e4 is being purged
+143 verbose gentlyRm don't care about contents; nuking /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/br-masks-4e96a5e4
+144 verbose tar unpack /Users/lfernandes/.npm/angular-br-filters/0.6.0/package.tgz
+145 verbose tar unpacking to /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/angular-br-filters-bdda4843
+146 silly gentlyRm /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/angular-br-filters-bdda4843 is being purged
+147 verbose gentlyRm don't care about contents; nuking /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/angular-br-filters-bdda4843
+148 silly gunzTarPerm modes [ '755', '644' ]
+149 silly gunzTarPerm modes [ '755', '644' ]
+150 silly gunzTarPerm extractEntry package.json
+151 silly gunzTarPerm extractEntry package.json
+152 silly gunzTarPerm extractEntry .npmignore
+153 silly gunzTarPerm extractEntry README.md
+154 silly gunzTarPerm extractEntry .npmignore
+155 silly gunzTarPerm extractEntry README.md
+156 silly gunzTarPerm extractEntry LICENSE
+157 silly gunzTarPerm extractEntry gulpfile.js
+158 silly gunzTarPerm extractEntry LICENSE
+159 silly gunzTarPerm extractEntry gulpfile.js
+160 silly gunzTarPerm extractEntry bower.json
+161 silly gunzTarPerm extractEntry .jshintrc
+162 silly gunzTarPerm extractEntry bower.json
+163 silly gunzTarPerm extractEntry .jshintrc
+164 silly gunzTarPerm extractEntry config/karma.conf.js
+165 silly gunzTarPerm extractEntry .travis.yml
+166 silly gunzTarPerm extractEntry src/cep.js
+167 silly gunzTarPerm extractEntry src/cnpj.js
+168 silly gunzTarPerm extractEntry .travis.yml
+169 silly gunzTarPerm extractEntry release/angular-br-filters.js
+170 silly gunzTarPerm extractEntry release/angular-br-filters.min.js
+171 silly gunzTarPerm extractEntry CHANGELOG.md
+172 silly gunzTarPerm extractEntry src/cpf-cnpj.js
+173 silly gunzTarPerm extractEntry src/cpf.js
+174 silly gunzTarPerm extractEntry src/filters.js
+175 silly gunzTarPerm extractEntry src/filters.test.js
+176 silly gunzTarPerm extractEntry src/finance.js
+177 silly gunzTarPerm extractEntry src/ie.js
+178 silly gunzTarPerm extractEntry src/nfe-access-key.js
+179 silly gunzTarPerm extractEntry src/phone.js
+180 silly gunzTarPerm extractEntry CHANGELOG.md
+181 silly gunzTarPerm extractEntry releases/br-masks-standalone.js
+182 silly gunzTarPerm extractEntry releases/br-masks-standalone.min.js
+183 silly gunzTarPerm extractEntry releases/br-masks.js
+184 silly gunzTarPerm extractEntry releases/br-masks.min.js
+185 silly gunzTarPerm extractEntry test/cep.test.js
+186 silly gunzTarPerm extractEntry test/cnpj.test.js
+187 silly gunzTarPerm extractEntry test/cpf-cnpj.test.js
+188 silly gunzTarPerm extractEntry test/cpf.test.js
+189 silly gunzTarPerm extractEntry test/finance.test.js
+190 silly gunzTarPerm extractEntry test/ie.test.js
+191 silly gunzTarPerm extractEntry test/nfe-access-key.test.js
+192 silly gunzTarPerm extractEntry test/phone.test.js
+193 silly gentlyRm /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/angular-br-filters-bdda4843/node_modules is being purged
+194 verbose gentlyRm don't care about contents; nuking /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/angular-br-filters-bdda4843/node_modules
+195 silly gentlyRm /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/br-masks-4e96a5e4/node_modules is being purged
+196 verbose gentlyRm don't care about contents; nuking /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/br-masks-4e96a5e4/node_modules
+197 silly doParallel preinstall 2
+198 silly preinstall br-masks@0.4.1 /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/br-masks-4e96a5e4
+199 info lifecycle br-masks@0.4.1~preinstall: br-masks@0.4.1
+200 silly preinstall angular-br-filters@0.6.0 /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/angular-br-filters-bdda4843
+201 info lifecycle angular-br-filters@0.6.0~preinstall: angular-br-filters@0.6.0
+202 silly lifecycle br-masks@0.4.1~preinstall: no script for preinstall, continuing
+203 silly lifecycle angular-br-filters@0.6.0~preinstall: no script for preinstall, continuing
+204 silly doReverseSerial remove 0
+205 silly doSerial move 0
+206 silly doSerial finalize 2
+207 silly finalize /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/br-masks
+208 silly finalize /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/angular-br-filters
+209 silly doSerial build 2
+210 silly build br-masks@0.4.1
+211 info linkStuff br-masks@0.4.1
+212 silly linkStuff br-masks@0.4.1 has /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules as its parent node_modules
+213 verbose linkBins br-masks@0.4.1
+214 verbose linkMans br-masks@0.4.1
+215 silly build angular-br-filters@0.6.0
+216 info linkStuff angular-br-filters@0.6.0
+217 silly linkStuff angular-br-filters@0.6.0 has /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules as its parent node_modules
+218 verbose linkBins angular-br-filters@0.6.0
+219 verbose linkMans angular-br-filters@0.6.0
+220 silly doSerial global-link 0
+221 silly doParallel update-linked 0
+222 silly doSerial install 2
+223 silly install br-masks@0.4.1 /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/br-masks-4e96a5e4
+224 info lifecycle br-masks@0.4.1~install: br-masks@0.4.1
+225 silly lifecycle br-masks@0.4.1~install: no script for install, continuing
+226 silly install angular-br-filters@0.6.0 /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/angular-br-filters-bdda4843
+227 info lifecycle angular-br-filters@0.6.0~install: angular-br-filters@0.6.0
+228 silly lifecycle angular-br-filters@0.6.0~install: no script for install, continuing
+229 silly doSerial postinstall 2
+230 silly postinstall br-masks@0.4.1 /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/br-masks-4e96a5e4
+231 info lifecycle br-masks@0.4.1~postinstall: br-masks@0.4.1
+232 silly lifecycle br-masks@0.4.1~postinstall: no script for postinstall, continuing
+233 silly postinstall angular-br-filters@0.6.0 /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging/angular-br-filters-bdda4843
+234 info lifecycle angular-br-filters@0.6.0~postinstall: angular-br-filters@0.6.0
+235 verbose lifecycle angular-br-filters@0.6.0~postinstall: unsafe-perm in lifecycle true
+236 verbose lifecycle angular-br-filters@0.6.0~postinstall: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/angular-br-filters/node_modules/.bin:/Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.bin:/usr/local/Cellar/node/6.4.0/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin
+237 verbose lifecycle angular-br-filters@0.6.0~postinstall: CWD: /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/angular-br-filters
+238 silly lifecycle angular-br-filters@0.6.0~postinstall: Args: [ '-c', 'bower install' ]
+239 info lifecycle angular-br-filters@0.6.0~postinstall: Failed to exec postinstall script
+240 verbose unlock done using /Users/lfernandes/.npm/_locks/staging-f4cdd5764c806510.lock for /Users/lfernandes/SatiUTFPR/sati_django/src/static/node_modules/.staging
+241 silly rollbackFailedOptional Starting
+242 silly rollbackFailedOptional Finishing
+243 silly runTopLevelLifecycles Starting
+244 silly runTopLevelLifecycles Finishing
+245 silly install printInstalled
+246 warn enoent ENOENT: no such file or directory, open '/Users/lfernandes/SatiUTFPR/sati_django/src/static/package.json'
+247 warn static No description
+248 warn static No repository field.
+249 warn static No README data
+250 warn static No license field.
+251 verbose stack Error: angular-br-filters@0.6.0 postinstall: `bower install`
+251 verbose stack spawn ENOENT
+251 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:33:16)
+251 verbose stack     at emitTwo (events.js:106:13)
+251 verbose stack     at ChildProcess.emit (events.js:191:7)
+251 verbose stack     at maybeClose (internal/child_process.js:852:16)
+251 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
+252 verbose pkgid angular-br-filters@0.6.0
+253 verbose cwd /Users/lfernandes/SatiUTFPR/sati_django/src/static
+254 error Darwin 15.6.0
+255 error argv "/usr/local/Cellar/node/6.4.0/bin/node" "/usr/local/bin/npm" "install" "--save" "angular-br-filters"
+256 error node v6.4.0
+257 error npm  v3.10.3
+258 error file sh
+259 error code ELIFECYCLE
+260 error errno ENOENT
+261 error syscall spawn
+262 error angular-br-filters@0.6.0 postinstall: `bower install`
+262 error spawn ENOENT
+263 error Failed at the angular-br-filters@0.6.0 postinstall script 'bower install'.
+263 error Make sure you have the latest version of node.js and npm installed.
+263 error If you do, this is most likely a problem with the angular-br-filters package,
+263 error not with npm itself.
+263 error Tell the author that this fails on your system:
+263 error     bower install
+263 error You can get information on how to open an issue for this project with:
+263 error     npm bugs angular-br-filters
+263 error Or if that isn't available, you can get their info via:
+263 error     npm owner ls angular-br-filters
+263 error There is likely additional logging output above.
+264 verbose exit [ 1, true ]
