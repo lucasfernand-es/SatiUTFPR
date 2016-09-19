@@ -36,6 +36,7 @@ def confirm_participant(request):
             'error_messages': ['ID da turma não encontrado'],
         })
 
+
 def get_all_participants(request):
     events = Event.objects.all()
 

@@ -119,7 +119,6 @@ class Report(models.Model):
         app_label = 'sati'
 
 
-
 class Participant(models.Model):
     person = models.ForeignKey('Person', on_delete=models.DO_NOTHING)
     session = models.ForeignKey('Session', on_delete=models.DO_NOTHING)

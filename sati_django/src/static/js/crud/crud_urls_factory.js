@@ -43,7 +43,12 @@
             add_new_participant : function () {
                 return '/user_signup/';
             },
-
+            get_sessions_user : function () {
+                return '/get_sessions_user/';
+            },
+            update_participant : function () {
+                return '/update_participant/';
+            },
             // Login
             login : function () {
                 return '/user_login/';

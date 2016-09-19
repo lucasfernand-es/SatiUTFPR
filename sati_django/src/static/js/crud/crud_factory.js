@@ -117,6 +117,7 @@
                 case 'role': return CRUDLabel.label_role();
                 case 'institution': return CRUDLabel.label_institution();
                 case 'sessions': return CRUDLabel.label_sessions();
+                case 'login': return CRUDLabel.label_login();
                 case 'errors': return 'Erro(s) Detectado(s): ';
 
                 default: return key;
@@ -145,6 +146,9 @@
             label_insert_success : function () {
               return "Sucesso!"
             },
+            label_confirm : function () {
+              return "confirmado"
+            },
 
             // error
             error_name: function () {
@@ -152,6 +156,9 @@
             },
             label_sessions: function () {
               return 'Turma';
+            },
+            label_login: function () {
+              return 'Login';
             },
 
             // Filters
@@ -220,6 +227,10 @@
             },
             label_valid_cpf_error : function () {
                 return 'Insira um número de CPF válido.';
+            },
+            // filter
+            filter_label_event_category: function () {
+                return 'Categoria';
             },
         };
 

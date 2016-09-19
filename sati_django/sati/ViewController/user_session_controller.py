@@ -55,26 +55,38 @@ def user_logout(request):
 
 
 def get_user_participant(request):
-    user = {"email": request.POST.get('email'), 'password': request.POST.get('password')}
+    print 'olaaar algo'
+    print request.body
+
+    sent_user = json.loads(request.body)
+    # person['is_active'] = True
+
+    user = {"email": sent_user['email'], 'password': sent_user['password']}
     # required_login = json.loads(request.body)
 
     user = user_authenticate(user['email'], user['password'])  # (required_login['email'], required_login['password'])
 
     if user is not None:
         # THERE IS NO WAY .GET WILL RETURN NONE
-        person = Person.objects.get(email=user['email'])
+        person = Person.objects.get(email=sent_user['email'])
         participates = Participant.objects.filter(person_id=person.id, status=True)
         session_array = []
         for participate in participates:
             session_array.append({
-                'session_id': participate.session.id,
+                'id': participate.session.id,
             })
+
+        serializer = PersonSerializer(person, many=False)
+        person = serializer.data
+        # print person
+
         return JsonResponse({
             'error': False,
             'sessions': session_array,
+            'person': person
         })
     else:
-        oops = 'Usuário não cadastrado ou senha/email inválidos'
+        oops = 'Usuário não cadastrado ou senha/email inválidos.'
         print oops
         return JsonResponse({
             'error': True,
@@ -83,29 +95,38 @@ def get_user_participant(request):
 
 
 def user_update_participant(request):
-    sessions = request.POST.get('sessions')
-    user_id = request.POST.get('user_id')
-    person = Person.objects.get(id=user_id)
+    print request.body
+
+    update_participant = json.loads(request.body)
+
+    sessions = update_participant['sessions']
+    person_id = update_participant['id']
+    person = Person.objects.get(id=person_id)
     errors_array = []
+    sessions_array = []
     for session in sessions:
-        participants = Participant.objects.filter(session_id=session.id, user_id=user_id)
+        participants = Participant.objects.filter(session_id=session, person_id=person_id)
         if not len(participants):
             participant = Participant()
             participant.person = person
-            participant.session = Session.objects.get(id=session.id)
+            participant.session = Session.objects.get(id=session)
             participant.is_confirmed = False
             participant.status = True
             try:
                 participant.save()
+                sessions_array.append({'event_name': participant.session.event.name, 'new': True})
             except Error:
                 errors_array.append('error_session_' + str(session.id))
+
         else:
             for participant in participants:
-                participant.status = not participant.status
-                try:
-                    participant.save()
-                except Error:
-                    errors_array.append('error_session_' + str(session.id))
+                sessions_array.append({'event_name': participant.session.event.name, 'new': False})
+        #
+        #        participant.status = not participant.status
+        #        try:
+        #            participant.save()
+        #       except Error:
+        #            errors_array.append('error_session_' + str(session.id))
 
     if len(errors_array):
         return JsonResponse({
@@ -113,7 +134,11 @@ def user_update_participant(request):
             'error_messages': errors_array
         })
     else:
+        serializer = PersonSerializer(person, many=False)
+        data = serializer.data
         return JsonResponse({
+            'person': data,
+            'sessions': sessions_array,
             'error': False,
             'status': status.HTTP_201_CREATED
         })
@@ -125,7 +150,6 @@ def user_signup(request):
         print 'postou algo'
         print request.body
 
-        print
         person = json.loads(request.body)
         person['is_active'] = True
         person['role'] = 0

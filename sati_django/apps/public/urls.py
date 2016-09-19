@@ -13,8 +13,9 @@ urlpatterns = [
     url(r'^user_signup/', session.user_signup, name='user_signup'),
 
     # methods to update list of participants
-    url(r'^get_sessions_user', session.get_user_participant, name='user-participant'),
-    url(r'^update_participants', session.user_update_participant, name='update-participant'),
+    url(r'^get_sessions_user/$', session.get_user_participant, name='user-participant'),
+    url(r'^update_participant/$', session.user_update_participant, name='update-participant'),
+
 
 
     # Events

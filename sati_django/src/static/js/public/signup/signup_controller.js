@@ -38,6 +38,15 @@
                                           ModelUtils, Urls, Addons,
                                           FieldSize, Toast) {
         var signupCtrl = this;
+
+        $scope.sessions = [];
+
+
+        $scope.errors = {};
+
+        $scope.toggle = Addons.toggle;
+        $scope.exists = Addons.exists;
+
         var promise;
         signupCtrl.signup_form = {};
         $scope.Label = Label;
@@ -53,13 +62,28 @@
 
         $scope.isNewParticipant = true;
 
+        $scope.clear = function () {
+            signupCtrl.has_account = false;
+            $scope.isNewParticipant = true;
+            $scope.showForm = true;
+            $scope.search = {};
+            signupCtrl.errors = [];
+            signupCtrl.success = [];
+            $scope.sessions = [];
+            signupCtrl.signup_form.person = {};
+            signupCtrl.signup_form.person.email = '';
+            signupCtrl.signup_form.person.cpf = '';
+            signupCtrl.signup_form.person.password = '';
+            signupCtrl.signup_form.person.confirm_password = '';
+            signupCtrl.signup_form.person.sessions = [];
+
+        };
 
         signupCtrl.loadSessions = function () {
 
             promise = ModelUtils.get_request( Urls.get_all_sessions() );
 
             promise.then(function (response) { // Success
-                $log.log(response);
                 var sessions = response.sessions;
 
                 signupCtrl.sessions = sessions;
@@ -70,23 +94,120 @@
             });
 
         };
+        signupCtrl.loadSessions();
+
+        signupCtrl.loadCategories = function () {
+
+            signupCtrl.categories = [];
+            var promise = ModelUtils.get_all(Urls.category());
+            promise.then(function (response) { // Success
+                angular.forEach(response.results, function (item) {
+                    signupCtrl.categories.push(item);
+                });
+            }, function (result) { // Fail
+                Toast.showToast(result.status + ' ' + result.statusText);
+            });
+
+        };
+        signupCtrl.loadCategories();
 
         //noinspection JSAnnotator
         $scope.loadParticipantInfo = function () {
 
+            signupCtrl.errors = [];
+            signupCtrl.success = [];
+
+            var send_user = {
+                'email': signupCtrl.signup_form.person.email,
+                'password': signupCtrl.signup_form.person.password
+            };
+
+            ModelUtils.post_request(Urls.get_sessions_user(), send_user, $scope.errors)
+            .then(function (response) {
+                $log.log(response.data);
+
+                if(response.data.error) {
+                    signupCtrl.errors.push({
+                    'name': CRUDLabel.label_login(), 'message' : response.data.error_messages });
+                    $scope.anchorTop();
+                }
+                else {
+                    var sessions = response.data.sessions;
+                    var person = response.data.person;
+                    $log.log(person);
+                    
+                    angular.forEach(sessions, function (session) {
+                        $scope.toggle(session.id, $scope.sessions);
+                    });
+
+                    signupCtrl.signup_form.person.id = person.id;
+                    signupCtrl.signup_form.person.email = person.email;
+                    signupCtrl.signup_form.person.cpf = person.cpf;
+                    signupCtrl.signup_form.person.name = person.name;
+                    signupCtrl.signup_form.person.academic_registry = parseInt(person.academic_registry, 10);
+                    signupCtrl.signup_form.person.institution = person.institution;
+
+                    signupCtrl.has_account = true;
+                };
 
 
+            }, function () {
+                signupCtrl.errors = $scope.convertFields($scope.errors);
+                $log.log('errors');
+                $log.log(signupCtrl.errors);
+                // the element you wish to scroll to.
+            });
+
+
+        };
+
+        $scope.updateParticipation = function () {
+            signupCtrl.errors = [];
+            signupCtrl.success = [];
+
+
+            signupCtrl.signup_form.person.sessions = $scope.sessions;
+
+            ModelUtils.post_request(Urls.update_participant(), signupCtrl.signup_form.person, $scope.errors)
+            .then(function (response) {
+                $log.log(response.data);
+
+                var person = response.data.person;
+
+                signupCtrl.success.push({
+                    'name': CRUDLabel.label_person(), 'message' : person.name + ' - ' +
+                    CRUDLabel.label_cpf() + ': '+ person.cpf + ' - ' +
+                    CRUDLabel.label_email() + ': '+ person.email });
+
+                var sessions = response.data.sessions;
+
+                angular.forEach(sessions, function (session) {
+                    var participation = {};
+                    participation.name = CRUDLabel.label_participation();
+                    var is_new = '';
+                    if(!session.new)
+                        is_new = ' - ' + CRUDLabel.label_confirm();
+                    participation.message = session.event_name + is_new;
+
+                    signupCtrl.success.push(participation);
+                });
+                $scope.showForm = false;
+
+                $scope.anchorTop();
+
+            }, function () {
+                signupCtrl.errors = $scope.convertFields($scope.errors);
+                $log.log('errors');
+                $log.log(signupCtrl.errors);
+                // the element you wish to scroll to.
+            });
         };
 
         $scope.create = function () {
 
             signupCtrl.errors = [];
             signupCtrl.success = [];
-
-            signupCtrl.signup_form.person.name = 'Lucas Emanuel Nome Grande';
-            signupCtrl.signup_form.person.password = 'nome';
-            signupCtrl.signup_form.person.confirm_password = 'nome';
-            signupCtrl.signup_form.person.ra = 1371800;
+            signupCtrl.signup_form.person.sessions = $scope.sessions;
 
 
             ModelUtils.post_request(Urls.add_new_participant(), signupCtrl.signup_form.person, $scope.errors)
@@ -109,8 +230,7 @@
 
                     signupCtrl.success.push(participation);
                 });
-
-                $log.log(signupCtrl.success);
+                $scope.showForm = false;
 
                 $scope.anchorTop();
 
@@ -129,27 +249,6 @@
         };
 
         $scope.convertFields = Addons.convertFields;
-
-        $scope.clear = function () {
-            $scope.search = {};
-            signupCtrl.errors = [];
-            signupCtrl.success = [];
-            signupCtrl.signup_form.person = {};
-            signupCtrl.signup_form.person.email = '';
-            signupCtrl.signup_form.person.cpf = '';
-            signupCtrl.signup_form.person.password = '';
-            signupCtrl.signup_form.person.confirm_password = '';
-            signupCtrl.signup_form.person.sessions = [];
-        };
-
-        signupCtrl.loadSessions();
-        $scope.clear();
-
-        $scope.errors = {};
-
-        $scope.toggle = Addons.toggle;
-
-        $scope.exists = Addons.exists;
 
         //href="#top"
 

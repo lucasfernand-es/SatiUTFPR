@@ -38,11 +38,12 @@ class CategoryList(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [
-        permissions.IsAuthenticated
+        #permissions.IsAuthenticated
+        permissions.AllowAny
     ]
-    authentication_classes = [
-        local_authentication.SuperUserSessionAuthentication,
-    ]
+    #authentication_classes = [
+    #    local_authentication.SuperUserSessionAuthentication,
+    #]
 
 
 class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
