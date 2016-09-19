@@ -29,6 +29,8 @@
 
                     promise = ModelUtils.get_request(Urls.get_all_events())
                         .then(function (response) {
+                            $log.log(response);
+
                             angular.forEach(response, function (event) {
 
                                 var keep_checking = true;

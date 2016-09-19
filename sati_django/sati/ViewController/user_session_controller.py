@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, render_to_response, redirect
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
@@ -11,7 +11,7 @@ from django.db import Error
 import json
 
 from sati.models import Person, Participant, Session
-from sati_django.sati.serializers import *
+from sati.serializers import *
 
 
 def user_authenticate(username, password):
@@ -31,21 +31,23 @@ def user_session(request):
 
 
 def user_login(request):
+    user = {"email": request.POST.get('email'), 'password': request.POST.get('password')}
     # required_login = json.loads(request.body)
+    print user
+    print 'user'
 
-    user = user_authenticate('vinicustod@hotmail.com', '123456')  # (required_login['email'], required_login['password'])
+    user = user_authenticate(user['email'], user['password'])  # (required_login['email'], required_login['password'])
 
     if user is not None:
         login(request, user)
-
-        print 'oi passou'
-
-        return HttpResponse(
-            'dashboard/index.html'
+        return HttpResponseRedirect(
+            request,
+            '/dashboard/'
         )
     else:
-        return HttpResponse(
-            'public/login.html'
+        oops = 'Ops! Ocorreu um erro inesperado. Tente novamente.'
+        return HttpResponseRedirect(
+            '/login/'
         )
 
 
@@ -66,9 +68,14 @@ def user_signup(request):
         person['is_active'] = True
         person['role'] = 0
 
+        if 'password' in person:
+            if ('confirm_password' not in person) or person['password'] != person['confirm_password']:
+                error = {'confirm_password': 'As senhas informadas devem ser iguas.'}
+                return JsonResponse(error, status=status.HTTP_400_BAD_REQUEST)
         serializer = PersonSerializer(data=person)
 
         if serializer.is_valid():
+            print "SIM É VALIDO"
             try:
                 person_response = serializer.save()
             except:

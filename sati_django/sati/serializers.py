@@ -1,4 +1,6 @@
-from aenum import unique
+
+# -*- coding: utf-8 -*-
+# from aenum import unique
 from sati.models import *
 from django.contrib.auth.models import User
 from rest_framework import serializers
@@ -74,7 +76,7 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.IntegerField(read_only=True)
     edition = serializers.PrimaryKeyRelatedField(queryset=Edition.objects.all())
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
-    name = serializers.CharField(validators=[UniqueValidator(queryset=Event.objects.all(), message='Nome ja existente')])
+    name = serializers.CharField(validators=[UniqueValidator(queryset=Event.objects.all(), message='Nome já existente')])
     fee = serializers.FloatField()
     workload = serializers.IntegerField()
     description = serializers.CharField()
@@ -171,9 +173,9 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
     name = serializers.CharField(max_length=255)
     email = serializers.EmailField(max_length=100, validators=[UniqueValidator(queryset=Person.objects.all(), message='Email ja cadastrado')])
     password = serializers.CharField(style={'input_type': 'password'})
-    institution = serializers.CharField()
+    institution = serializers.CharField(allow_blank=True, required=False)
     cpf = serializers.CharField(validators=[UniqueValidator(queryset=Person.objects.all(), message='CPF ja cadastrado')])
-    academic_registry = serializers.IntegerField()
+    academic_registry = serializers.IntegerField(allow_null=True, required=False)
     role = serializers.CharField()
     is_active = serializers.BooleanField()
 
@@ -190,7 +192,7 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
         cpf_value = ''.join(re.findall('\d', str(value)))
 
         if (not cpf_value) or (len(cpf_value) < 11):
-            raise serializers.ValidationError('CPF Invalido.')
+            raise serializers.ValidationError('CPF Inválido.')
 
         inteiros = map(int, cpf_value)
         novo = inteiros[:9]

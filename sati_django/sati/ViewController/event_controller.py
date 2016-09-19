@@ -31,6 +31,7 @@ def get_event_info(event_id):
 
                 occurrences_json = {
                     'room_name': occurrence.room.name,
+                    'room_number': occurrence.room.number,
                     'begin_date_time': occurrence.begin_date_time,
                     'end_date_time': occurrence.end_date_time,
                 }
