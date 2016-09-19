@@ -15,7 +15,6 @@ from sati.serializers import *
 
 
 def user_authenticate(username, password):
-    print password, username
     try:
         user = authenticate(username=username, password=password)
     except User.DoesNotExist:
@@ -135,10 +134,15 @@ def user_signup(request):
             if ('confirm_password' not in person) or person['password'] != person['confirm_password']:
                 error = {'confirm_password': 'As senhas informadas devem ser iguas.'}
                 return JsonResponse(error, status=status.HTTP_400_BAD_REQUEST)
+
+        if 'academic_registry' in person:
+            if not person['academic_registry']:
+                del person['academic_registry']
+
+        print person
         serializer = PersonSerializer(data=person)
 
         if serializer.is_valid():
-            print "SIM É VALIDO"
             try:
                 person_response = serializer.save()
             except:
@@ -164,52 +168,3 @@ def user_signup(request):
         else:
             serializer.errors.sessions = 'Vários erros'
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    # print 'chegou aqui'
-    # return JsonResponse(2, safe=False)
-    # return render(
-    #    request,
-    #    'sati_utfpr/test.html'
-    # )
-#    if request.POST["nome_completo"]:
-#        person.name = request.POST["nome_completo"]
-#
-#    person.institution = request.POST["instituicao"]
-#    if request.POST["senha"] == request.POST.get('confirmar_senha', '') and request.POST["senha"]:
-#        person.password = request.POST["senha"]
-#    else:
-#        NotImplementedError
-#
-#    if request.POST["cpf"]:
-#        person.cpf = request.POST["cpf"]
-#    else:
-#        NotImplementedError
-#
-#    if request.POST["email"]:
-#        person.email = request.POST["email"]
-#    else:
-#        NotImplementedError
-#
-#    if person.institution and person.institution == "UTFPR":
-#        person.academicRegistry = request.POST["registro_academico"]
-#    else:
-#        NotImplementedError
-#
-#    # Valores padrao 0 aluno e 1 para ativo
-#    person.role = 0
-#    person.status = 1
-#
-#    # usuario para autenticacao e login
-#    verify_person_cpf = False #Person.objects.get(cpf=person.cpf)
-#    verify_person_email = False #Person.objects.get(email=person.email)
-#
-#    if not verify_person_cpf and not verify_person_email:
-#        user = User()
-#        user.password = person.password
-#        user.username = person.email
-#        user.save()
-#
-#        person.user = user
-#        person.save()
-#    else:
-#        NotImplementedError

@@ -1,8 +1,40 @@
+# -*- coding: utf-8 -*-
 from sati.models import Person, Session, Participant, Event
 from django.http import JsonResponse, HttpResponse
 from rest_framework import status
 from sati.serializers import *
+from django.db import Error
 
+
+def confirm_participant(request):
+    sessions = request.POST.get('sessions')
+    user_id = request.POST.get('user_id')
+    errors_array = []
+    if sessions is not None:
+        for session in sessions:
+            participants = Participant.objects.filter(session_id=session.id, user_id=user_id)
+            for participant in participants:
+                participant.is_confirmed = True
+                try:
+                    participant.save()
+                except Error:
+                    errors_array.append('error_session_' + str(session.id))
+
+        if len(errors_array):
+            return JsonResponse({
+                'error': True,
+                'error_messages': errors_array
+            })
+        else:
+            return JsonResponse({
+                'error': False,
+                'status': status.HTTP_100_CONTINUE
+            })
+    else:
+        return JsonResponse({
+            'error': True,
+            'error_messages': ['ID da turma não encontrado'],
+        })
 
 def get_all_participants(request):
     events = Event.objects.all()
