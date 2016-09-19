@@ -12,7 +12,7 @@ def get_all_participants(request):
         sessions = Session.objects.filter(event_id=event.id)
         sessions_array = []
         for session in sessions:
-            participants = Participant.objects.filter(session_id=session.id)
+            participants = Participant.objects.filter(session_id=session.id, status=True)
             participants_array = []
             for participant in participants:
                 participants_array.append(create_participant_json(participant))

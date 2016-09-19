@@ -58,7 +58,7 @@ def user_logout(request):
 def get_user_participant(request):
     user = {"email": request.POST.get('email'), 'password': request.POST.get('password')}
     # required_login = json.loads(request.body)
-    
+
     user = user_authenticate(user['email'], user['password'])  # (required_login['email'], required_login['password'])
 
     if user is not None:
