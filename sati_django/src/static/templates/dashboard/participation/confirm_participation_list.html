@@ -11,8 +11,8 @@
     </md-toolbar>
 
     <md-dialog-content>
-      <div class="md-dialog-content">
-        <table ng-show="participations.length" class="mdl-data-table mdl-js-data-table mdl-grid--no-spacing mdl-cell--12-col">
+      <div class="md-dialog-content" ng-show="participants.length">
+        <table class="mdl-data-table mdl-js-data-table mdl-grid--no-spacing mdl-cell--12-col">
             <thead>
                 <tr>
                     <th class="mdl-data-table__cell--non-numeric" ng-bind="Label.label_event_name()"></th>
@@ -26,7 +26,7 @@
             </thead>
             <tbody>
 
-            <tr ng-repeat="participant in participations">
+            <tr ng-repeat="participant in participants">
                 <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.event.name"></td>
                 <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.name"></td>
                 <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.cpf | brCpf"></td>
@@ -67,8 +67,8 @@
 
 
           <md-button
-                ng-click="saveParticipations()"
-                ng-disabled="!participations.length"
+                ng-click="saveParticipants()"
+                ng-disabled="!participants.length"
                 aria-label="Add"
                 class="md-raised md-primary mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone"
                 ng-bind="Label.button_save()">

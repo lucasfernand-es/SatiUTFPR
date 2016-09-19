@@ -55,7 +55,6 @@ def user_logout(request):
 
 
 def get_user_participant(request):
-    print 'olaaar algo'
     print request.body
 
     sent_user = json.loads(request.body)

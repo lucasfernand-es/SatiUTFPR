@@ -27,7 +27,7 @@
                 <div class="md-display-1 mdl-typography--text-right mdl-cell--4-col">
                    <span class="vert-align" ng-bind="eventDetail.event.fee == 0 ? 'Grátis' : (eventDetail.event.fee | currency) "></span>
                 </div>
-                <span class="ribbon top-right ribbon-warning ribbon-session" ng-show="eventDetail.event.can_donate">
+                <span class="ribbon top-right ribbon-info ribbon-session" ng-show="eventDetail.event.can_donate">
                     <small ng-bind="EventLabel.donation()"></small>
                 </span>
             </md-toolbar>

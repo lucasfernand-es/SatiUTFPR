@@ -10,24 +10,33 @@ def confirm_participant(request):
     sessions = request.POST.get('sessions')
     user_id = request.POST.get('user_id')
     errors_array = []
+    success_array = []
+    has_error = False
     if sessions is not None:
         for session in sessions:
             participants = Participant.objects.filter(session_id=session.id, user_id=user_id)
-            for participant in participants:
-                participant.is_confirmed = True
-                try:
-                    participant.save()
-                except Error:
-                    errors_array.append('error_session_' + str(session.id))
-
-        if len(errors_array):
+            if get_session_available_spots(session.id) > 0:
+                for participant in participants:
+                    participant.is_confirmed = not participant.is_confirmed
+                    try:
+                        participant.save()
+                        success_array.append(str(session.id))
+                    except Error:
+                        has_error = True
+                        errors_array.append(str(session.id))
+            else:
+                errors_array.append('Turma cheia:' + str(session.id))
+                has_error = True
+        if has_error:
             return JsonResponse({
                 'error': True,
-                'error_messages': errors_array
+                'error_messages': errors_array,
+                'success_message': success_array,
             })
         else:
             return JsonResponse({
                 'error': False,
+                'success_message': success_array,
                 'status': status.HTTP_100_CONTINUE
             })
     else:
@@ -107,6 +116,7 @@ def create_participant_json(participant):
         'id': participant.id,
         'is_confirmed': participant.is_confirmed,
         'name': participant.person.name,
+        'person_id': participant.person.id,
         'cpf': participant.person.cpf,
         'academic_registry': participant.person.academic_registry
     }

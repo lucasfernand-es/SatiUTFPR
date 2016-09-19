@@ -3,12 +3,13 @@
 
 
 {% block title %} Dashboard / Participantes {% endblock %}
-
+<!--
 {% block description %}
 
     <i class="mdl-color-text--blue-grey-400 material-icons vert-align" role="presentation">face</i> Participante
 
 {% endblock %}
+-->
 
 {% block main_content %}
 
@@ -19,7 +20,7 @@
 
 
     <md-button aria-label="SignupLabel.label_load_information()"
-                       ng-click="participantCtrl.confirmParticipations($event)"
+                       ng-click="participantCtrl.confirmParticipants($event)"
                        class="md-raised md-primary mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet mdl-cell--3-col-phone"
                        ng-bind="Label.label_button_confirm_participation()">
             </md-button>
@@ -41,7 +42,7 @@
 
                             <md-input-container class="mdl-cell mdl-cell--7-col">
                                 <label ng-bind="Label.filter_label_event_name()"></label>
-                                <input ng-model="event.name" ng-model-options="{ debounce: 100 }" id="filter_event" name="filter_event">
+                                <input ng-model="event.name" ng-model-options="{ updateOn: 'blur' }"  id="filter_event" name="filter_event">
                             </md-input-container>
 
                             <md-input-container class="mdl-cell mdl-cell--4-col">
@@ -64,11 +65,12 @@
             </div>
 
 
-
             <div class="mdl-grid mdl-cell--12-col">
             </div>
 
-            <div class="mdl-grid mdl-shadow--6dp mdl-color-text--blue-grey-500" ng-repeat="event in participantCtrl.events | filter : event">
+            <div class="mdl-grid mdl-shadow--6dp mdl-color-text--blue-grey-500" ng-repeat="event in participantCtrl.eventsFilter =  ( participantCtrl.events | filter : event) ">
+
+                <p ng-bind="event.has_participant"></p>
 
                 <div class="mdl-cell--12-col mdl-grid">
                     <div class="mdl-grid--no-spacing mdl-cell--9-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
@@ -135,7 +137,7 @@
 
                         <div class="mdl-layout-spacer"></div>
 
-                        <md-content class="mdl-grid--no-spacing mdl-cell--12-col" ng-show="session.participants.length">
+                        <md-content class="mdl-grid--no-spacing mdl-cell--12-col" ng-show="session.filterParticipant.length">
                             <table class="mdl-data-table mdl-js-data-table mdl-grid--no-spacing mdl-cell--12-col">
                                 <thead>
                                     <tr>
@@ -178,7 +180,7 @@
                 <div class="mdl-cell--12-col mdl-grid">
                     <div class="mdl-layout-spacer"></div>
                     <md-button aria-label="SignupLabel.label_load_information()"
-                               ng-click="participantCtrl.confirmParticipations($event)"
+                               ng-click="participantCtrl.confirmParticipants($event)"
                                class="md-raised md-primary mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet mdl-cell--3-col-phone"
                                ng-bind="Label.label_button_confirm_participation()">
                     </md-button>

@@ -96,7 +96,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'NAME': os.path.join(BASE_DIR, 'sati_dev.db'),
-        'NAME': 'satiutfpr',
+        'NAME': 'sati',
         'USER': 'postgres',
         'PASSWORD': '123456',
         'HOST': '127.0.0.1',

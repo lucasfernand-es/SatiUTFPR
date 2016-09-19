@@ -2,7 +2,7 @@
     'use strict';
 
     var app = angular.module('participant-controller',
-        ['public-directive', 'ngMaterial', 'ngMessages']);
+        ['public-directive', 'participant-filter', 'ngMaterial', 'ngMessages']);
 
 
 
@@ -11,7 +11,7 @@
                                                                EventLabel, CRUDLabel) {
         var participantCtrl = this;
         participantCtrl.events = [];
-        participantCtrl.modifiedParticipations = [];
+        participantCtrl.modifiedParticipants = [];
         var promise;
 
         $scope.Label = Label;
@@ -21,9 +21,16 @@
         participantCtrl.loadParticipants = function () {
             promise = ModelUtils.get_request(Urls.get_all_participants())
                 .then(function (response) {
-                    $log.log(response.events);
+                    //$log.log(response.events);
+
+                    angular.forEach(response.events, function (event) {
+                        angular.forEach(event.sessions, function (session) {
+                            session.filterParticipant = session.participants;
+                        });
+                    });
 
                     participantCtrl.events = response.events;
+                    participantCtrl.hasEvents = response.events.length > 0;
 
                 }, function (response) {
                     Toast.showToast(response.status + ' ' + response.statusText);
@@ -40,8 +47,8 @@
 
             participation.event = event;
 
-            if( !Addons.exists(participation, participantCtrl.modifiedParticipations) ) {
-                participantCtrl.modifiedParticipations.push(participation);
+            if( !Addons.exists(participation, participantCtrl.modifiedParticipants) ) {
+                participantCtrl.modifiedParticipants.push(participation);
             };
 
             var message = participation.is_confirmed?
@@ -55,22 +62,35 @@
                 + ' para '
                 + message + '.');
 
-            $log.log(participantCtrl.modifiedParticipations);
+            $log.log(participantCtrl.modifiedParticipants);
         };
 
-        participantCtrl.saveParticipations = function () {
+        participantCtrl.saveParticipants = function () {
             $mdDialog.cancel();
             $log.log('oi');
 
-            participantCtrl.loadParticipants();
+
+            promise = ModelUtils.get_request(Urls.get_all_participants())
+            .then(function (response) {
+                $log.log(response.events);
+
+                participantCtrl.events = response.events;
+
+                participantCtrl.loadParticipants();pa
+
+            }, function (response) {
+                Toast.showToast(response.status + ' ' + response.statusText);
+            });
+
+
         };
 
-        participantCtrl.confirmParticipations = function(ev) {
+        participantCtrl.confirmParticipants = function(ev) {
             $mdDialog.show({
-                controller: ConfirmParticipationsCtrl,
+                controller: ConfirmParticipantsCtrl,
                 locals: {
-                    participations : participantCtrl.modifiedParticipations,
-                    saveParticipations : participantCtrl.saveParticipations
+                    participants : participantCtrl.modifiedParticipants,
+                    saveParticipants : participantCtrl.saveParticipants
                 },
                 templateUrl: '/static/templates/dashboard/participation/confirm_participation_list.html',
                 parent: angular.element(document.body),
@@ -81,15 +101,15 @@
         };
 
 
-        function ConfirmParticipationsCtrl($scope, $mdDialog, participations, saveParticipations, Label) {
-            $scope.participations = participations;
-            $scope.saveParticipations = saveParticipations;
+        function ConfirmParticipantsCtrl($scope, $mdDialog, participants, saveParticipants, Label) {
+            $scope.participants = participants;
+            $scope.saveParticipants = saveParticipants;
             $scope.Label = Label;
             $log.log('olha elaaaaaa');
 
             $scope.removeParticipation = function (participation) {
-                var index = $scope.participations.indexOf(participation);
-                $scope.participations.splice(index, 1);
+                var index = $scope.participants.indexOf(participation);
+                $scope.participants.splice(index, 1);
             };
 
 
