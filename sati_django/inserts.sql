@@ -9,7 +9,7 @@ INSERT INTO sati_category(id, name, image) VALUES
   (5, 'Outro', 'outro.jpg');
 
 INSERT INTO sati_event(id, name, fee, workload, description, is_active, category_id, edition_id) VALUES
-  (1, 'Minicurso Latex', 10, 0, ' Minicurso latex article e beamer', true, 1, 1),
+  (1, 'Minicurso Latex', 10, 0, ' Minicurso latex article(Segunda) e (beamer)', true, 1, 1),
   (2, 'Programando Robôs Cognitivos Usando o ARGO', 10, 16, 'Programando Robôs Cognitivos Usando o ARGO', true, 2, 1),
   (3, 'Abertura Oficial', 0, 0, 'Cerimönia de abertura da Sati.', true, 5, 1),
   (4, 'Regulamentação da Profissão', 0, 0, 'Palestra sobre as vantagens e desvantagens da regulamentação da profissão.', true, 3, 1),
@@ -19,7 +19,7 @@ INSERT INTO sati_event(id, name, fee, workload, description, is_active, category
   (8, 'Utilizando Sistemas Multi-Agentes para Programação de Plataformas Robóticas', 0, 0, 'Utilizando Sistemas Multi-Agentes para Programação de Plataformas Robóticas', true, 3, 1),
   (9, 'Interação humano computador com ênfase em acessibilidade', 0, 0, 'Interação humano computador com ênfase em acessibilidade', true, 2, 1),
   (10, 'WPCCG', 0, 0, 'Workshop', true, 4, 1),
-  (11, 'Campeonato de e-sports', 0, 0, 'Campeonato de e-sports: FIFA E CS:GO', true, 5, 1),
+  (11, 'Campeonato de e-sports', 0, 0, 'Campeonato de e-sports: FIFA (Quarta-Feira) E CS:GO(Quinta-Feira)', true, 5, 1),
   (12, 'Internacionalização das Empresas de TI', 0,0, 'Palestra sobre Internacionalização das Empresas de TI', true, 3, 1),
   (13, 'Tema: Global Game Jam e jogos em geral', 0, 0, 'Palestra: Global Game Jam e jogos em geral', true, 3, 1),
   (14, 'Canvas', 0, 0, 'Oficina sobre canvas', true, 2, 1),
@@ -28,7 +28,9 @@ INSERT INTO sati_event(id, name, fee, workload, description, is_active, category
   (17, 'Photoshop', 10, 0, 'Minicurso photoshop', true, 1, 1),
   (18, 'Dispositivos alternativos de interação.', 0, 0, 'Dispositivos alternativos de interação.', true, 2, 1),
   (19, 'Marco Civil da Internet.', 0, 0, 'Marco Civil da Internet.', true, 3, 1),
-  (20, 'Desenvolvimento de jogos em HTML 5.', 10, 0, 'Desenvolvimento de jogos em HTML 5', true, 1, 1);
+  (20, 'Desenvolvimento de jogos em HTML 5.', 10, 0, 'Desenvolvimento de jogos em HTML 5', true, 1, 1),
+  (21, 'Palestra IPv6', 10, 0, 'Palestra sobre IPv6', true, 3, 1 ),
+  (22, 'Maratona de Programação', 0, 0, 'Maratona de Programação', true, 5, 1);
 
 INSERT INTO SATI_PERSON (id, name, password, institution, cpf, academic_registry, email, is_active, role)
 values
@@ -46,7 +48,9 @@ values
   (12, 'Malcon', 'senha', 'UTFPR', 122318848, 11111 ,'1883323@email.com', true, 1),
   (13, 'Rafael Althaus', 'senha', 'UTFPR', 12324441888, 11111 ,'18844333@email.com', true, 1),
   (14, 'Rafael Althaus', 'senha', 'UTFPR', 122164441888, 11111 ,'1884444333@email.com', true, 1),
-  (15, 'Sandro Alex', 'senha', 'UTFPR', 1224414145888, 11111 ,'18855544333@email.com', true, 1);
+  (15, 'Sandro Alex', 'senha', 'UTFPR', 1224414145888, 11111 ,'18855544333@email.com', true, 1),
+  (16, 'Luciano Santos', senha, UTFPR, 222234521, 111111, 'bbbe3334@email.com', true, 1),
+  (17, 'Saulo/Alessandro', senha, UTFPR, 24666664, 212356, '345234@email.com', true, 1);
 
 -- INSERT INTO AUTH_USER(password, username, is_staff, is_active, email, first_name, last_name,is_superuser, date_joined)
 -- VALUES
@@ -73,7 +77,9 @@ INSERT INTO sati_session(id, spots, is_active, event_id, instructor_id) VALUES
   (18, 10, true, 18, 10),
   (19, 10, true, 19, 15),
   (20, 10, true, 20, 3),
-  (21, 10, true, 11, 4);
+  (21, 10, true, 11, 4),
+  (22, 10, true, 21, 16),
+  (23, 10, true, 22, 17);
 
 
 INSERT INTO sati_room(id, name, occupancy, number, type, is_active) VALUES
