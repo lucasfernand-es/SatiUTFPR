@@ -27,6 +27,9 @@
             no_spot : function () {
                 return 'Esgotado';
             },
+            donation : function () {
+                return 'Doação';
+            },
             no_session : function () {
                 return 'Sem turmas';
             },

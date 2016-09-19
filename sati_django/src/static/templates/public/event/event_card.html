@@ -1,3 +1,7 @@
+    <span class="ribbon top-right ribbon-warning ribbon-session" ng-show="event.can_donate">
+        <small ng-bind="EventLabel.donation()"></small>
+    </span>
+
     <span class="ribbon top-left ribbon-danger" ng-show="!event.has_spots || !event.has_session">
         <small ng-bind=" !event.has_session? EventLabel.no_session() : EventLabel.no_spot()"></small>
     </span>
