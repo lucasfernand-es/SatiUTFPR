@@ -249,7 +249,7 @@
                     <md-button
                             ng-hide="signupCtrl.has_account"
                             ng-click="create()"
-                            ng-disabled="!signup_form.$valid"
+                            ng-disabled="!signupCtrl.signup_form.$valid"
                                aria-label="Add"
                                class="md-raised md-primary mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone"
                                ng-bind="CRUDLabel.label_add_item()">
