@@ -23,13 +23,13 @@
 
                 var promise;
 
+                $log.log('axuX ad ouX');
 
                 eventCtrl.loadEvents = function () {
                     eventCtrl.events = [];
 
                     promise = ModelUtils.get_request(Urls.get_all_events())
                         .then(function (response) {
-                            $log.log(response);
 
                             angular.forEach(response, function (event) {
 

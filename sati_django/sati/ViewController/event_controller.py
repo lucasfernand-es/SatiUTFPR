@@ -55,6 +55,7 @@ def get_event_info(event_id):
 
         event_json = {
             'id': event.id,
+            'can_donate': event.category.name == 'Palestra',
             'category': event_category,
             'edition': event.edition.name,
             'name': event.name,
