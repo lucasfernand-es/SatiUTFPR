@@ -1,7 +1,7 @@
 from sati.models import Person, Session, Participant, Event
 from django.http import JsonResponse, HttpResponse
 from rest_framework import status
-from sati_django.sati.serializers import *
+from sati.serializers import *
 
 
 def get_all_participants(request):

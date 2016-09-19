@@ -33,8 +33,6 @@ def user_session(request):
 def user_login(request):
     user = {"email": request.POST.get('email'), 'password': request.POST.get('password')}
     # required_login = json.loads(request.body)
-    print user
-    print 'user'
 
     user = user_authenticate(user['email'], user['password'])  # (required_login['email'], required_login['password'])
 
@@ -55,6 +53,34 @@ def user_logout(request):
     logout(request)
     return render(request,
                   'public/index.html')
+
+
+def get_user_participant(request):
+    user = {"email": request.POST.get('email'), 'password': request.POST.get('password')}
+    # required_login = json.loads(request.body)
+    
+    user = user_authenticate(user['email'], user['password'])  # (required_login['email'], required_login['password'])
+
+    if user is not None:
+        # THERE IS NO WAY .GET WILL RETURN NONE
+        person = Person.objects.get(email=user['email'])
+        participates = Participant.objects.filter(person_id=person.id, status=True)
+        session_array = []
+        for participate in participates:
+            session_array.append({
+                'session_id': participate.session.id,
+            })
+        return JsonResponse({
+            'error': False,
+            'sessions': session_array,
+        })
+    else:
+        oops = 'Usuário não cadastrado ou senha/email inválidos'
+        print oops
+        return JsonResponse({
+            'error': True,
+            'error_messages': oops,
+        })
 
 @csrf_exempt
 def user_signup(request):
@@ -88,7 +114,7 @@ def user_signup(request):
                     participant.person = person_response
                     participant.session = Session.objects.get(id=id_session)
                     participant.is_confirmed = False
-                    participant.status = False
+                    participant.status = True
                     try:
                         participant.save()
                     except Error:
