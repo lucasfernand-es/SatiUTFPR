@@ -175,7 +175,7 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
     password = serializers.CharField(style={'input_type': 'password'})
     institution = serializers.CharField(allow_blank=True, required=False)
     cpf = serializers.CharField(validators=[UniqueValidator(queryset=Person.objects.all(), message='CPF já cadastrado.')])
-    academic_registry = serializers.IntegerField(allow_null=True, required=False)
+    academic_registry = serializers.CharField(allow_null=True, required=False)
     role = serializers.CharField()
     is_active = serializers.BooleanField()
 
