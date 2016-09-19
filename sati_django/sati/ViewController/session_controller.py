@@ -107,6 +107,7 @@ def get_all_sessions(request):
                 'occurrences': occurrences_array,
                 'category_name': event.category.name,
                 'event_name': event.name,
+                'event_id': event.id,
                 'event_fee': event.fee,
             }
             session_array.append(session_json)

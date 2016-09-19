@@ -22,6 +22,15 @@
             },
             label_cpf : function () {
                 return 'CPF';
+            },
+            label_new_enroll : function () {
+                return 'Novo Cadastro';
+            },
+            label_has_registry : function () {
+                return 'Já possui Cadastro?';
+            },
+            label_load_information : function () {
+                return 'Carregar dados';
             }
         };
 

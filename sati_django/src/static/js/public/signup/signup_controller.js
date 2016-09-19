@@ -51,6 +51,8 @@
         $scope.Institutions = ['UTFPR', 'UEPG'];
         $scope.UTFPR = 'UTFPR';
 
+        $scope.isNewParticipant = true;
+
         signupCtrl.loadSessions = function () {
 
             promise = ModelUtils.get_request( Urls.get_all_sessions() );
@@ -70,9 +72,17 @@
 
         $scope.create = function () {
             signupCtrl.errors = {};
+
+            signupCtrl.signup_form.person.name = 'nome';
+            signupCtrl.signup_form.person.password = 'nome';
+            signupCtrl.signup_form.person.confirm_password = 'nome';
+            signupCtrl.signup_form.person.ra = 1371800;
+
+
             ModelUtils.post_request(Urls.add_new_participant(), signupCtrl.signup_form.person, $scope.errors)
-            .then(function () {
-                $log.log($scope);
+            .then(function (response) {
+                $log.log('de volta');
+                $log.log(response);
             }, function () {
                 $log.log($scope.convertErrorFields($scope.errors));
                 signupCtrl.errors = $scope.convertErrorFields($scope.errors);
@@ -86,12 +96,20 @@
             $anchorScroll();
         };
 
+        $scope.test = function () {
+            $log.log('lo');
+        };
+
         $scope.convertErrorFields = Addons.convertErrorFields;
 
         $scope.clear = function () {
-            $scope.anchorTop();
+            $scope.search = {};
             signupCtrl.errors = {};
             signupCtrl.signup_form.person = {};
+            signupCtrl.signup_form.person.email = '';
+            signupCtrl.signup_form.person.cpf = '';
+            signupCtrl.signup_form.person.password = '';
+            signupCtrl.signup_form.person.confirm_password = '';
             signupCtrl.signup_form.person.sessions = [];
         };
 

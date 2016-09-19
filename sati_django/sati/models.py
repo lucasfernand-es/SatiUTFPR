@@ -57,7 +57,7 @@ class Person(models.Model):
     password = models.CharField(max_length=32)
     institution = models.CharField(max_length=255, blank=True)
     cpf = models.CharField(max_length=15, unique=True)
-    academic_registry = models.CharField(max_length=15, blank=True)
+    academic_registry = models.CharField(max_length=15, null=True)
     role = models.IntegerField(choices=ROLES, default=3)
     is_active = models.BooleanField(default=True)
 
