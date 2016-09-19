@@ -51,6 +51,8 @@
         $scope.Institutions = ['UTFPR', 'UEPG'];
         $scope.UTFPR = 'UTFPR';
 
+        $scope.isNewParticipant = true;
+
         signupCtrl.loadSessions = function () {
 
             promise = ModelUtils.get_request( Urls.get_all_sessions() );
@@ -86,12 +88,20 @@
             $anchorScroll();
         };
 
+        $scope.test = function () {
+            $log.log('lo');
+        };
+
         $scope.convertErrorFields = Addons.convertErrorFields;
 
         $scope.clear = function () {
-            $scope.anchorTop();
+            $scope.search = {};
             signupCtrl.errors = {};
             signupCtrl.signup_form.person = {};
+            signupCtrl.signup_form.person.email = '';
+            signupCtrl.signup_form.person.cpf = '';
+            signupCtrl.signup_form.person.password = '';
+            signupCtrl.signup_form.person.confirm_password = '';
             signupCtrl.signup_form.person.sessions = [];
         };
 
