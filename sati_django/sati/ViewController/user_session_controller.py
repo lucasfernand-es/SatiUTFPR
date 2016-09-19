@@ -16,7 +16,10 @@ from sati_django.sati.serializers import *
 
 def user_authenticate(username, password):
     print password, username
-    user = authenticate(username=username, password=password)
+    try:
+        user = authenticate(username=username, password=password)
+    except User.DoesNotExist:
+        return None
     return user
 
 
@@ -30,7 +33,7 @@ def user_session(request):
 def user_login(request):
     # required_login = json.loads(request.body)
 
-    user = user_authenticate('email@email.com', '123')  # (required_login['email'], required_login['password'])
+    user = user_authenticate('vinicustod@hotmail.com', '123456')  # (required_login['email'], required_login['password'])
 
     if user is not None:
         login(request, user)

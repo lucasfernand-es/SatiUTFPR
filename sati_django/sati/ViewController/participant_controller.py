@@ -1,69 +1,58 @@
 from sati.models import Person, Session, Participant, Event
 from django.http import JsonResponse, HttpResponse
+from rest_framework import status
+from sati_django.sati.serializers import *
 
 
-def get_event_info(event_id):
+def get_all_participants(request):
     events = Event.objects.all()
 
-    if not len(events):
-        return {}
-    else:
-        event = events[0]
-        sessions = Session.objects.filter(event_id=event.id, is_active=True)
-        session_array = []
-
-        available_spots_event = 0
-
-        event_has_session = False
-        event_has_occurrence = False
-
+    events_array = []
+    for event in events:
+        sessions = Session.objects.filter(event_id=event.id)
+        sessions_array = []
         for session in sessions:
-            event_has_session = True
-            occurrences = Occurrence.objects.filter(session_id=session.id, is_active=True)
-            occurrences_array = []
-            for occurrence in occurrences:
-                event_has_occurrence = True
+            participants = Participant.objects.filter(session_id=session.id)
+            participants_array = []
+            for participant in participants:
+                participants_array.append(create_participant_json(participant))
 
-                occurrences_json = {
-                    'room_name': occurrence.room.name,
-                    'begin_date_time': occurrence.begin_date_time,
-                    'end_date_time': occurrence.end_date_time,
-                }
-                occurrences_array.append(occurrences_json)
+            sessions_array.append(create_session_json(session, participants_array))
+        events_array.append(create_event_json(event, sessions_array))
 
-            available_spots_session = session_available_spots(session.id)
-            available_spots_event += available_spots_session
-            session_json = {
-                'instructor_name': session.instructor.name,
-                'spots': session.spots,
-                'occurrences': occurrences_array,
-                'available_spots': available_spots_session,
-                'has_spots': available_spots_session > 0,
-            }
-            # print session_json
-            session_array.append(session_json)
+    return JsonResponse(create_response('events', events_array, False, {}))
 
-        category = Category.objects.get(pk=event.category_id)
 
-        event_category = {'name': category.name, 'image': category.image.url}
+def create_response(response_key, response, error, error_messages):
+    return{
+        response_key : response,
+        'error': error,
+        'error_messages': error_messages,
+        'status_code' : status.HTTP_100_CONTINUE,
 
-        event_json = {
-            'id': event.id,
-            'category': event_category,
-            'edition': event.edition.name,
-            'name': event.name,
-            'fee': event.fee,
-            'workload': event.workload,
-            'description': event.description,
-            'available_spots': available_spots_event,
-            'has_spots': available_spots_event > 0,
-            'has_session': event_has_session,
-            'has_occurrence': event_has_occurrence,
-            'sessions': session_array,
-        }
+    }
 
-        return event_json
+def create_event_json(event, sessions_array):
+    return {
+        'event': EventSerializer(data=event),
+        'sessions': sessions_array,
+    }
 
+def create_session_json(session, participant_array):
+    return {
+        'session': session,
+        'participants': participant_array
+    }
+
+
+def create_participant_json(participant):
+    return {
+        'participant_id': participant.id,
+        'participant_is_confirmed': participant.is_confirmed,
+        'person_name': participant.person.name,
+        'person_cpf': participant.person.cpf,
+        'person_academic_registry': participant.person.academic_registry
+    }
 # def get_all_participants(request):
 #     persons = Person.objects.all()
 #
