@@ -89,42 +89,6 @@ def get_session_available_spots(session_id):
             response = 0
 
     return response
-# def get_all_participants(request):
-#     persons = Person.objects.all()
-#
-#     if persons:
-#         persons_array = []
-#         for person in persons:
-#             participate = Participant.objects.filter(person_id=person.id)
-#             if not len(participate):
-#                 continue
-#             sessions_array = []
-#             for registry in participate:
-#                 session = Session.objects.filter(id=registry.session.id)
-#                 sessions_array.append(create_session_json(session))
-#             participate_json ={
-#                 'sessions': sessions_array
-#             }
-#
-# def create_session_json(session):
-#     return {
-#         'event_id' : session.event_id
-#     }
-#
-# def create_person_dict(person):
-#     return {
-#         'cpf': person.cpf,
-#         'name': person.name,
-#         'academic_registry': person.academic_registry
-#     }
-#
-#
-# def create_json_response(response_key, response_dict, error, error_messages):
-#     return {
-#         response_key : response_dict,
-#         'error': error,
-#         'error_messages': error_messages
-#     }
 
 
 def session_available_spots(session_id):

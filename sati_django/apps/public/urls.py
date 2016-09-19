@@ -12,7 +12,11 @@ urlpatterns = [
     url(r'^user_login/', session.user_login, name='user_login'),
     url(r'^user_signup/', session.user_signup, name='user_signup'),
 
+    # methods to update list of participants
     url(r'^get_sessions_user', session.get_user_participant, name='user-participant'),
+    url(r'^update_participants', session.user_update_participant, name='update-participant'),
+
+
     # Events
     url(r'^events', views.events_list, name='event-list'),
     # url(r'^events/card_detail', views.event_card_detail, name='event-card-detail'),

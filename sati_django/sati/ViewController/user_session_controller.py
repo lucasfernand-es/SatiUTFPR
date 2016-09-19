@@ -82,6 +82,43 @@ def get_user_participant(request):
             'error_messages': oops,
         })
 
+
+def user_update_participant(request):
+    sessions = request.POST.get('sessions')
+    user_id = request.POST.get('user_id')
+    person = Person.objects.get(id=user_id)
+    errors_array = []
+    for session in sessions:
+        participants = Participant.objects.filter(session_id=session.id, user_id=user_id)
+        if not len(participants):
+            participant = Participant()
+            participant.person = person
+            participant.session = Session.objects.get(id=session.id)
+            participant.is_confirmed = False
+            participant.status = True
+            try:
+                participant.save()
+            except Error:
+                errors_array.append('error_session_' + str(session.id))
+        else:
+            for participant in participants:
+                participant.status = not participant.status
+                try:
+                    participant.save()
+                except Error:
+                    errors_array.append('error_session_' + str(session.id))
+
+    if len(errors_array):
+        return JsonResponse({
+            'error': True,
+            'error_messages': errors_array
+        })
+    else:
+        return JsonResponse({
+            'error': False,
+            'status': status.HTTP_201_CREATED
+        })
+
 @csrf_exempt
 def user_signup(request):
 
