@@ -21,7 +21,7 @@
         participantCtrl.loadParticipants = function () {
             promise = ModelUtils.get_request(Urls.get_all_participants())
                 .then(function (response) {
-                    //$log.log(response.events);
+                    $log.log(response.events);
 
                     angular.forEach(response.events, function (event) {
                         angular.forEach(event.sessions, function (session) {
@@ -43,22 +43,20 @@
 
         participantCtrl.loadParticipants();
 
-        participantCtrl.addModifiedParticipant = function (participation, event) {
+        participantCtrl.addModifiedParticipant = function (participant) {
 
-            participation.event = event;
-
-            if( !Addons.exists(participation, participantCtrl.modifiedParticipants) ) {
-                participantCtrl.modifiedParticipants.push(participation);
+            if( !Addons.exists(participant, participantCtrl.modifiedParticipants) ) {
+                participantCtrl.modifiedParticipants.push(participant);
             };
 
-            var message = participation.is_confirmed?
+            var message = participant.is_confirmed?
                 Label.label_participant_is_confimed_true_lower() :
                 Label.label_participant_is_confimed_false_lower();
 
             Toast.showToast('Participação de '
-                + participation.name
+                + event.name
                 + ' alterada em '
-                + participation.event.name
+                + participant.event_name
                 + ' para '
                 + message + '.');
 
@@ -69,17 +67,25 @@
             $mdDialog.cancel();
             $log.log('oi');
 
+            $log.log('participantCtrl.modifiedParticipants');
+            $log.log(participantCtrl.modifiedParticipants);
 
-            promise = ModelUtils.get_request(Urls.get_all_participants())
+            participantCtrl.errors = [];
+            participantCtrl.success = [];
+
+            var send_request = {'participants': participantCtrl.modifiedParticipants};
+
+
+            promise = ModelUtils.post_request(Urls.confirm_participant(), send_request, $scope.errors)
             .then(function (response) {
-                $log.log(response.events);
+                $log.log(response.data);
 
-                participantCtrl.events = response.events;
-
-                participantCtrl.loadParticipants();pa
-
-            }, function (response) {
-                Toast.showToast(response.status + ' ' + response.statusText);
+                participantCtrl.loadParticipants();
+            }, function () {
+               // participantCtrl.errors = $scope.convertFields($scope.errors);
+                $log.log('errors');
+                $log.log($scope.errors);
+                //Toast.showToast(response.status + ' ' + response.statusText);
             });
 
 

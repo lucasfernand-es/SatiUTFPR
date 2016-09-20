@@ -19,6 +19,7 @@
 
 
 
+
     <md-button aria-label="SignupLabel.label_load_information()"
                        ng-click="participantCtrl.confirmParticipants($event)"
                        class="md-raised md-primary mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet mdl-cell--3-col-phone"
@@ -33,6 +34,10 @@
         </md-toolbar>
 
         <md-content class="mdl-shadow--3dp mdl-grid" flex layout-padding>
+
+            <error-response messages="participantCtrl.errors" class="mdl-cell mdl-cell--12-col mdl-grid"></error-response>
+            <success-response messages="participantCtrl.success" class="mdl-cell mdl-cell--12-col mdl-grid"></success-response>
+
 
             <div class="mdl-cell mdl-cell--12-col mdl-grid checkboxdemoSyncing">
                 <div flex="100" layout="column">

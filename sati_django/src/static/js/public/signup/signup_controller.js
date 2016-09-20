@@ -195,8 +195,8 @@
 
             }, function () {
                 signupCtrl.errors = $scope.convertFields($scope.errors);
-                $log.log('errors');
-                $log.log(signupCtrl.errors);
+                //$log.log('errors');
+                //$log.log(signupCtrl.errors);
                 // the element you wish to scroll to.
             });
         };

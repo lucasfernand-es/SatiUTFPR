@@ -4,19 +4,22 @@ from django.http import JsonResponse, HttpResponse
 from rest_framework import status
 from sati.serializers import *
 from django.db import Error
+import json
 
 
 def confirm_participant(request):
-    participations = request.POST.get('participations', None)
+    participants_update = json.loads(request.body)
+    print participants_update
+    participants = participants_update['participants']
 
     errors_array = []
     success_array = []
     has_error = False
-    if participations is not None:
-        for part in participations:
-            participant_id = part[0]
-            session_id = part[2]
-            is_confirmed = part[3]
+    if participants is not None:
+        for part in participants:
+            participant_id = part['id']
+            session_id = part['session_id']
+            is_confirmed = part['is_confirmed']
 
             participant = Participant.objects.get(id=participant_id)
 
@@ -130,6 +133,8 @@ def create_participant_json(participant):
         'is_confirmed': participant.is_confirmed,
         'name': participant.person.name,
         'person_id': participant.person.id,
+        'session_id': participant.session.id,
+        'event_name': participant.session.event.name,
         'cpf': participant.person.cpf,
         'academic_registry': participant.person.academic_registry
     }
