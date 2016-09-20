@@ -86,7 +86,7 @@ def get_user_participant(request):
         })
     else:
         oops = 'Usuário não cadastrado ou senha/email inválidos.'
-        print oops
+        # print oops
         return JsonResponse({
             'error': True,
             'error_messages': oops,
@@ -94,7 +94,7 @@ def get_user_participant(request):
 
 
 def user_update_participant(request):
-    print request.body
+    # print request.body
 
     update_participant = json.loads(request.body)
 
@@ -146,8 +146,8 @@ def user_update_participant(request):
 def user_signup(request):
 
     if request.method == 'POST':
-        print 'postou algo'
-        print request.body
+        # print 'postou algo'
+        # print request.body
 
         person = json.loads(request.body)
         person['is_active'] = True
@@ -162,7 +162,7 @@ def user_signup(request):
             if not person['academic_registry']:
                 del person['academic_registry']
 
-        print person
+        # print person
         serializer = PersonSerializer(data=person)
 
         if serializer.is_valid():

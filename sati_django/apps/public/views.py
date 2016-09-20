@@ -13,14 +13,14 @@ from rest_framework.response import Response
 
 
 def index(request):
-    print "index"
+    # print "index"
     return render(request, 'public/index.html')
 
 
 def login(request):
-    print "login"
-    print request.user.is_authenticated
-    print request.user.username
+    # print "login"
+    # print request.user.is_authenticated
+    # print request.user.username
     if request.user.is_authenticated():
         return render(request, 'dashboard/index.html')
     else:
@@ -45,7 +45,7 @@ def event_detail(request, event_id):
     event = Event.objects.get(pk=event_id)
     serializer = EventSerializer(event, many=False)
     data = serializer.data
-    print data
+    # print data
 
     request.event = data
     request.event_id = event_id
