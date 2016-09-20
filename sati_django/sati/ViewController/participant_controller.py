@@ -11,7 +11,7 @@ import json
 @login_required
 def confirm_participant(request):
     if request.user.is_superuser:
-        print request.body
+        # print request.body
 
         body = json.loads(request.body)
         participants = body['participants']

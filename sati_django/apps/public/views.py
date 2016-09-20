@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from sati.models import Event
 from sati.serializers import *
@@ -22,7 +22,10 @@ def login(request):
     # print request.user.is_authenticated
     # print request.user.username
     if request.user.is_authenticated():
-        return render(request, 'dashboard/index.html')
+        if request.user.is_superuser:
+            return render(request, 'dashboard/index.html')
+        else:
+            return HttpResponseForbidden
     else:
         return render(request, 'public/login.html')
 

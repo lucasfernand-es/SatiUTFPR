@@ -26,7 +26,7 @@ DEBUG = True
 
 # TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -136,7 +136,7 @@ STATICFILES_FINDERS = (
 STATIC_URL = '/static/'
 LOGIN_URL = '/login/'
 
-STATIC_ROOT = ''
+STATIC_ROOT = '/static_src'
 
 MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 MEDIA_URL = '/media/'

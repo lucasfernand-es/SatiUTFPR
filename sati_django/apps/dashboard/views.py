@@ -12,12 +12,15 @@ import json
 
 @login_required
 def index(request):
-    # Construct a dictionary to pass to the template engine as its context.
-    # Note the key title is the same as {{ title }} in the template!
-    context_dict = {
-        'title': "Dashboard"
-    }
-    return render(request, 'dashboard/index.html', context=context_dict)
+    if request.user.is_superuser:
+        # Construct a dictionary to pass to the template engine as its context.
+        # Note the key title is the same as {{ title }} in the template!
+        context_dict = {
+            'title': "Dashboard"
+        }
+        return render(request, 'dashboard/index.html', context=context_dict)
+    else:
+        return HttpResponseForbidden
 
 
 @login_required()

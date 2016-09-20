@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, render_to_response, redirect
-from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
@@ -36,11 +36,14 @@ def user_login(request):
     user = user_authenticate(user['email'], user['password'])  # (required_login['email'], required_login['password'])
 
     if user is not None:
-        login(request, user)
-        return HttpResponseRedirect(
-            request,
-            '/dashboard/'
-        )
+        if user.is_superuser:
+            login(request, user)
+            return HttpResponseRedirect(
+                request,
+                '/dashboard/'
+            )
+        else:
+            return HttpResponseForbidden
     else:
         oops = 'Ops! Ocorreu um erro inesperado. Tente novamente.'
         return HttpResponseRedirect(
@@ -55,7 +58,7 @@ def user_logout(request):
 
 
 def get_user_participant(request):
-    print request.body
+    # print request.body
 
     sent_user = json.loads(request.body)
     # person['is_active'] = True
