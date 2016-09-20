@@ -77,7 +77,7 @@ class Session(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return "{0} com {1} - {2} vagas".format(self.instructor.name, self.event.name, self.spots)
+        return u"{0} com {1} - {2} vagas".format(self.instructor.name, self.event.name, self.spots)
 
     class Meta:
         app_label = 'sati'
@@ -106,7 +106,7 @@ class Occurrence(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return"Occurrence - Session {0} - Room {1}: {2} to {3}"\
+        return u"Occurrence - Session {0} - Room {1}: {2} to {3}"\
             .format(self.session, self.room, self.begin_date_time.date(), self.end_date_time.date())
 
     class Meta:
