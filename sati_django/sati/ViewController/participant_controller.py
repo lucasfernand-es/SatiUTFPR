@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
 from sati.models import Person, Session, Participant, Event
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse, HttpResponse, HttpResponseForbidden
+from django.contrib.auth.decorators import login_required
 from rest_framework import status
 from sati.serializers import *
 from django.db import Error
 import json
 
 
+@login_required
 def confirm_participant(request):
     participants_update = json.loads(request.body)
     print participants_update
     participants = participants_update['participants']
 
+<<<<<<<
     errors_array = []
     success_array = []
     has_error = False
@@ -20,20 +23,21 @@ def confirm_participant(request):
             participant_id = part['id']
             session_id = part['session_id']
             is_confirmed = part['is_confirmed']
+=======
+        errors_array = []
+        success_array = []
+        has_error = False
+        if participations is not None:
+            for part in participations:
+                participant_id = part['id']
+                session_id = part['session_id']
+>>>>>>>
 
-            participant = Participant.objects.get(id=participant_id)
+                participant = Participant.objects.get(id=participant_id)
+                session = Session.objects.get(id=participant.session_id)
 
-            if is_confirmed:
-                participant.is_confirmed = False
-                try:
-                    participant.save()
-                    success_array.append(str(participant_id))
-                except Error:
-                    has_error = True
-                    errors_array.append(str(participant_id))
-            else:
-                if get_session_available_spots(session_id) > 0:
-                    participant.is_confirmed = True
+                if participant.is_confirmed:
+                    participant.is_confirmed = False
                     try:
                         participant.save()
                         success_array.append(str(participant_id))
@@ -41,46 +45,69 @@ def confirm_participant(request):
                         has_error = True
                         errors_array.append(str(participant_id))
                 else:
-                    errors_array.append('Turma cheia:' + str(participant_id))
-                    has_error = True
-        if has_error:
-            return JsonResponse({
-                'error': True,
-                'error_messages': errors_array,
-                'success_message': success_array,
-            })
+                    if get_session_available_spots(session_id) > 0:
+                        participant.is_confirmed = True
+                        try:
+                            participant.save()
+                            success_array.append({
+                                'participant_info':create_participant_json(participant),
+                                'session_event_name': session.event.name,
+                            })
+                        except Error:
+                            has_error = True
+                            errors_array.append({
+                                'participant_info':create_participant_json(participant),
+                                'session_event_name': session.event.name,
+                                'error_type': '500'
+                            })
+                    else:
+                        errors_array.append({
+                            'participant_info': create_participant_json(participant),
+                            'session_event_name': session.event.name,
+                            'error_type': 'event_full'
+                        })
+                        has_error = True
+            if has_error:
+                return JsonResponse({
+                    'error': True,
+                    'error_messages': errors_array,
+                    'success_message': success_array,
+                })
+            else:
+                return JsonResponse({
+                    'error': False,
+                    'success_message': success_array,
+                    'status': status.HTTP_100_CONTINUE
+                })
         else:
             return JsonResponse({
-                'error': False,
-                'success_message': success_array,
-                'status': status.HTTP_100_CONTINUE
+                'error': True,
+                'error_messages': ['ID da turma não encontrado'],
             })
-    else:
-        return JsonResponse({
-            'error': True,
-            'error_messages': ['ID da turma não encontrado'],
-        })
 
 
+@login_required
 def get_all_participants(request):
-    events = Event.objects.all()
+    if request.user.is_superuser:
+        events = Event.objects.all()
 
-    events_array = []
-    for event in events:
-        sessions = Session.objects.filter(event_id=event.id)
-        sessions_array = []
-        for session in sessions:
-            participants = Participant.objects.filter(session_id=session.id, status=True)
-            participants_array = []
-            for participant in participants:
-                participants_array.append(create_participant_json(participant))
+        events_array = []
+        for event in events:
+            sessions = Session.objects.filter(event_id=event.id)
+            sessions_array = []
+            for session in sessions:
+                participants = Participant.objects.filter(session_id=session.id, status=True)
+                participants_array = []
+                for participant in participants:
+                    participants_array.append(create_participant_json(participant))
 
-            sessions_array.append(create_session_json(session, participants_array))
-        events_array.append(create_event_json(event, sessions_array))
+                sessions_array.append(create_session_json(session, participants_array))
+            events_array.append(create_event_json(event, sessions_array))
 
-    # print create_response('events', events_array, False, {})
-    return JsonResponse(create_response('events', events_array, False, {}))
-
+        # print create_response('events', events_array, False, {})
+        return JsonResponse(create_response('events', events_array, False, {}))
+    else:
+        return HttpResponseForbidden
 
 def create_response(response_key, response, error, error_messages):
     return{
