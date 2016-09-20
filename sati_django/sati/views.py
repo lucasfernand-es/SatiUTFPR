@@ -162,6 +162,7 @@ class RoomDetail(generics.RetrieveUpdateDestroyAPIView):
         local_authentication.SuperUserSessionAuthentication,
     ]
 
+
 class OccurrenceList(generics.ListCreateAPIView):
     model = Occurrence
     queryset = Occurrence.objects.all()
@@ -178,6 +179,30 @@ class OccurrenceDetail(generics.RetrieveUpdateDestroyAPIView):
     model = Occurrence
     queryset = Occurrence.objects.all()
     serializer_class = OccurrenceSerializer
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
+    ]
+
+
+class ParticipantList(generics.ListCreateAPIView):
+    model = Participant
+    queryset = Participant.objects.all()
+    serializer_class = ParticipantSerializer
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    authentication_classes = [
+        local_authentication.SuperUserSessionAuthentication,
+    ]
+
+
+class ParticipantDetail(generics.RetrieveUpdateDestroyAPIView):
+    model = Participant
+    queryset = Participant.objects.all()
+    serializer_class = ParticipantSerializer
     permission_classes = [
         permissions.IsAuthenticated
     ]

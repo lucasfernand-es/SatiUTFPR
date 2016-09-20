@@ -27,16 +27,16 @@
             <tbody>
 
             <tr ng-repeat="participant in participants">
-                <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.event.name"></td>
+                <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.event_name"></td>
                 <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.name"></td>
                 <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.cpf | brCpf"></td>
                 <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.academic_registry"></td>
                 <td class="mdl-data-table__cell--non-numeric">
                     <md-switch class="md-primary"
                                md-no-ink
-                               ng-disabled="true"
                                aria-label="Label.label_participant_confirmed()"
-                               ng-model="participant.is_confirmed">
+                               ng-model="participant.is_confirmed"
+                               ng-change="participantCtrl.addModifiedParticipant(participant)">
                         <label
                                ng-class="{'mdl-color-text--red-500': !participant.is_confirmed, 'mdl-color-text--green-500': participant.is_confirmed}"
                                ng-bind="participant.is_confirmed? Label.label_participant_is_confimed_true() : Label.label_participant_is_confimed_false() ">

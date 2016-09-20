@@ -17,11 +17,15 @@
         $scope.Label = Label;
         $scope.CRUDLabel = CRUDLabel;
 
+        participantCtrl.clear = function () {
+            participantCtrl.modifiedParticipants = [];
+            participantCtrl.loadParticipants();
+        };
+
 
         participantCtrl.loadParticipants = function () {
             promise = ModelUtils.get_request(Urls.get_all_participants())
                 .then(function (response) {
-                    $log.log(response.events);
 
                     angular.forEach(response.events, function (event) {
                         angular.forEach(event.sessions, function (session) {
@@ -35,10 +39,6 @@
                 }, function (response) {
                     Toast.showToast(response.status + ' ' + response.statusText);
                 });
-        };
-
-        $scope.log = function () {
-          $log.log('init');
         };
 
         participantCtrl.loadParticipants();
@@ -59,16 +59,11 @@
                 + participant.event_name
                 + ' para '
                 + message + '.');
-
-            $log.log(participantCtrl.modifiedParticipants);
         };
+
 
         participantCtrl.saveParticipants = function () {
             $mdDialog.cancel();
-            $log.log('oi');
-
-            $log.log('participantCtrl.modifiedParticipants');
-            $log.log(participantCtrl.modifiedParticipants);
 
             participantCtrl.errors = [];
             participantCtrl.success = [];
@@ -78,23 +73,89 @@
 
             promise = ModelUtils.post_request(Urls.confirm_participant(), send_request, $scope.errors)
             .then(function (response) {
-                $log.log(response.data);
 
-                participantCtrl.loadParticipants();
-            }, function () {
-               // participantCtrl.errors = $scope.convertFields($scope.errors);
+                if ( response.data.empty )
+                {
+                    participantCtrl.errors.push({
+                            'name': 'Lista Vazia',
+                            'message': response.data.error_messages
+                        });
+                }
+                else {
+                    angular.forEach(response.data.success_message, function (success) {
+
+                        if (!success.participant.is_new) {
+                            var message = success.participant.is_confirmed?
+                                'confirmado(a)' :
+                                'não confirmado(a)';
+
+                            participantCtrl.success.push({
+                                'name': 'Participante',
+                                'message': success.participant.name + ' ' + message + ' para ' + success.participant.event_name
+                            });
+                        };
+                    });
+
+                    angular.forEach(response.data.error_messages, function (error) {
+                        participantCtrl.errors.push({
+                            'name': error.error_type,
+                            'message': 'Não foi possível modificar o estado de ' +
+                            error.participant.name + ' em ' + error.participant.event_name
+                        });
+                    });
+
+                    participantCtrl.Response(null, participantCtrl.success, participantCtrl.errors);
+                };
+
+
+                participantCtrl.clear();
+            }, function (response) {
+                participantCtrl.errors = $scope.convertFields($scope.errors);
+                participantCtrl.Response(null, [], participantCtrl.errors);
                 $log.log('errors');
                 $log.log($scope.errors);
-                //Toast.showToast(response.status + ' ' + response.statusText);
+                Toast.showToast(response.status + ' ' + response.statusText);
             });
 
 
+        };
+
+        participantCtrl.Response = function(ev, success, errors) {
+            $mdDialog.show({
+                controller: ResponseCtrl,
+                locals: {
+                    success : success,
+                    errors : errors,
+                    title: 'Atualização'
+                },
+                templateUrl: '/static/templates/dashboard/response.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+            })
+        };
+
+        function ResponseCtrl($scope, $mdDialog, Label, success, errors, title) {
+            $scope.title = title;
+            $scope.success = success;
+            $scope.errors = errors;
+            $scope.Label = Label;
+
+            $scope.hide = function () {
+                $mdDialog.hide();
+            };
+
+            $scope.cancel = function () {
+                $mdDialog.cancel();
+            };
         };
 
         participantCtrl.confirmParticipants = function(ev) {
             $mdDialog.show({
                 controller: ConfirmParticipantsCtrl,
                 locals: {
+                    addModifiedParticipant : participantCtrl.addModifiedParticipant,
                     participants : participantCtrl.modifiedParticipants,
                     saveParticipants : participantCtrl.saveParticipants
                 },
@@ -107,11 +168,11 @@
         };
 
 
-        function ConfirmParticipantsCtrl($scope, $mdDialog, participants, saveParticipants, Label) {
+        function ConfirmParticipantsCtrl($scope, $mdDialog, participants, saveParticipants, addModifiedParticipant, Label) {
             $scope.participants = participants;
             $scope.saveParticipants = saveParticipants;
             $scope.Label = Label;
-            $log.log('olha elaaaaaa');
+            $scope.addModifiedParticipant = addModifiedParticipant;
 
             $scope.removeParticipation = function (participation) {
                 var index = $scope.participants.indexOf(participation);
@@ -126,7 +187,7 @@
             $scope.cancel = function () {
                 $mdDialog.cancel();
             };
-        }
+        };
 
     });
 

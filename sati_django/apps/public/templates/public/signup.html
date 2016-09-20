@@ -206,6 +206,7 @@
                                             </div>
 
                                             <md-checkbox
+                                                    ng-disabled="!session.has_spots"
                                                     aria-label="{[{ session.name }]}"
                                                     ng-checked="exists(session.id, sessions)"
                                                     ng-click="toggle(session.id, sessions)">

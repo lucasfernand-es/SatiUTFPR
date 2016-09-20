@@ -21,6 +21,11 @@
 
                 eventCtrl.categories = [];
 
+                $scope.search = {};
+                $scope.search.name = '';
+                $scope.search.category = {};
+                $scope.search.category.name = '';
+
                 var promise;
 
                 $log.log('axuX ad ouX');
@@ -30,6 +35,9 @@
 
                     promise = ModelUtils.get_request(Urls.get_all_events())
                         .then(function (response) {
+
+
+                            $log.log(response);
 
                             angular.forEach(response, function (event) {
 

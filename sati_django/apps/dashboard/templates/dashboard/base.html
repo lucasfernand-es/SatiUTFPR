@@ -101,10 +101,15 @@
                     <a class="mdl-navigation__link" href="/dashboard/"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">dashboard</i>Home</a>
 
                     {% if request.user.is_staff %}
-                        <a class="mdl-navigation__link" href="/dashboard/edition"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">bookmark</i>Edição</a>
-                        <a class="mdl-navigation__link" href="/dashboard/event"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">event</i>Evento</a>
                         <a class="mdl-navigation__link" href="/dashboard/participant"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">face</i>Participantes</a>
-                        <a class="mdl-navigation__link" href="/dashboard/get_all_participants"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">event</i>Get E/P</a>
+                        <a class="mdl-navigation__link" href="/api/edition"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">bookmark</i>Edição</a>
+                        <a class="mdl-navigation__link" href="/api/event"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">event</i>Evento</a>
+                        <a class="mdl-navigation__link" href="/api/session"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">group</i>Turma</a>
+                        <a class="mdl-navigation__link" href="/api/occurrence"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">schedule</i>Ocorrência</a>
+                        <a class="mdl-navigation__link" href="/api/person"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">person</i>Pessoa</a>
+                        <a class="mdl-navigation__link" href="/api/room"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">place</i>Sala</a>
+                        <a class="mdl-navigation__link" href="/api/participant"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i>Participação</a>
+                        <!--a class="mdl-navigation__link" href="/dashboard/get_all_participants"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">event</i>Get E/P</a-->
                     {% endif %}
                     <a class="mdl-navigation__link" href="/dashboard/logout"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">exit_to_app</i>Logout</a>
                     <div class="mdl-layout-spacer"></div>

@@ -3,7 +3,7 @@
 
     var app = angular.module('event-filter', []);
 
-    app.filter('event_begindate_filter', ['$log', function ($filter) {
+    app.filter('event_begin_date_filter', function ($filter) {
         return function (originalArray, searchCriteria) {
 
             if(!angular.isDefined(searchCriteria) || searchCriteria == '' || searchCriteria == null)
@@ -27,7 +27,12 @@
 
                                 if(keep_checking)
                                 {
-                                    if(new Date(occurrence.begin_date_time) <= searchCriteria)
+                                    var occurrenceDate = new Date(occurrence.begin_date_time);
+
+                                    var date = new Date(occurrenceDate.getUTCFullYear(),
+                                         occurrenceDate.getUTCMonth(),
+                                         occurrenceDate.getUTCDate());
+                                    if(date <= searchCriteria)
                                     {
                                         filteredArray.push(event);
                                         keep_checking = false;
@@ -43,26 +48,6 @@
 
             return filteredArray;
         };
-    }]);
-/*
-    app.filter('event_category_filter', ['$log', function ($filter) {
-        return function (originalArray, searchCriteria, EventLabel) {
+    });
 
-            if(!angular.isDefined(searchCriteria) || searchCriteria == '' || searchCriteria == null || searchCriteria == ())
-                return originalArray;
-
-            console.log(searchCriteria);
-            var filteredArray = [];
-
-            angular.forEach(originalArray, function (event) {
-
-                if(event.category.id == searchCriteria)
-                    filteredArray.push(event);
-
-            });
-
-            return filteredArray;
-        };
-    }]);
-*/
 })(window.angular);

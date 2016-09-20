@@ -10,79 +10,73 @@ import json
 
 @login_required
 def confirm_participant(request):
-    participants_update = json.loads(request.body)
-    print participants_update
-    participants = participants_update['participants']
+    if request.user.is_superuser:
+        print request.body
 
-<<<<<<<
-    errors_array = []
-    success_array = []
-    has_error = False
-    if participants is not None:
-        for part in participants:
-            participant_id = part['id']
-            session_id = part['session_id']
-            is_confirmed = part['is_confirmed']
-=======
+        body = json.loads(request.body)
+        participants = body['participants']
+
         errors_array = []
         success_array = []
         has_error = False
-        if participations is not None:
-            for part in participations:
+        if participants is not None:
+            for part in participants:
                 participant_id = part['id']
                 session_id = part['session_id']
->>>>>>>
+                is_confirmed = part['is_confirmed']
 
                 participant = Participant.objects.get(id=participant_id)
-                session = Session.objects.get(id=participant.session_id)
 
-                if participant.is_confirmed:
-                    participant.is_confirmed = False
-                    try:
-                        participant.save()
-                        success_array.append(str(participant_id))
-                    except Error:
-                        has_error = True
-                        errors_array.append(str(participant_id))
+                if participant.is_confirmed == is_confirmed:
+                    success_array.append({'participant': create_participant_json(participant), 'is_new': False})
                 else:
-                    if get_session_available_spots(session_id) > 0:
-                        participant.is_confirmed = True
+                    if not is_confirmed:
+                        participant.is_confirmed = False
                         try:
                             participant.save()
-                            success_array.append({
-                                'participant_info':create_participant_json(participant),
-                                'session_event_name': session.event.name,
-                            })
+                            success_array.append({'participant': create_participant_json(participant), 'is_new': True})
                         except Error:
                             has_error = True
-                            errors_array.append({
-                                'participant_info':create_participant_json(participant),
-                                'session_event_name': session.event.name,
-                                'error_type': '500'
-                            })
+                            errors_array.append({'participant': create_participant_json(participant),
+                                                 'error_type': 'Server Problem'})
                     else:
-                        errors_array.append({
-                            'participant_info': create_participant_json(participant),
-                            'session_event_name': session.event.name,
-                            'error_type': 'event_full'
-                        })
-                        has_error = True
-            if has_error:
-                return JsonResponse({
-                    'error': True,
-                    'error_messages': errors_array,
-                    'success_message': success_array,
-                })
-            else:
-                return JsonResponse({
-                    'error': False,
-                    'success_message': success_array,
-                    'status': status.HTTP_100_CONTINUE
-                })
+                        if get_session_available_spots(session_id) > 0:
+                            participant.is_confirmed = True
+                            try:
+                                participant.save()
+                                success_array.append({
+                                    'participant': create_participant_json(participant),
+                                    'is_new': True,
+                                })
+                            except Error:
+                                has_error = True
+                                errors_array.append({
+                                    'participant': create_participant_json(participant),
+                                    'error_type': 'Server Problem'
+                                })
+                        else:
+                            has_error = True
+                            errors_array.append({
+                                'participant': create_participant_json(participant),
+                                'error_type': 'Turma lotada'
+                            })
+            # if has_error:
+            #    return JsonResponse({
+            #        'error': True,
+            #        'error_messages': errors_array,
+            #        'success_message': success_array,
+            #    })
+            # else:
+            return JsonResponse({
+                'success_message': success_array,
+                'error_messages': errors_array,
+                'status': status.HTTP_100_CONTINUE
+            })
         else:
             return JsonResponse({
                 'error': True,
-                'error_messages': ['ID da turma não encontrado'],
+                'empty': True,
+                'error_messages': 'ID da turma não encontrado'
             })
 
 
