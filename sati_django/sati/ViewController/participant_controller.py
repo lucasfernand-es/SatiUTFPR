@@ -7,26 +7,39 @@ from django.db import Error
 
 
 def confirm_participant(request):
-    sessions = request.POST.get('sessions')
-    user_id = request.POST.get('user_id')
+    participations = request.POST.get('participations', None)
+
     errors_array = []
     success_array = []
     has_error = False
-    if sessions is not None:
-        for session in sessions:
-            participants = Participant.objects.filter(session_id=session.id, user_id=user_id)
-            if get_session_available_spots(session.id) > 0:
-                for participant in participants:
-                    participant.is_confirmed = not participant.is_confirmed
+    if participations is not None:
+        for part in participations:
+            participant_id = part[0]
+            session_id = part[2]
+            is_confirmed = part[3]
+
+            participant = Participant.objects.get(id=participant_id)
+
+            if is_confirmed:
+                participant.is_confirmed = False
+                try:
+                    participant.save()
+                    success_array.append(str(participant_id))
+                except Error:
+                    has_error = True
+                    errors_array.append(str(participant_id))
+            else:
+                if get_session_available_spots(session_id) > 0:
+                    participant.is_confirmed = True
                     try:
                         participant.save()
-                        success_array.append(str(session.id))
+                        success_array.append(str(participant_id))
                     except Error:
                         has_error = True
-                        errors_array.append(str(session.id))
-            else:
-                errors_array.append('Turma cheia:' + str(session.id))
-                has_error = True
+                        errors_array.append(str(participant_id))
+                else:
+                    errors_array.append('Turma cheia:' + str(participant_id))
+                    has_error = True
         if has_error:
             return JsonResponse({
                 'error': True,
