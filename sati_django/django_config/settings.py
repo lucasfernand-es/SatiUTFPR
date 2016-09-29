@@ -110,7 +110,7 @@ DATABASES = {
 LANGUAGE_CODE = 'pt-br'
 LOCALE_NAME = 'pt_BR'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 

@@ -54,7 +54,7 @@
                 Label.label_participant_is_confimed_false_lower();
 
             Toast.showToast('Participação de '
-                + event.name
+                + participant.name
                 + ' alterada em '
                 + participant.event_name
                 + ' para '

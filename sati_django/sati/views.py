@@ -96,7 +96,7 @@ class PersonList(generics.ListCreateAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
     ]
     authentication_classes = [
         local_authentication.SuperUserSessionAuthentication,

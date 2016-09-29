@@ -1,0 +1,24 @@
+<main class="mdl-layout__content">
+
+    <md-content class="md-padding">
+        <form ng-submit="" name="searchForm">
+            <div class="mdl-grid">
+
+                <div class="mdl-cell mdl-cell--8-col">
+                    <md-input-container flex>
+                        <label>Nome do Evento</label>
+                        <input type="text" ng-model="event.name" name="eName" required=""/>
+
+                        <div ng-messages="searchForm.eName.$error" ng-if="searchForm.eName.$touched">
+                            <div ng-message="required">Nome do evento é <b>obrigatório</b>.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+            </div>
+
+
+        </form>
+    </md-content>
+
+</main>

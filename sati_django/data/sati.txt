@@ -1,0 +1,9 @@
+Tela reduzida - APP Público
+Textos de título responsivos
+Botão fechar do toast
+Página contato
+Tooltip para o ícones
+Loading until Angular loads the page
+Mudar o texto de erro para directives
+
+não apresenta erro para tamanho
