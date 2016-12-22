@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1601053871">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="Django default" uuid="b77a4c47-7212-4c28-9bbb-016e93d69538">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/sati_django/hello_django/settings.py</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/satiutfpr</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/sati</jdbc-url>
       <explain-plan-config>
         <provider>com.intellij.database.plan.postgres.PostgresExplainPlanProvider</provider>
       </explain-plan-config>

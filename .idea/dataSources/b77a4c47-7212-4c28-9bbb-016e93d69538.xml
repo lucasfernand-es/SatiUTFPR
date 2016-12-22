@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="Django default">
+  <database-model serializer="dbm" rdbms="SQLITE" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1">
+      <Visible>1</Visible>
+    </schema>
+    <table id="3" parent="2" name="auth_group"/>
+    <table id="4" parent="2" name="auth_group_permissions"/>
+    <table id="5" parent="2" name="auth_permission"/>
+    <table id="6" parent="2" name="auth_user"/>
+    <table id="7" parent="2" name="auth_user_groups"/>
+    <table id="8" parent="2" name="auth_user_user_permissions"/>
+    <table id="9" parent="2" name="django_admin_log"/>
+    <table id="10" parent="2" name="django_content_type"/>
+    <table id="11" parent="2" name="django_migrations"/>
+    <table id="12" parent="2" name="django_session"/>
+    <table id="13" parent="2" name="satiUTFPR_edition"/>
+    <table id="14" parent="2" name="satiUTFPR_event"/>
+    <table id="15" parent="2" name="satiUTFPR_ocurrence"/>
+    <table id="16" parent="2" name="satiUTFPR_participant"/>
+    <table id="17" parent="2" name="satiUTFPR_payment"/>
+    <table id="18" parent="2" name="satiUTFPR_person"/>
+    <table id="19" parent="2" name="satiUTFPR_presence"/>
+    <table id="20" parent="2" name="satiUTFPR_raffle"/>
+    <table id="21" parent="2" name="satiUTFPR_report"/>
+    <table id="22" parent="2" name="satiUTFPR_room"/>
+    <table id="23" parent="2" name="satiUTFPR_session"/>
+    <table id="24" parent="2" name="sqlite_sequence"/>
+    <table id="25" parent="2" name="sqlite_stat1"/>
+    <column id="26" parent="3" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="3" name="name">
+      <DataType>VARCHAR(80) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="28" parent="3" name="sqlite_autoindex_auth_group_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="29" parent="3">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="30" parent="4" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="4" name="group_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="4" name="permission_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="33" parent="4" name="auth_group_permissions_group_id_0cd325b0_uniq">
+      <ColNames>group_id
+permission_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="34" parent="4">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="35" parent="4" name="#FAKE_auth_group_permissions_2">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>group_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>auth_group</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="36" parent="4" name="#FAKE_auth_group_permissions_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>permission_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>auth_permission</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="37" parent="5" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="38" parent="5" name="content_type_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="5" name="codename">
+      <DataType>VARCHAR(100) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="5" name="name">
+      <DataType>VARCHAR(255) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="41" parent="5" name="auth_permission_content_type_id_01ab375a_uniq">
+      <ColNames>content_type_id
+codename</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="42" parent="5">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="43" parent="5" name="#FAKE_auth_permission_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>content_type_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>django_content_type</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="44" parent="6" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="6" name="password">
+      <DataType>VARCHAR(128) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="6" name="last_login">
+      <DataType>DATETIME(0,-1)|12</DataType>
+    </column>
+    <column id="47" parent="6" name="is_superuser">
+      <DataType>BOOL(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="48" parent="6" name="first_name">
+      <DataType>VARCHAR(30) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="6" name="last_name">
+      <DataType>VARCHAR(30) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="6" name="email">
+      <DataType>VARCHAR(254) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="6" name="is_staff">
+      <DataType>BOOL(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="6" name="is_active">
+      <DataType>BOOL(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="53" parent="6" name="date_joined">
+      <DataType>DATETIME(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="54" parent="6" name="username">
+      <DataType>VARCHAR(30) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="55" parent="6" name="sqlite_autoindex_auth_user_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>username</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="56" parent="6">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="57" parent="7" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="58" parent="7" name="user_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="7" name="group_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="60" parent="7" name="auth_user_groups_user_id_94350c0c_uniq">
+      <ColNames>user_id
+group_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="61" parent="7">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="62" parent="7" name="#FAKE_auth_user_groups_2">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>auth_user</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="63" parent="7" name="#FAKE_auth_user_groups_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>group_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>auth_group</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="64" parent="8" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="65" parent="8" name="user_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="8" name="permission_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="67" parent="8" name="auth_user_user_permissions_user_id_14a6b632_uniq">
+      <ColNames>user_id
+permission_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="68" parent="8">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="69" parent="8" name="#FAKE_auth_user_user_permissions_2">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>auth_user</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="70" parent="8" name="#FAKE_auth_user_user_permissions_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>permission_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>auth_permission</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="71" parent="9" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="72" parent="9" name="object_id">
+      <DataType>TEXT(0,-1)|12</DataType>
+    </column>
+    <column id="73" parent="9" name="object_repr">
+      <DataType>VARCHAR(200) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="74" parent="9" name="action_flag">
+      <DataType>SMALLINT UNSIGNED(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="75" parent="9" name="change_message">
+      <DataType>TEXT(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="76" parent="9" name="content_type_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="77" parent="9" name="user_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="78" parent="9" name="action_time">
+      <DataType>DATETIME(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="79" parent="9">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="80" parent="9" name="#FAKE_django_admin_log_2">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>content_type_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>django_content_type</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="81" parent="9" name="#FAKE_django_admin_log_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>auth_user</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="82" parent="10" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="83" parent="10" name="app_label">
+      <DataType>VARCHAR(100) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="84" parent="10" name="model">
+      <DataType>VARCHAR(100) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="85" parent="10" name="django_content_type_app_label_76bd3d3b_uniq">
+      <ColNames>app_label
+model</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="86" parent="10">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="87" parent="11" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="88" parent="11" name="app">
+      <DataType>VARCHAR(255) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="89" parent="11" name="name">
+      <DataType>VARCHAR(255) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="90" parent="11" name="applied">
+      <DataType>DATETIME(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="91" parent="11">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="92" parent="12" name="session_key">
+      <DataType>VARCHAR(40) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="93" parent="12" name="session_data">
+      <DataType>TEXT(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="94" parent="12" name="expire_date">
+      <DataType>DATETIME(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="95" parent="12" name="django_session_de54fa62">
+      <ColNames>expire_date</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="96" parent="12">
+      <ColNames>session_key</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="97" parent="13" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="98" parent="13" name="name">
+      <DataType>VARCHAR(150) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="99" parent="13" name="beginDate">
+      <DataType>DATE(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="100" parent="13" name="endDate">
+      <DataType>DATE(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="101" parent="13" name="status">
+      <DataType>BOOL(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="102" parent="13" name="theme">
+      <DataType>VARCHAR(150) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="103" parent="13">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="104" parent="14" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="105" parent="14" name="status">
+      <DataType>BOOL(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="106" parent="14" name="type">
+      <DataType>VARCHAR(200) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="107" parent="14" name="charge">
+      <DataType>REAL(0,-1)|6</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="108" parent="14" name="workload">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="109" parent="14" name="idEdicao_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="110" parent="14">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="111" parent="14" name="#FAKE_satiUTFPR_event_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idEdicao_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>satiUTFPR_edition</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="112" parent="15" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="113" parent="15" name="beginTime">
+      <DataType>TIME(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="114" parent="15" name="endTime">
+      <DataType>TIME(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="115" parent="15" name="status">
+      <DataType>BOOL(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="116" parent="15" name="idRoom_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="117" parent="15" name="idSession_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="118" parent="15">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="119" parent="15" name="#FAKE_satiUTFPR_ocurrence_2">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idRoom_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>satiUTFPR_room</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="120" parent="15" name="#FAKE_satiUTFPR_ocurrence_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idSession_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>satiUTFPR_session</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="121" parent="16" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="122" parent="16" name="payment_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="123" parent="16" name="person_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="124" parent="16" name="session_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="125" parent="16">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="126" parent="16" name="#FAKE_satiUTFPR_participant_3">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>payment_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>satiUTFPR_payment</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="127" parent="16" name="#FAKE_satiUTFPR_participant_2">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>person_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>satiUTFPR_person</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="128" parent="16" name="#FAKE_satiUTFPR_participant_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>session_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>satiUTFPR_session</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="129" parent="17" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="130" parent="17" name="type">
+      <DataType>VARCHAR(30) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="131" parent="17" name="datePayment">
+      <DataType>DATE(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="132" parent="17">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="133" parent="18" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="134" parent="18" name="password">
+      <DataType>VARCHAR(63) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="135" parent="18" name="name">
+      <DataType>VARCHAR(255) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="136" parent="18" name="email">
+      <DataType>VARCHAR(255) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="137" parent="18" name="institution">
+      <DataType>VARCHAR(255) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="138" parent="18" name="dateBirth">
+      <DataType>DATE(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="139" parent="18" name="cpf">
+      <DataType>VARCHAR(15) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="140" parent="18" name="academicRegistry">
+      <DataType>VARCHAR(15) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="141" parent="18" name="role">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="142" parent="18" name="status">
+      <DataType>BOOL(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="143" parent="18" name="sqlite_autoindex_satiUTFPR_person_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cpf</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="144" parent="18">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="145" parent="19" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="146" parent="19" name="entryTime">
+      <DataType>DATETIME(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="147" parent="19" name="exitTime">
+      <DataType>DATETIME(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="148" parent="19" name="idOcurrence_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="149" parent="19" name="idParticipant_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="150" parent="19">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="151" parent="19" name="#FAKE_satiUTFPR_presence_2">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idOcurrence_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>satiUTFPR_ocurrence</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="152" parent="19" name="#FAKE_satiUTFPR_presence_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idParticipant_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>satiUTFPR_participant</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="153" parent="20" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="154" parent="20" name="prize">
+      <DataType>VARCHAR(255) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="155" parent="20" name="raffleDate">
+      <DataType>DATE(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="156" parent="20" name="idOcurrence_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="157" parent="20" name="idParticipant_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="158" parent="20">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="159" parent="20" name="#FAKE_satiUTFPR_raffle_2">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idOcurrence_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>satiUTFPR_ocurrence</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="160" parent="20" name="#FAKE_satiUTFPR_raffle_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idParticipant_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>satiUTFPR_participant</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="161" parent="21" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="162" parent="21" name="name_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="163" parent="21">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="164" parent="21" name="#FAKE_satiUTFPR_report_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>name_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>satiUTFPR_edition</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="165" parent="22" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="166" parent="22" name="name">
+      <DataType>VARCHAR(100) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="167" parent="22" name="number">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="168" parent="22" name="build">
+      <DataType>VARCHAR(2) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="169" parent="22" name="space">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="170" parent="22" name="type">
+      <DataType>VARCHAR(30) (0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="171" parent="22" name="status">
+      <DataType>BOOL(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="172" parent="22">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="173" parent="23" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="174" parent="23" name="status">
+      <DataType>BOOL(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="175" parent="23" name="idEvent_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="176" parent="23" name="instructor_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="177" parent="23">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="178" parent="23" name="#FAKE_satiUTFPR_session_2">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idEvent_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>satiUTFPR_event</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <foreign-key id="179" parent="23" name="#FAKE_satiUTFPR_session_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>instructor_id</ColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>satiUTFPR_person</RefTableName>
+      <RefKeyName>#1</RefKeyName>
+      <OnDelete>no-action</OnDelete>
+      <OnUpdate>no-action</OnUpdate>
+    </foreign-key>
+    <column id="180" parent="24" name="name">
+      <DataType>(0,-1)|12</DataType>
+    </column>
+    <column id="181" parent="24" name="seq">
+      <DataType>(0,-1)|12</DataType>
+    </column>
+    <column id="182" parent="25" name="tbl">
+      <DataType>(0,-1)|12</DataType>
+    </column>
+    <column id="183" parent="25" name="idx">
+      <DataType>(0,-1)|12</DataType>
+    </column>
+    <column id="184" parent="25" name="stat">
+      <DataType>(0,-1)|12</DataType>
+    </column>
+  </database-model>
+</dataSource>
