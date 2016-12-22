@@ -1,0 +1,42 @@
+{% extends 'dashboard/base.html' %}
+
+{% load static %}
+
+
+{% block body_content %}
+
+
+    <section>
+
+        <div class="mdl-color--blue-grey ml-header relative clear">
+            <div class="p-20">
+                <h3 class="mdl-color-text--white m-t-20 m-b-5 page-subtitle"></h3>
+                <h4 class="mdl-color-text--blue-grey-100 m-b-20 no-m-t w100 page-description"></h4>
+            </div>
+        </div>
+
+        <!-- -->
+
+        <div class="mdl-grid mdl-grid--no-spacing ">
+
+            <!--div class="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--4-col-phone mdl-grid">
+                <div class="mdl-color-text--blue-grey-400 content-description mdl-cell mdl-cell--12-col">
+                    {% block description %} {% endblock %}
+                </div>
+            </div-->
+
+
+            <div class="mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-grid">
+
+                {% block main_content %} {% endblock %}
+
+            </div>
+
+{#            <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-grid ">#}
+{#                <p>Dados</p>#}
+{#            </div>#}
+        </div>
+
+    </section>
+
+{% endblock %}

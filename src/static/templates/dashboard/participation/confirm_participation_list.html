@@ -1,0 +1,78 @@
+<md-dialog aria-label="Mango (Fruit)">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 ng-bind="Label.title_table_confirm_participation()"></h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content" ng-show="participants.length">
+        <table class="mdl-data-table mdl-js-data-table mdl-grid--no-spacing mdl-cell--12-col">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric" ng-bind="Label.label_event_name()"></th>
+                    <th class="mdl-data-table__cell--non-numeric" ng-bind="Label.label_person_name()"></th>
+                    <th class="mdl-data-table__cell--non-numeric" ng-bind="Label.label_person_cpf()"></th>
+                    <th class="mdl-data-table__cell--non-numeric" ng-bind="Label.label_person_academic_registry()"></th>
+                    <th class="mdl-data-table__cell--non-numeric" ng-bind="Label.label_participant_confirmed()"></th>
+                    <th class="mdl-data-table__cell--non-numeric"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="participant in participants">
+                <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.event_name"></td>
+                <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.name"></td>
+                <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.cpf | brCpf"></td>
+                <td class="mdl-data-table__cell--non-numeric" ng-bind="participant.academic_registry"></td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <md-switch class="md-primary"
+                               md-no-ink
+                               aria-label="Label.label_participant_confirmed()"
+                               ng-model="participant.is_confirmed"
+                               ng-change="participantCtrl.addModifiedParticipant(participant)">
+                        <label
+                               ng-class="{'mdl-color-text--red-500': !participant.is_confirmed, 'mdl-color-text--green-500': participant.is_confirmed}"
+                               ng-bind="participant.is_confirmed? Label.label_participant_is_confimed_true() : Label.label_participant_is_confimed_false() ">
+                        </label>
+                    </md-switch>
+                </td>
+                <td>
+                    <md-button class="md-icon-button" ng-click="removeParticipation(participant)">
+                        <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                    </md-button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </md-dialog-content>
+
+      <md-dialog-actions layout="row">
+          <div class="mdl-layout-spacer"></div>
+
+          <md-button
+                  aria-label="Label.button_close()"
+                  ng-click="cancel()"
+                  ng-bind="Label.button_close()"
+                  class="md-raised md-warn mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+          </md-button>
+
+
+          <md-button
+                ng-click="saveParticipants()"
+                ng-disabled="!participants.length"
+                aria-label="Add"
+                class="md-raised md-primary mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--2-col-phone"
+                ng-bind="Label.button_save()">
+          </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

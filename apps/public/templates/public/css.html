@@ -1,0 +1,39 @@
+{% load staticfiles %}
+
+<!-- general files -->
+{% include 'css.html' %}
+
+<!-- App: Public -->
+
+<link rel="stylesheet" href="{% static "/css/public/style.css" %}" />
+
+
+<style>
+    .index-headline-image {
+        background: url('{% static '/images/index/capa-evento-1680-622.jpg' %}') center top no-repeat;
+        background-size: cover;
+        height: 622px;
+    }
+
+
+    .headline-image {
+        width: auto;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .headline-image-event {
+        background: url('{% static '/images/event/event-headline-2.jpg' %}') center;
+    }
+
+    .mdl-layout-title__image-drawer {
+        background: url('{% static '/images/sati/logo.png' %}') center;
+        width: auto;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+
+</style>

@@ -1,0 +1,24 @@
+{
+  "evento": "<TÍTULO DA EDIÇÃO DA SATI>",
+  "titulo": "CERTIFICADO",
+  "texto": "Certificamos ... no período de <DATA INICIAL DA EDIÇÃO> à <DATA FINAL DA EDICÃO>."
+  "certificados": [
+        {
+          "nome": "<NOME PESSOA - PARTICIPANTE>",
+          "email": "<EMAIL PESSOA>",
+          "cpf": "<CPF PESSOA>",
+          "atividades": [
+              {"tempo":<TEMPO DE PERMANÊNCIA DA PESSOA EM EVENTO EM MINUTOS>, "papel":"ouvinte", "titulo":"<NOME DO EVENTO>"},
+              {"tempo":<TEMPO DE PERMANÊNCIA DA PESSOA EM EVENTO EM MINUTOS>, "papel":"ouvinte", "titulo":"<NOME DO EVENTO>"}
+          ]
+        },
+        {
+          "nome": "<NOME PESSOA - INSTRUTOR>",
+          "email": "<EMAIL PESSOA>",
+          "cpf": "<CPF PESSOA>",
+          "atividades": [
+              {"tempo":<TEMPO TOTAL DO EVENTO EM MINUTOS>, "papel":"palestrante", "titulo":"<NOME DO EVENTO>"}
+          ]
+        }
+  ]
+}

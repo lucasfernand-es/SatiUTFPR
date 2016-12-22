@@ -1,0 +1,15 @@
+<div class="mdl-grid mdl-cell mdl-cell--12-col mdl-shadow--3dp {[{ responseCtrl.style }]}"I can>
+    <div class="mdl-typography--text-center mdl-cell--12-col mdl-typography--title">
+        <i class="material-icons vert-align" ng-bind="responseCtrl.title_icon"></i>
+        <label class="vert-align" ng-bind="responseCtrl.title"></label>
+    </div>
+
+    <ul class="mdl-list mdl-grid--no-spacing">
+        <li class="mdl-list__item vert-align" ng-repeat="item in messages">
+            <i class="material-icons mdl-list__item-icon vert-align {[{ responseCtrl.text_style }]} " ng-bind="responseCtrl.item_icon"></i>
+            &nbsp;
+            <span class="mdl-list__item-primary-content  vert-align {[{ responseCtrl.text_style }]}" ng-bind="item.name + ' : &nbsp;&nbsp;' + item.message">
+            </span>
+        </li>
+    </ul>
+</div>
